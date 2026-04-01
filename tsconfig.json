@@ -6,9 +6,7 @@
     "outDir": "./build",
     // "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./inertia/*"
-      ]
+      "@/*": ["./inertia/*"]
     }
   },
   "references": [{ "path": "./tsconfig.inertia.json" }]
