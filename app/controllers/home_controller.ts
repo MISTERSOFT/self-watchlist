@@ -1,4 +1,5 @@
 import Anime from '#models/anime'
+import MediaTransformer from '#transformers/media_transformer'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class HomeController {
@@ -6,7 +7,7 @@ export default class HomeController {
     const animes = await Anime.all()
 
     return inertia.render('home', {
-      animes: animes,
+      medias: MediaTransformer.transform(animes),
     })
   }
 }
