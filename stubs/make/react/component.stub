@@ -1,0 +1,24 @@
+// https://docs.adonisjs.com/guides/concepts/scaffolding#creating-stubs
+
+{{#var componentName = string.pascalCase(name)}}
+{{#var resourceFileName = string(name).dashCase().ext('.tsx').toString()}}
+{{{
+  exports({
+    to: app.makePath('inertia/components', resourceFileName)
+  })
+}}}
+
+// import { Link } from '@adonisjs/inertia/react'
+// import { FilmIcon } from 'lucide-react'
+
+interface {{ componentName }}Props {
+  children?: React.ReactNode,
+}
+
+export function {{ componentName }}({ children }: {{ componentName }}Props) {
+  return (
+    <>
+      <span>{children}</span>
+    </>
+  )
+}
