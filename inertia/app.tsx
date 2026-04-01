@@ -1,4 +1,6 @@
+import { ThemeProvider } from '@/components/theme-provider'
 import Layout from '@/layouts/default'
+import string from '@adonisjs/core/helpers/string'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { TuyauProvider } from '@adonisjs/inertia/react'
 import { Data } from '@generated/data'
@@ -8,7 +10,8 @@ import { createRoot } from 'react-dom/client'
 import { client } from './client'
 import './css/app.css'
 
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
+const appName = import.meta.env.VITE_APP_NAME || 'Self Watchlist'
+const themeStorageKey = `${string.snakeCase(appName)}-ui-theme`
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -22,7 +25,9 @@ createInertiaApp({
   setup({ el, App, props }) {
     createRoot(el).render(
       <TuyauProvider client={client}>
-        <App {...props} />
+        <ThemeProvider defaultTheme="dark" storageKey={themeStorageKey}>
+          <App {...props} />
+        </ThemeProvider>
       </TuyauProvider>
     )
   },
