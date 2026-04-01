@@ -7,6 +7,78 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AnimeSchema extends BaseModel {
+  static $columns = [
+    'alternativeTitles',
+    'backgroundUrl',
+    'createdAt',
+    'episodesCount',
+    'externalSource',
+    'externalSourceId',
+    'id',
+    'myanimelistId',
+    'nsfw',
+    'releasedAt',
+    'score',
+    'season',
+    'seasonYear',
+    'slug',
+    'status',
+    'synopsis',
+    'thumbnailUrl',
+    'title',
+    'trailerId',
+    'trailerSource',
+    'type',
+    'updatedAt',
+  ] as const
+  $columns = AnimeSchema.$columns
+  @column()
+  declare alternativeTitles: string | null
+  @column()
+  declare backgroundUrl: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare episodesCount: number | null
+  @column()
+  declare externalSource: string | null
+  @column()
+  declare externalSourceId: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare myanimelistId: string | null
+  @column()
+  declare nsfw: boolean
+  @column.dateTime()
+  declare releasedAt: DateTime
+  @column()
+  declare score: number | null
+  @column()
+  declare season: string | null
+  @column()
+  declare seasonYear: number | null
+  @column()
+  declare slug: string
+  @column()
+  declare status: string | null
+  @column()
+  declare synopsis: string | null
+  @column()
+  declare thumbnailUrl: string | null
+  @column()
+  declare title: string
+  @column()
+  declare trailerId: string | null
+  @column()
+  declare trailerSource: string | null
+  @column()
+  declare type: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
   $columns = UserSchema.$columns
