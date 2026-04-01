@@ -8,8 +8,7 @@
       "installZsh": true,
       "configureZshAsDefaultShell": true,
       "installOhMyZsh": true
-    },
-    "ghcr.io/warrenbuckley/codespace-features/sqlite": {}
+    }
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
