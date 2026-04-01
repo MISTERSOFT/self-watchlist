@@ -7,11 +7,9 @@
 |
 */
 
-import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
-
-router.on('/').renderInertia('home', {}).as('home')
 
 router
   .group(() => {
@@ -20,6 +18,8 @@ router
 
     router.get('login', [controllers.Session, 'create'])
     router.post('login', [controllers.Session, 'store'])
+
+    router.get('/', [controllers.Home, 'index']).as('home')
   })
   .use(middleware.guest())
 
