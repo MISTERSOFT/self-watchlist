@@ -7,6 +7,17 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class AnimeGenreSchema extends BaseModel {
+  static $columns = ['animeId', 'genreId', 'id'] as const
+  $columns = AnimeGenreSchema.$columns
+  @column()
+  declare animeId: number | null
+  @column()
+  declare genreId: number | null
+  @column({ isPrimary: true })
+  declare id: number
+}
+
 export class AnimeSchema extends BaseModel {
   static $columns = [
     'alternativeTitles',
