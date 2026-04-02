@@ -13,8 +13,10 @@
     "dev": "node ace serve --hmr",
     "test": "node ace test",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "typecheck": "tsc --noEmit && tsc --noEmit --project inertia/tsconfig.json"
+    "format:all": "prettier -l --write .",
+    "format:graphql": "prettier -l --write ./graphql",
+    "typecheck": "tsc --noEmit && tsc --noEmit --project inertia/tsconfig.json",
+    "graphql-codegen": "graphql-codegen --config codegen.ts && npm run format:graphql"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
@@ -34,7 +36,8 @@
     "#database/*": "./database/*.js",
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
-    "#config/*": "./config/*.js"
+    "#config/*": "./config/*.js",
+    "#graphql/*": "./graphql/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^8.0.0",
