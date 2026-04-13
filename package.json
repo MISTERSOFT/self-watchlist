@@ -37,7 +37,9 @@
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
     "#config/*": "./config/*.js",
-    "#graphql/*": "./graphql/*.js"
+    "#graphql/*": "./graphql/*.js",
+    "#types/*": "./types/*.js",
+    "#extensions/*": "./extensions/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^8.0.0",
@@ -45,6 +47,7 @@
     "@adonisjs/prettier-config": "^1.4.5",
     "@adonisjs/tsconfig": "^2.0.0",
     "@graphql-codegen/cli": "^6.2.1",
+    "@graphql-codegen/import-types-preset": "^4.0.0",
     "@graphql-codegen/typescript": "^5.0.9",
     "@graphql-codegen/typescript-generic-sdk": "^5.0.0",
     "@graphql-codegen/typescript-operations": "^5.0.9",
@@ -84,7 +87,10 @@
     "better-sqlite3": "^12.6.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "edge.js": "^6.5.0",
+    "es-toolkit": "^1.45.1",
+    "fuse.js": "^7.2.0",
     "graphql": "^16.13.2",
     "lucide-react": "^1.7.0",
     "luxon": "^3.7.2",
