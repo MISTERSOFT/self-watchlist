@@ -1,5 +1,3 @@
-import type { DocumentNode } from 'graphql'
-import { gql } from 'graphql-tag'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -25,88 +23,88 @@ export type Scalars = {
 
 /** Notification for when a activity is liked */
 export type ActivityLikeNotification = {
-  readonly __typename?: 'ActivityLikeNotification'
+  __typename?: 'ActivityLikeNotification'
   /** The liked activity */
-  readonly activity?: Maybe<ActivityUnion>
+  activity?: Maybe<ActivityUnion>
   /** The id of the activity which was liked */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who liked the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who liked to the activity */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when authenticated user is @ mentioned in activity or reply */
 export type ActivityMentionNotification = {
-  readonly __typename?: 'ActivityMentionNotification'
+  __typename?: 'ActivityMentionNotification'
   /** The liked activity */
-  readonly activity?: Maybe<ActivityUnion>
+  activity?: Maybe<ActivityUnion>
   /** The id of the activity where mentioned */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who mentioned the authenticated user */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who mentioned the authenticated user */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when a user is send an activity message */
 export type ActivityMessageNotification = {
-  readonly __typename?: 'ActivityMessageNotification'
+  __typename?: 'ActivityMessageNotification'
   /** The id of the activity message */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The message activity */
-  readonly message?: Maybe<MessageActivity>
+  message?: Maybe<MessageActivity>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who sent the message */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The if of the user who send the message */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Replay to an activity item */
 export type ActivityReply = {
-  readonly __typename?: 'ActivityReply'
+  __typename?: 'ActivityReply'
   /** The id of the parent activity */
-  readonly activityId?: Maybe<Scalars['Int']['output']>
+  activityId?: Maybe<Scalars['Int']['output']>
   /** The time the reply was created at */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the reply */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the reply */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the reply has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the reply */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The reply text */
-  readonly text?: Maybe<Scalars['String']['output']>
+  text?: Maybe<Scalars['String']['output']>
   /** The user who created reply */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the replies creator */
-  readonly userId?: Maybe<Scalars['Int']['output']>
+  userId?: Maybe<Scalars['Int']['output']>
 }
 
 /** Replay to an activity item */
@@ -116,65 +114,65 @@ export type ActivityReplyTextArgs = {
 
 /** Notification for when a activity reply is liked */
 export type ActivityReplyLikeNotification = {
-  readonly __typename?: 'ActivityReplyLikeNotification'
+  __typename?: 'ActivityReplyLikeNotification'
   /** The liked activity */
-  readonly activity?: Maybe<ActivityUnion>
+  activity?: Maybe<ActivityUnion>
   /** The id of the activity where the reply which was liked */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who liked the activity reply */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who liked to the activity reply */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when a user replies to the authenticated users activity */
 export type ActivityReplyNotification = {
-  readonly __typename?: 'ActivityReplyNotification'
+  __typename?: 'ActivityReplyNotification'
   /** The liked activity */
-  readonly activity?: Maybe<ActivityUnion>
+  activity?: Maybe<ActivityUnion>
   /** The id of the activity which was replied too */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who replied to the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who replied to the activity */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when a user replies to activity the authenticated user has replied to */
 export type ActivityReplySubscribedNotification = {
-  readonly __typename?: 'ActivityReplySubscribedNotification'
+  __typename?: 'ActivityReplySubscribedNotification'
   /** The liked activity */
-  readonly activity?: Maybe<ActivityUnion>
+  activity?: Maybe<ActivityUnion>
   /** The id of the activity which was replied too */
-  readonly activityId: Scalars['Int']['output']
+  activityId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who replied to the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who replied to the activity */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Activity sort enums */
@@ -198,71 +196,71 @@ export type ActivityUnion = ListActivity | MessageActivity | TextActivity
 
 /** Notification for when an episode of anime airs */
 export type AiringNotification = {
-  readonly __typename?: 'AiringNotification'
+  __typename?: 'AiringNotification'
   /** The id of the aired anime */
-  readonly animeId: Scalars['Int']['output']
+  animeId: Scalars['Int']['output']
   /** The notification context text */
-  readonly contexts?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  contexts?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The episode number that just aired */
-  readonly episode: Scalars['Int']['output']
+  episode: Scalars['Int']['output']
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The associated media of the airing schedule */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** Score & Watcher stats for airing anime by episode and mid-week */
 export type AiringProgression = {
-  readonly __typename?: 'AiringProgression'
+  __typename?: 'AiringProgression'
   /** The episode the stats were recorded at. .5 is the mid point between 2 episodes airing dates. */
-  readonly episode?: Maybe<Scalars['Float']['output']>
+  episode?: Maybe<Scalars['Float']['output']>
   /** The average score for the media */
-  readonly score?: Maybe<Scalars['Float']['output']>
+  score?: Maybe<Scalars['Float']['output']>
   /** The amount of users watching the anime */
-  readonly watching?: Maybe<Scalars['Int']['output']>
+  watching?: Maybe<Scalars['Int']['output']>
 }
 
 /** Media Airing Schedule. NOTE: We only aim to guarantee that FUTURE airing data is present and accurate. */
 export type AiringSchedule = {
-  readonly __typename?: 'AiringSchedule'
+  __typename?: 'AiringSchedule'
   /** The time the episode airs at */
-  readonly airingAt: Scalars['Int']['output']
+  airingAt: Scalars['Int']['output']
   /** The airing episode number */
-  readonly episode: Scalars['Int']['output']
+  episode: Scalars['Int']['output']
   /** The id of the airing schedule item */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The associate media of the airing episode */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The associate media id of the airing episode */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** Seconds until episode starts airing */
-  readonly timeUntilAiring: Scalars['Int']['output']
+  timeUntilAiring: Scalars['Int']['output']
 }
 
 export type AiringScheduleConnection = {
-  readonly __typename?: 'AiringScheduleConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<AiringScheduleEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<AiringSchedule>>>
+  __typename?: 'AiringScheduleConnection'
+  edges?: Maybe<Array<Maybe<AiringScheduleEdge>>>
+  nodes?: Maybe<Array<Maybe<AiringSchedule>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** AiringSchedule connection edge */
 export type AiringScheduleEdge = {
-  readonly __typename?: 'AiringScheduleEdge'
+  __typename?: 'AiringScheduleEdge'
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
-  readonly node?: Maybe<AiringSchedule>
+  id?: Maybe<Scalars['Int']['output']>
+  node?: Maybe<AiringSchedule>
 }
 
 export type AiringScheduleInput = {
-  readonly airingAt?: InputMaybe<Scalars['Int']['input']>
-  readonly episode?: InputMaybe<Scalars['Int']['input']>
-  readonly timeUntilAiring?: InputMaybe<Scalars['Int']['input']>
+  airingAt?: InputMaybe<Scalars['Int']['input']>
+  episode?: InputMaybe<Scalars['Int']['input']>
+  timeUntilAiring?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** Airing schedule sort enums */
@@ -277,50 +275,50 @@ export type AiringSort =
   | 'TIME_DESC'
 
 export type AniChartHighlightInput = {
-  readonly highlight?: InputMaybe<Scalars['String']['input']>
-  readonly mediaId?: InputMaybe<Scalars['Int']['input']>
+  highlight?: InputMaybe<Scalars['String']['input']>
+  mediaId?: InputMaybe<Scalars['Int']['input']>
 }
 
 export type AniChartUser = {
-  readonly __typename?: 'AniChartUser'
-  readonly highlights?: Maybe<Scalars['Json']['output']>
-  readonly settings?: Maybe<Scalars['Json']['output']>
-  readonly user?: Maybe<User>
+  __typename?: 'AniChartUser'
+  highlights?: Maybe<Scalars['Json']['output']>
+  settings?: Maybe<Scalars['Json']['output']>
+  user?: Maybe<User>
 }
 
 /** A character that features in an anime or manga */
 export type Character = {
-  readonly __typename?: 'Character'
+  __typename?: 'Character'
   /** The character's age. Note this is a string, not an int, it may contain further text and additional ages. */
-  readonly age?: Maybe<Scalars['String']['output']>
+  age?: Maybe<Scalars['String']['output']>
   /** The characters blood type */
-  readonly bloodType?: Maybe<Scalars['String']['output']>
+  bloodType?: Maybe<Scalars['String']['output']>
   /** The character's birth date */
-  readonly dateOfBirth?: Maybe<FuzzyDate>
+  dateOfBirth?: Maybe<FuzzyDate>
   /** A general description of the character */
-  readonly description?: Maybe<Scalars['String']['output']>
+  description?: Maybe<Scalars['String']['output']>
   /** The amount of user's who have favourited the character */
-  readonly favourites?: Maybe<Scalars['Int']['output']>
+  favourites?: Maybe<Scalars['Int']['output']>
   /** The character's gender. Usually Male, Female, or Non-binary but can be any string. */
-  readonly gender?: Maybe<Scalars['String']['output']>
+  gender?: Maybe<Scalars['String']['output']>
   /** The id of the character */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** Character images */
-  readonly image?: Maybe<CharacterImage>
+  image?: Maybe<CharacterImage>
   /** If the character is marked as favourite by the currently authenticated user */
-  readonly isFavourite: Scalars['Boolean']['output']
+  isFavourite: Scalars['Boolean']['output']
   /** If the character is blocked from being added to favourites */
-  readonly isFavouriteBlocked: Scalars['Boolean']['output']
+  isFavouriteBlocked: Scalars['Boolean']['output']
   /** Media that includes the character */
-  readonly media?: Maybe<MediaConnection>
+  media?: Maybe<MediaConnection>
   /** Notes for site moderators */
-  readonly modNotes?: Maybe<Scalars['String']['output']>
+  modNotes?: Maybe<Scalars['String']['output']>
   /** The names of the character */
-  readonly name?: Maybe<CharacterName>
+  name?: Maybe<CharacterName>
   /** The url for the character page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** @deprecated No data available */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['Int']['output']>
 }
 
 /** A character that features in an anime or manga */
@@ -333,93 +331,93 @@ export type CharacterMediaArgs = {
   onList?: InputMaybe<Scalars['Boolean']['input']>
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
   type?: InputMaybe<MediaType>
 }
 
 export type CharacterConnection = {
-  readonly __typename?: 'CharacterConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<CharacterEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Character>>>
+  __typename?: 'CharacterConnection'
+  edges?: Maybe<Array<Maybe<CharacterEdge>>>
+  nodes?: Maybe<Array<Maybe<Character>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Character connection edge */
 export type CharacterEdge = {
-  readonly __typename?: 'CharacterEdge'
+  __typename?: 'CharacterEdge'
   /** The order the character should be displayed from the users favourites */
-  readonly favouriteOrder?: Maybe<Scalars['Int']['output']>
+  favouriteOrder?: Maybe<Scalars['Int']['output']>
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
   /** The media the character is in */
-  readonly media?: Maybe<ReadonlyArray<Maybe<Media>>>
+  media?: Maybe<Array<Maybe<Media>>>
   /** Media specific character name */
-  readonly name?: Maybe<Scalars['String']['output']>
-  readonly node?: Maybe<Character>
+  name?: Maybe<Scalars['String']['output']>
+  node?: Maybe<Character>
   /** The characters role in the media */
-  readonly role?: Maybe<CharacterRole | `${CharacterRole}`>
+  role?: Maybe<CharacterRole | `${CharacterRole}`>
   /** The voice actors of the character with role date */
-  readonly voiceActorRoles?: Maybe<ReadonlyArray<Maybe<StaffRoleType>>>
+  voiceActorRoles?: Maybe<Array<Maybe<StaffRoleType>>>
   /** The voice actors of the character */
-  readonly voiceActors?: Maybe<ReadonlyArray<Maybe<Staff>>>
+  voiceActors?: Maybe<Array<Maybe<Staff>>>
 }
 
 /** Character connection edge */
 export type CharacterEdgeVoiceActorRolesArgs = {
   language?: InputMaybe<StaffLanguage>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** Character connection edge */
 export type CharacterEdgeVoiceActorsArgs = {
   language?: InputMaybe<StaffLanguage>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 export type CharacterImage = {
-  readonly __typename?: 'CharacterImage'
+  __typename?: 'CharacterImage'
   /** The character's image of media at its largest size */
-  readonly large?: Maybe<Scalars['String']['output']>
+  large?: Maybe<Scalars['String']['output']>
   /** The character's image of media at medium size */
-  readonly medium?: Maybe<Scalars['String']['output']>
+  medium?: Maybe<Scalars['String']['output']>
 }
 
 /** The names of the character */
 export type CharacterName = {
-  readonly __typename?: 'CharacterName'
+  __typename?: 'CharacterName'
   /** Other names the character might be referred to as */
-  readonly alternative?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  alternative?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** Other names the character might be referred to as but are spoilers */
-  readonly alternativeSpoiler?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  alternativeSpoiler?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The character's given name */
-  readonly first?: Maybe<Scalars['String']['output']>
+  first?: Maybe<Scalars['String']['output']>
   /** The character's first and last name */
-  readonly full?: Maybe<Scalars['String']['output']>
+  full?: Maybe<Scalars['String']['output']>
   /** The character's surname */
-  readonly last?: Maybe<Scalars['String']['output']>
+  last?: Maybe<Scalars['String']['output']>
   /** The character's middle name */
-  readonly middle?: Maybe<Scalars['String']['output']>
+  middle?: Maybe<Scalars['String']['output']>
   /** The character's full name in their native language */
-  readonly native?: Maybe<Scalars['String']['output']>
+  native?: Maybe<Scalars['String']['output']>
   /** The currently authenticated users preferred name language. Default romaji for non-authenticated */
-  readonly userPreferred?: Maybe<Scalars['String']['output']>
+  userPreferred?: Maybe<Scalars['String']['output']>
 }
 
 /** The names of the character */
 export type CharacterNameInput = {
   /** Other names the character might be referred by */
-  readonly alternative?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  alternative?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** Other names the character might be referred to as but are spoilers */
-  readonly alternativeSpoiler?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  alternativeSpoiler?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** The character's given name */
-  readonly first?: InputMaybe<Scalars['String']['input']>
+  first?: InputMaybe<Scalars['String']['input']>
   /** The character's surname */
-  readonly last?: InputMaybe<Scalars['String']['input']>
+  last?: InputMaybe<Scalars['String']['input']>
   /** The character's middle name */
-  readonly middle?: InputMaybe<Scalars['String']['input']>
+  middle?: InputMaybe<Scalars['String']['input']>
   /** The character's full name in their native language */
-  readonly native?: InputMaybe<Scalars['String']['input']>
+  native?: InputMaybe<Scalars['String']['input']>
 }
 
 /** The role the character plays in the media */
@@ -445,71 +443,71 @@ export type CharacterSort =
 
 /** A submission for a character that features in an anime or manga */
 export type CharacterSubmission = {
-  readonly __typename?: 'CharacterSubmission'
+  __typename?: 'CharacterSubmission'
   /** Data Mod assigned to handle the submission */
-  readonly assignee?: Maybe<User>
+  assignee?: Maybe<User>
   /** Character that the submission is referencing */
-  readonly character?: Maybe<Character>
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  character?: Maybe<Character>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the submission */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** Whether the submission is locked */
-  readonly locked?: Maybe<Scalars['Boolean']['output']>
+  locked?: Maybe<Scalars['Boolean']['output']>
   /** Inner details of submission status */
-  readonly notes?: Maybe<Scalars['String']['output']>
-  readonly source?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
+  source?: Maybe<Scalars['String']['output']>
   /** Status of the submission */
-  readonly status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
+  status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
   /** The character submission changes */
-  readonly submission?: Maybe<Character>
+  submission?: Maybe<Character>
   /** Submitter for the submission */
-  readonly submitter?: Maybe<User>
+  submitter?: Maybe<User>
 }
 
 export type CharacterSubmissionConnection = {
-  readonly __typename?: 'CharacterSubmissionConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<CharacterSubmissionEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<CharacterSubmission>>>
+  __typename?: 'CharacterSubmissionConnection'
+  edges?: Maybe<Array<Maybe<CharacterSubmissionEdge>>>
+  nodes?: Maybe<Array<Maybe<CharacterSubmission>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** CharacterSubmission connection edge */
 export type CharacterSubmissionEdge = {
-  readonly __typename?: 'CharacterSubmissionEdge'
-  readonly node?: Maybe<CharacterSubmission>
+  __typename?: 'CharacterSubmissionEdge'
+  node?: Maybe<CharacterSubmission>
   /** The characters role in the media */
-  readonly role?: Maybe<CharacterRole | `${CharacterRole}`>
+  role?: Maybe<CharacterRole | `${CharacterRole}`>
   /** The submitted voice actors of the character */
-  readonly submittedVoiceActors?: Maybe<ReadonlyArray<Maybe<StaffSubmission>>>
+  submittedVoiceActors?: Maybe<Array<Maybe<StaffSubmission>>>
   /** The voice actors of the character */
-  readonly voiceActors?: Maybe<ReadonlyArray<Maybe<Staff>>>
+  voiceActors?: Maybe<Array<Maybe<Staff>>>
 }
 
 /** Notification for when a character submission is accepted, partially accepted, or rejected */
 export type CharacterSubmissionUpdateNotification = {
-  readonly __typename?: 'CharacterSubmissionUpdateNotification'
+  __typename?: 'CharacterSubmissionUpdateNotification'
   /** The character that was modified. */
-  readonly character?: Maybe<Character>
+  character?: Maybe<Character>
   /** The notification context text */
-  readonly contexts?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  contexts?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The notes of the submission */
-  readonly notes?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
   /** The status of the submission */
-  readonly status?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** Deleted data type */
 export type Deleted = {
-  readonly __typename?: 'Deleted'
+  __typename?: 'Deleted'
   /** If an item has been successfully deleted */
-  readonly deleted?: Maybe<Scalars['Boolean']['output']>
+  deleted?: Maybe<Scalars['Boolean']['output']>
 }
 
 export type ExternalLinkMediaType = 'ANIME' | 'MANGA' | 'STAFF'
@@ -518,17 +516,17 @@ export type ExternalLinkType = 'INFO' | 'SOCIAL' | 'STREAMING'
 
 /** User's favourite anime, manga, characters, staff & studios */
 export type Favourites = {
-  readonly __typename?: 'Favourites'
+  __typename?: 'Favourites'
   /** Favourite anime */
-  readonly anime?: Maybe<MediaConnection>
+  anime?: Maybe<MediaConnection>
   /** Favourite characters */
-  readonly characters?: Maybe<CharacterConnection>
+  characters?: Maybe<CharacterConnection>
   /** Favourite manga */
-  readonly manga?: Maybe<MediaConnection>
+  manga?: Maybe<MediaConnection>
   /** Favourite staff */
-  readonly staff?: Maybe<StaffConnection>
+  staff?: Maybe<StaffConnection>
   /** Favourite studios */
-  readonly studios?: Maybe<StudioConnection>
+  studios?: Maybe<StudioConnection>
 }
 
 /** User's favourite anime, manga, characters, staff & studios */
@@ -563,89 +561,89 @@ export type FavouritesStudiosArgs = {
 
 /** Notification for when the authenticated user is followed by another user */
 export type FollowingNotification = {
-  readonly __typename?: 'FollowingNotification'
+  __typename?: 'FollowingNotification'
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The liked activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who followed the authenticated user */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** User's format statistics */
 export type FormatStats = {
-  readonly __typename?: 'FormatStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly format?: Maybe<MediaFormat | `${MediaFormat}`>
+  __typename?: 'FormatStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  format?: Maybe<MediaFormat | `${MediaFormat}`>
 }
 
 /** Date object that allows for incomplete date values (fuzzy) */
 export type FuzzyDate = {
-  readonly __typename?: 'FuzzyDate'
+  __typename?: 'FuzzyDate'
   /** Numeric Day (24) */
-  readonly day?: Maybe<Scalars['Int']['output']>
+  day?: Maybe<Scalars['Int']['output']>
   /** Numeric Month (3) */
-  readonly month?: Maybe<Scalars['Int']['output']>
+  month?: Maybe<Scalars['Int']['output']>
   /** Numeric Year (2017) */
-  readonly year?: Maybe<Scalars['Int']['output']>
+  year?: Maybe<Scalars['Int']['output']>
 }
 
 /** Date object that allows for incomplete date values (fuzzy) */
 export type FuzzyDateInput = {
   /** Numeric Day (24) */
-  readonly day?: InputMaybe<Scalars['Int']['input']>
+  day?: InputMaybe<Scalars['Int']['input']>
   /** Numeric Month (3) */
-  readonly month?: InputMaybe<Scalars['Int']['input']>
+  month?: InputMaybe<Scalars['Int']['input']>
   /** Numeric Year (2017) */
-  readonly year?: InputMaybe<Scalars['Int']['input']>
+  year?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** User's genre statistics */
 export type GenreStats = {
-  readonly __typename?: 'GenreStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly genre?: Maybe<Scalars['String']['output']>
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
+  __typename?: 'GenreStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  genre?: Maybe<Scalars['String']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
   /** The amount of time in minutes the genre has been watched by the user */
-  readonly timeWatched?: Maybe<Scalars['Int']['output']>
+  timeWatched?: Maybe<Scalars['Int']['output']>
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPage = {
-  readonly __typename?: 'InternalPage'
-  readonly activities?: Maybe<ReadonlyArray<Maybe<ActivityUnion>>>
-  readonly activityReplies?: Maybe<ReadonlyArray<Maybe<ActivityReply>>>
-  readonly airingSchedules?: Maybe<ReadonlyArray<Maybe<AiringSchedule>>>
-  readonly characterSubmissions?: Maybe<ReadonlyArray<Maybe<CharacterSubmission>>>
-  readonly characters?: Maybe<ReadonlyArray<Maybe<Character>>>
-  readonly followers?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly following?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly media?: Maybe<ReadonlyArray<Maybe<Media>>>
-  readonly mediaList?: Maybe<ReadonlyArray<Maybe<MediaList>>>
-  readonly mediaSubmissions?: Maybe<ReadonlyArray<Maybe<MediaSubmission>>>
-  readonly mediaTrends?: Maybe<ReadonlyArray<Maybe<MediaTrend>>>
-  readonly modActions?: Maybe<ReadonlyArray<Maybe<ModAction>>>
-  readonly notifications?: Maybe<ReadonlyArray<Maybe<NotificationUnion>>>
+  __typename?: 'InternalPage'
+  activities?: Maybe<Array<Maybe<ActivityUnion>>>
+  activityReplies?: Maybe<Array<Maybe<ActivityReply>>>
+  airingSchedules?: Maybe<Array<Maybe<AiringSchedule>>>
+  characterSubmissions?: Maybe<Array<Maybe<CharacterSubmission>>>
+  characters?: Maybe<Array<Maybe<Character>>>
+  followers?: Maybe<Array<Maybe<User>>>
+  following?: Maybe<Array<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
+  media?: Maybe<Array<Maybe<Media>>>
+  mediaList?: Maybe<Array<Maybe<MediaList>>>
+  mediaSubmissions?: Maybe<Array<Maybe<MediaSubmission>>>
+  mediaTrends?: Maybe<Array<Maybe<MediaTrend>>>
+  modActions?: Maybe<Array<Maybe<ModAction>>>
+  notifications?: Maybe<Array<Maybe<NotificationUnion>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
-  readonly recommendations?: Maybe<ReadonlyArray<Maybe<Recommendation>>>
-  readonly reports?: Maybe<ReadonlyArray<Maybe<Report>>>
-  readonly reviews?: Maybe<ReadonlyArray<Maybe<Review>>>
-  readonly revisionHistory?: Maybe<ReadonlyArray<Maybe<RevisionHistory>>>
-  readonly staff?: Maybe<ReadonlyArray<Maybe<Staff>>>
-  readonly staffSubmissions?: Maybe<ReadonlyArray<Maybe<StaffSubmission>>>
-  readonly studios?: Maybe<ReadonlyArray<Maybe<Studio>>>
-  readonly threadComments?: Maybe<ReadonlyArray<Maybe<ThreadComment>>>
-  readonly threads?: Maybe<ReadonlyArray<Maybe<Thread>>>
-  readonly userBlockSearch?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly users?: Maybe<ReadonlyArray<Maybe<User>>>
+  pageInfo?: Maybe<PageInfo>
+  recommendations?: Maybe<Array<Maybe<Recommendation>>>
+  reports?: Maybe<Array<Maybe<Report>>>
+  reviews?: Maybe<Array<Maybe<Review>>>
+  revisionHistory?: Maybe<Array<Maybe<RevisionHistory>>>
+  staff?: Maybe<Array<Maybe<Staff>>>
+  staffSubmissions?: Maybe<Array<Maybe<StaffSubmission>>>
+  studios?: Maybe<Array<Maybe<Studio>>>
+  threadComments?: Maybe<Array<Maybe<ThreadComment>>>
+  threads?: Maybe<Array<Maybe<Thread>>>
+  userBlockSearch?: Maybe<Array<Maybe<User>>>
+  users?: Maybe<Array<Maybe<User>>>
 }
 
 /** Page of data (Used for internal use only) */
@@ -656,27 +654,27 @@ export type InternalPageActivitiesArgs = {
   hasReplies?: InputMaybe<Scalars['Boolean']['input']>
   hasRepliesOrTypeText?: InputMaybe<Scalars['Boolean']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId?: InputMaybe<Scalars['Int']['input']>
-  messengerId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  messengerId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId_not?: InputMaybe<Scalars['Int']['input']>
-  messengerId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ActivitySort>>>
+  messengerId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  sort?: InputMaybe<Array<InputMaybe<ActivitySort>>>
   type?: InputMaybe<ActivityType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   type_not?: InputMaybe<ActivityType>
-  type_not_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_not_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userId_not?: InputMaybe<Scalars['Int']['input']>
-  userId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
 }
 
 /** Page of data (Used for internal use only) */
@@ -692,27 +690,27 @@ export type InternalPageAiringSchedulesArgs = {
   airingAt_lesser?: InputMaybe<Scalars['Int']['input']>
   episode?: InputMaybe<Scalars['Int']['input']>
   episode_greater?: InputMaybe<Scalars['Int']['input']>
-  episode_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
-  episode_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notYetAired?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<AiringSort>>>
+  sort?: InputMaybe<Array<InputMaybe<AiringSort>>>
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPageCharacterSubmissionsArgs = {
   assigneeId?: InputMaybe<Scalars['Int']['input']>
   characterId?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SubmissionSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SubmissionSort>>>
   status?: InputMaybe<SubmissionStatus>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -720,23 +718,23 @@ export type InternalPageCharacterSubmissionsArgs = {
 /** Page of data (Used for internal use only) */
 export type InternalPageCharactersArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterSort>>>
+  sort?: InputMaybe<Array<InputMaybe<CharacterSort>>>
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPageFollowersArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPageFollowingArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
@@ -767,26 +765,26 @@ export type InternalPageMediaArgs = {
   episodes_greater?: InputMaybe<Scalars['Int']['input']>
   episodes_lesser?: InputMaybe<Scalars['Int']['input']>
   format?: InputMaybe<MediaFormat>
-  format_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   format_not?: InputMaybe<MediaFormat>
-  format_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_not_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   genre?: InputMaybe<Scalars['String']['input']>
-  genre_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  genre_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  genre_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  genre_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
   idMal?: InputMaybe<Scalars['Int']['input']>
-  idMal_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   idMal_not?: InputMaybe<Scalars['Int']['input']>
-  idMal_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isAdult?: InputMaybe<Scalars['Boolean']['input']>
   isLicensed?: InputMaybe<Scalars['Boolean']['input']>
   licensedBy?: InputMaybe<Scalars['String']['input']>
   licensedById?: InputMaybe<Scalars['Int']['input']>
-  licensedById_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  licensedBy_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  licensedById_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  licensedBy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   minimumTagRank?: InputMaybe<Scalars['Int']['input']>
   onList?: InputMaybe<Scalars['Boolean']['input']>
   popularity?: InputMaybe<Scalars['Int']['input']>
@@ -796,23 +794,23 @@ export type InternalPageMediaArgs = {
   search?: InputMaybe<Scalars['String']['input']>
   season?: InputMaybe<MediaSeason>
   seasonYear?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
   source?: InputMaybe<MediaSource>
-  source_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaSource>>>
+  source_in?: InputMaybe<Array<InputMaybe<MediaSource>>>
   startDate?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   status_not?: InputMaybe<MediaStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   tag?: InputMaybe<Scalars['String']['input']>
   tagCategory?: InputMaybe<Scalars['String']['input']>
-  tagCategory_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tagCategory_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   type?: InputMaybe<MediaType>
   volumes?: InputMaybe<Scalars['Int']['input']>
   volumes_greater?: InputMaybe<Scalars['Int']['input']>
@@ -829,22 +827,22 @@ export type InternalPageMediaListArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notes?: InputMaybe<Scalars['String']['input']>
   notes_like?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaListSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaListSort>>>
   startedAt?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaListStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   status_not?: InputMaybe<MediaListStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   type?: InputMaybe<MediaType>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userName?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -852,7 +850,7 @@ export type InternalPageMediaListArgs = {
 export type InternalPageMediaSubmissionsArgs = {
   assigneeId?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SubmissionSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SubmissionSort>>>
   status?: InputMaybe<SubmissionStatus>
   submissionId?: InputMaybe<Scalars['Int']['input']>
   type?: InputMaybe<MediaType>
@@ -873,15 +871,15 @@ export type InternalPageMediaTrendsArgs = {
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   popularity?: InputMaybe<Scalars['Int']['input']>
   popularity_greater?: InputMaybe<Scalars['Int']['input']>
   popularity_lesser?: InputMaybe<Scalars['Int']['input']>
   popularity_not?: InputMaybe<Scalars['Int']['input']>
   releasing?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaTrendSort>>>
   trending?: InputMaybe<Scalars['Int']['input']>
   trending_greater?: InputMaybe<Scalars['Int']['input']>
   trending_lesser?: InputMaybe<Scalars['Int']['input']>
@@ -898,7 +896,7 @@ export type InternalPageModActionsArgs = {
 export type InternalPageNotificationsArgs = {
   resetNotificationCount?: InputMaybe<Scalars['Boolean']['input']>
   type?: InputMaybe<NotificationType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<NotificationType>>>
+  type_in?: InputMaybe<Array<InputMaybe<NotificationType>>>
 }
 
 /** Page of data (Used for internal use only) */
@@ -910,7 +908,7 @@ export type InternalPageRecommendationsArgs = {
   rating?: InputMaybe<Scalars['Int']['input']>
   rating_greater?: InputMaybe<Scalars['Int']['input']>
   rating_lesser?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<RecommendationSort>>>
+  sort?: InputMaybe<Array<InputMaybe<RecommendationSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
@@ -925,7 +923,7 @@ export type InternalPageReviewsArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
   mediaType?: InputMaybe<MediaType>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ReviewSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ReviewSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
@@ -941,18 +939,18 @@ export type InternalPageRevisionHistoryArgs = {
 /** Page of data (Used for internal use only) */
 export type InternalPageStaffArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPageStaffSubmissionsArgs = {
   assigneeId?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SubmissionSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SubmissionSort>>>
   staffId?: InputMaybe<Scalars['Int']['input']>
   status?: InputMaybe<SubmissionStatus>
   userId?: InputMaybe<Scalars['Int']['input']>
@@ -961,17 +959,17 @@ export type InternalPageStaffSubmissionsArgs = {
 /** Page of data (Used for internal use only) */
 export type InternalPageStudiosArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StudioSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StudioSort>>>
 }
 
 /** Page of data (Used for internal use only) */
 export type InternalPageThreadCommentsArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadCommentSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadCommentSort>>>
   threadId?: InputMaybe<Scalars['Int']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -980,11 +978,11 @@ export type InternalPageThreadCommentsArgs = {
 export type InternalPageThreadsArgs = {
   categoryId?: InputMaybe<Scalars['Int']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaCategoryId?: InputMaybe<Scalars['Int']['input']>
   replyUserId?: InputMaybe<Scalars['Int']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadSort>>>
   subscribed?: InputMaybe<Scalars['Boolean']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -1000,7 +998,7 @@ export type InternalPageUsersArgs = {
   isModerator?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
 }
 
 /** Types that can be liked */
@@ -1017,176 +1015,176 @@ export type LikeableUnion =
 
 /** User list activity (anime & manga updates) */
 export type ListActivity = {
-  readonly __typename?: 'ListActivity'
+  __typename?: 'ListActivity'
   /** The time the activity was created at */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the activity */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the activity */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** If the activity is locked and can receive replies */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** If the activity is pinned to the top of the users activity feed */
-  readonly isPinned?: Maybe<Scalars['Boolean']['output']>
+  isPinned?: Maybe<Scalars['Boolean']['output']>
   /** If the currently authenticated user is subscribed to the activity */
-  readonly isSubscribed?: Maybe<Scalars['Boolean']['output']>
+  isSubscribed?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the activity has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the activity */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The associated media to the activity update */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The list progress made */
-  readonly progress?: Maybe<Scalars['String']['output']>
+  progress?: Maybe<Scalars['String']['output']>
   /** The written replies to the activity */
-  readonly replies?: Maybe<ReadonlyArray<Maybe<ActivityReply>>>
+  replies?: Maybe<Array<Maybe<ActivityReply>>>
   /** The number of activity replies */
-  readonly replyCount: Scalars['Int']['output']
+  replyCount: Scalars['Int']['output']
   /** The url for the activity page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The list item's textual status */
-  readonly status?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
   /** The type of activity */
-  readonly type?: Maybe<ActivityType | `${ActivityType}`>
+  type?: Maybe<ActivityType | `${ActivityType}`>
   /** The owner of the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The user id of the activity's creator */
-  readonly userId?: Maybe<Scalars['Int']['output']>
+  userId?: Maybe<Scalars['Int']['output']>
 }
 
 export type ListActivityOption = {
-  readonly __typename?: 'ListActivityOption'
-  readonly disabled?: Maybe<Scalars['Boolean']['output']>
-  readonly type?: Maybe<MediaListStatus | `${MediaListStatus}`>
+  __typename?: 'ListActivityOption'
+  disabled?: Maybe<Scalars['Boolean']['output']>
+  type?: Maybe<MediaListStatus | `${MediaListStatus}`>
 }
 
 export type ListActivityOptionInput = {
-  readonly disabled?: InputMaybe<Scalars['Boolean']['input']>
-  readonly type?: InputMaybe<MediaListStatus | `${MediaListStatus}`>
+  disabled?: InputMaybe<Scalars['Boolean']['input']>
+  type?: InputMaybe<MediaListStatus | `${MediaListStatus}`>
 }
 
 /** User's list score statistics */
 export type ListScoreStats = {
-  readonly __typename?: 'ListScoreStats'
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
-  readonly standardDeviation?: Maybe<Scalars['Int']['output']>
+  __typename?: 'ListScoreStats'
+  meanScore?: Maybe<Scalars['Int']['output']>
+  standardDeviation?: Maybe<Scalars['Int']['output']>
 }
 
 /** Anime or Manga */
 export type Media = {
-  readonly __typename?: 'Media'
+  __typename?: 'Media'
   /** The media's entire airing schedule */
-  readonly airingSchedule?: Maybe<AiringScheduleConnection>
+  airingSchedule?: Maybe<AiringScheduleConnection>
   /** If the media should have forum thread automatically created for it on airing episode release */
-  readonly autoCreateForumThread?: Maybe<Scalars['Boolean']['output']>
+  autoCreateForumThread?: Maybe<Scalars['Boolean']['output']>
   /** A weighted average score of all the user's scores of the media */
-  readonly averageScore?: Maybe<Scalars['Int']['output']>
+  averageScore?: Maybe<Scalars['Int']['output']>
   /** The banner image of the media */
-  readonly bannerImage?: Maybe<Scalars['String']['output']>
+  bannerImage?: Maybe<Scalars['String']['output']>
   /** The amount of chapters the manga has when complete */
-  readonly chapters?: Maybe<Scalars['Int']['output']>
+  chapters?: Maybe<Scalars['Int']['output']>
   /** The characters in the media */
-  readonly characters?: Maybe<CharacterConnection>
+  characters?: Maybe<CharacterConnection>
   /** Where the media was created. (ISO 3166-1 alpha-2) */
-  readonly countryOfOrigin?: Maybe<Scalars['CountryCode']['output']>
+  countryOfOrigin?: Maybe<Scalars['CountryCode']['output']>
   /** The cover images of the media */
-  readonly coverImage?: Maybe<MediaCoverImage>
+  coverImage?: Maybe<MediaCoverImage>
   /** Short description of the media's story and characters */
-  readonly description?: Maybe<Scalars['String']['output']>
+  description?: Maybe<Scalars['String']['output']>
   /** The general length of each anime episode in minutes */
-  readonly duration?: Maybe<Scalars['Int']['output']>
+  duration?: Maybe<Scalars['Int']['output']>
   /** The last official release date of the media */
-  readonly endDate?: Maybe<FuzzyDate>
+  endDate?: Maybe<FuzzyDate>
   /** The amount of episodes the anime has when complete */
-  readonly episodes?: Maybe<Scalars['Int']['output']>
+  episodes?: Maybe<Scalars['Int']['output']>
   /** External links to another site related to the media */
-  readonly externalLinks?: Maybe<ReadonlyArray<Maybe<MediaExternalLink>>>
+  externalLinks?: Maybe<Array<Maybe<MediaExternalLink>>>
   /** The amount of user's who have favourited the media */
-  readonly favourites?: Maybe<Scalars['Int']['output']>
+  favourites?: Maybe<Scalars['Int']['output']>
   /** The format the media was released in */
-  readonly format?: Maybe<MediaFormat | `${MediaFormat}`>
+  format?: Maybe<MediaFormat | `${MediaFormat}`>
   /** The genres of the media */
-  readonly genres?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  genres?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** Official Twitter hashtags for the media */
-  readonly hashtag?: Maybe<Scalars['String']['output']>
+  hashtag?: Maybe<Scalars['String']['output']>
   /** The id of the media */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The mal id of the media */
-  readonly idMal?: Maybe<Scalars['Int']['output']>
+  idMal?: Maybe<Scalars['Int']['output']>
   /** If the media is intended only for 18+ adult audiences */
-  readonly isAdult?: Maybe<Scalars['Boolean']['output']>
+  isAdult?: Maybe<Scalars['Boolean']['output']>
   /** If the media is marked as favourite by the current authenticated user */
-  readonly isFavourite: Scalars['Boolean']['output']
+  isFavourite: Scalars['Boolean']['output']
   /** If the media is blocked from being added to favourites */
-  readonly isFavouriteBlocked: Scalars['Boolean']['output']
+  isFavouriteBlocked: Scalars['Boolean']['output']
   /** If the media is officially licensed or a self-published doujin release */
-  readonly isLicensed?: Maybe<Scalars['Boolean']['output']>
+  isLicensed?: Maybe<Scalars['Boolean']['output']>
   /** Locked media may not be added to lists our favorited. This may be due to the entry pending for deletion or other reasons. */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** If the media is blocked from being recommended to/from */
-  readonly isRecommendationBlocked?: Maybe<Scalars['Boolean']['output']>
+  isRecommendationBlocked?: Maybe<Scalars['Boolean']['output']>
   /** If the media is blocked from being reviewed */
-  readonly isReviewBlocked?: Maybe<Scalars['Boolean']['output']>
+  isReviewBlocked?: Maybe<Scalars['Boolean']['output']>
   /** Mean score of all the user's scores of the media */
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
   /** The authenticated user's media list entry for the media */
-  readonly mediaListEntry?: Maybe<MediaList>
+  mediaListEntry?: Maybe<MediaList>
   /** Notes for site moderators */
-  readonly modNotes?: Maybe<Scalars['String']['output']>
+  modNotes?: Maybe<Scalars['String']['output']>
   /** The media's next episode airing schedule */
-  readonly nextAiringEpisode?: Maybe<AiringSchedule>
+  nextAiringEpisode?: Maybe<AiringSchedule>
   /** The number of users with the media on their list */
-  readonly popularity?: Maybe<Scalars['Int']['output']>
+  popularity?: Maybe<Scalars['Int']['output']>
   /** The ranking of the media in a particular time span and format compared to other media */
-  readonly rankings?: Maybe<ReadonlyArray<Maybe<MediaRank>>>
+  rankings?: Maybe<Array<Maybe<MediaRank>>>
   /** User recommendations for similar media */
-  readonly recommendations?: Maybe<RecommendationConnection>
+  recommendations?: Maybe<RecommendationConnection>
   /** Other media in the same or connecting franchise */
-  readonly relations?: Maybe<MediaConnection>
+  relations?: Maybe<MediaConnection>
   /** User reviews of the media */
-  readonly reviews?: Maybe<ReviewConnection>
+  reviews?: Maybe<ReviewConnection>
   /** The season the media was initially released in */
-  readonly season?: Maybe<MediaSeason | `${MediaSeason}`>
+  season?: Maybe<MediaSeason | `${MediaSeason}`>
   /**
    * The year & season the media was initially released in
    * @deprecated
    */
-  readonly seasonInt?: Maybe<Scalars['Int']['output']>
+  seasonInt?: Maybe<Scalars['Int']['output']>
   /** The season year the media was initially released in */
-  readonly seasonYear?: Maybe<Scalars['Int']['output']>
+  seasonYear?: Maybe<Scalars['Int']['output']>
   /** The url for the media page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** Source type the media was adapted from. */
-  readonly source?: Maybe<MediaSource | `${MediaSource}`>
+  source?: Maybe<MediaSource | `${MediaSource}`>
   /** The staff who produced the media */
-  readonly staff?: Maybe<StaffConnection>
+  staff?: Maybe<StaffConnection>
   /** The first official release date of the media */
-  readonly startDate?: Maybe<FuzzyDate>
-  readonly stats?: Maybe<MediaStats>
+  startDate?: Maybe<FuzzyDate>
+  stats?: Maybe<MediaStats>
   /** The current releasing status of the media */
-  readonly status?: Maybe<MediaStatus | `${MediaStatus}`>
+  status?: Maybe<MediaStatus | `${MediaStatus}`>
   /** Data and links to legal streaming episodes on external sites */
-  readonly streamingEpisodes?: Maybe<ReadonlyArray<Maybe<MediaStreamingEpisode>>>
+  streamingEpisodes?: Maybe<Array<Maybe<MediaStreamingEpisode>>>
   /** The companies who produced the media */
-  readonly studios?: Maybe<StudioConnection>
+  studios?: Maybe<StudioConnection>
   /** Alternative titles of the media */
-  readonly synonyms?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  synonyms?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** List of tags that describes elements and themes of the media */
-  readonly tags?: Maybe<ReadonlyArray<Maybe<MediaTag>>>
+  tags?: Maybe<Array<Maybe<MediaTag>>>
   /** The official titles of the media in various languages */
-  readonly title?: Maybe<MediaTitle>
+  title?: Maybe<MediaTitle>
   /** Media trailer or advertisement */
-  readonly trailer?: Maybe<MediaTrailer>
+  trailer?: Maybe<MediaTrailer>
   /** The amount of related activity in the past hour */
-  readonly trending?: Maybe<Scalars['Int']['output']>
+  trending?: Maybe<Scalars['Int']['output']>
   /** The media's daily trend stats */
-  readonly trends?: Maybe<MediaTrendConnection>
+  trends?: Maybe<MediaTrendConnection>
   /** The type of the media; anime or manga */
-  readonly type?: Maybe<MediaType | `${MediaType}`>
+  type?: Maybe<MediaType | `${MediaType}`>
   /** When the media's data was last updated */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['Int']['output']>
   /** The amount of volumes the manga has when complete */
-  readonly volumes?: Maybe<Scalars['Int']['output']>
+  volumes?: Maybe<Scalars['Int']['output']>
 }
 
 /** Anime or Manga */
@@ -1201,7 +1199,7 @@ export type MediaCharactersArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
   role?: InputMaybe<CharacterRole>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterSort>>>
+  sort?: InputMaybe<Array<InputMaybe<CharacterSort>>>
 }
 
 /** Anime or Manga */
@@ -1213,7 +1211,7 @@ export type MediaDescriptionArgs = {
 export type MediaRecommendationsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<RecommendationSort>>>
+  sort?: InputMaybe<Array<InputMaybe<RecommendationSort>>>
 }
 
 /** Anime or Manga */
@@ -1221,7 +1219,7 @@ export type MediaReviewsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ReviewSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ReviewSort>>>
 }
 
 /** Anime or Manga */
@@ -1233,7 +1231,7 @@ export type MediaSourceArgs = {
 export type MediaStaffArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** Anime or Manga */
@@ -1244,7 +1242,7 @@ export type MediaStatusArgs = {
 /** Anime or Manga */
 export type MediaStudiosArgs = {
   isMain?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StudioSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StudioSort>>>
 }
 
 /** Anime or Manga */
@@ -1252,110 +1250,110 @@ export type MediaTrendsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
   releasing?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaTrendSort>>>
 }
 
 /** Internal - Media characters separated */
 export type MediaCharacter = {
-  readonly __typename?: 'MediaCharacter'
+  __typename?: 'MediaCharacter'
   /** The characters in the media voiced by the parent actor */
-  readonly character?: Maybe<Character>
+  character?: Maybe<Character>
   /** Media specific character name */
-  readonly characterName?: Maybe<Scalars['String']['output']>
-  readonly dubGroup?: Maybe<Scalars['String']['output']>
+  characterName?: Maybe<Scalars['String']['output']>
+  dubGroup?: Maybe<Scalars['String']['output']>
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
   /** The characters role in the media */
-  readonly role?: Maybe<CharacterRole | `${CharacterRole}`>
-  readonly roleNotes?: Maybe<Scalars['String']['output']>
+  role?: Maybe<CharacterRole | `${CharacterRole}`>
+  roleNotes?: Maybe<Scalars['String']['output']>
   /** The voice actor of the character */
-  readonly voiceActor?: Maybe<Staff>
+  voiceActor?: Maybe<Staff>
 }
 
 export type MediaConnection = {
-  readonly __typename?: 'MediaConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<MediaEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Media>>>
+  __typename?: 'MediaConnection'
+  edges?: Maybe<Array<Maybe<MediaEdge>>>
+  nodes?: Maybe<Array<Maybe<Media>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 export type MediaCoverImage = {
-  readonly __typename?: 'MediaCoverImage'
+  __typename?: 'MediaCoverImage'
   /** Average #hex color of cover image */
-  readonly color?: Maybe<Scalars['String']['output']>
+  color?: Maybe<Scalars['String']['output']>
   /** The cover image url of the media at its largest size. If this size isn't available, large will be provided instead. */
-  readonly extraLarge?: Maybe<Scalars['String']['output']>
+  extraLarge?: Maybe<Scalars['String']['output']>
   /** The cover image url of the media at a large size */
-  readonly large?: Maybe<Scalars['String']['output']>
+  large?: Maybe<Scalars['String']['output']>
   /** The cover image url of the media at medium size */
-  readonly medium?: Maybe<Scalars['String']['output']>
+  medium?: Maybe<Scalars['String']['output']>
 }
 
 /** Notification for when a media entry's data was changed in a significant way impacting users' list tracking */
 export type MediaDataChangeNotification = {
-  readonly __typename?: 'MediaDataChangeNotification'
+  __typename?: 'MediaDataChangeNotification'
   /** The reason for the media data change */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media that received data changes */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The id of the media that received data changes */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** The reason for the media data change */
-  readonly reason?: Maybe<Scalars['String']['output']>
+  reason?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** Notification for when a media tracked in a user's list is deleted from the site */
 export type MediaDeletionNotification = {
-  readonly __typename?: 'MediaDeletionNotification'
+  __typename?: 'MediaDeletionNotification'
   /** The reason for the media deletion */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The title of the deleted media */
-  readonly deletedMediaTitle?: Maybe<Scalars['String']['output']>
+  deletedMediaTitle?: Maybe<Scalars['String']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The reason for the media deletion */
-  readonly reason?: Maybe<Scalars['String']['output']>
+  reason?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** Media connection edge */
 export type MediaEdge = {
-  readonly __typename?: 'MediaEdge'
+  __typename?: 'MediaEdge'
   /** Media specific character name */
-  readonly characterName?: Maybe<Scalars['String']['output']>
+  characterName?: Maybe<Scalars['String']['output']>
   /** The characters role in the media */
-  readonly characterRole?: Maybe<CharacterRole | `${CharacterRole}`>
+  characterRole?: Maybe<CharacterRole | `${CharacterRole}`>
   /** The characters in the media voiced by the parent actor */
-  readonly characters?: Maybe<ReadonlyArray<Maybe<Character>>>
+  characters?: Maybe<Array<Maybe<Character>>>
   /** Used for grouping roles where multiple dubs exist for the same language. Either dubbing company name or language variant. */
-  readonly dubGroup?: Maybe<Scalars['String']['output']>
+  dubGroup?: Maybe<Scalars['String']['output']>
   /** The order the media should be displayed from the users favourites */
-  readonly favouriteOrder?: Maybe<Scalars['Int']['output']>
+  favouriteOrder?: Maybe<Scalars['Int']['output']>
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
   /** If the studio is the main animation studio of the media (For Studio->MediaConnection field only) */
-  readonly isMainStudio: Scalars['Boolean']['output']
-  readonly node?: Maybe<Media>
+  isMainStudio: Scalars['Boolean']['output']
+  node?: Maybe<Media>
   /** The type of relation to the parent model */
-  readonly relationType?: Maybe<MediaRelation | `${MediaRelation}`>
+  relationType?: Maybe<MediaRelation | `${MediaRelation}`>
   /** Notes regarding the VA's role for the character */
-  readonly roleNotes?: Maybe<Scalars['String']['output']>
+  roleNotes?: Maybe<Scalars['String']['output']>
   /** The role of the staff member in the production of the media */
-  readonly staffRole?: Maybe<Scalars['String']['output']>
+  staffRole?: Maybe<Scalars['String']['output']>
   /** The voice actors of the character with role date */
-  readonly voiceActorRoles?: Maybe<ReadonlyArray<Maybe<StaffRoleType>>>
+  voiceActorRoles?: Maybe<Array<Maybe<StaffRoleType>>>
   /** The voice actors of the character */
-  readonly voiceActors?: Maybe<ReadonlyArray<Maybe<Staff>>>
+  voiceActors?: Maybe<Array<Maybe<Staff>>>
 }
 
 /** Media connection edge */
@@ -1366,44 +1364,44 @@ export type MediaEdgeRelationTypeArgs = {
 /** Media connection edge */
 export type MediaEdgeVoiceActorRolesArgs = {
   language?: InputMaybe<StaffLanguage>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** Media connection edge */
 export type MediaEdgeVoiceActorsArgs = {
   language?: InputMaybe<StaffLanguage>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** An external link to another site related to the media or staff member */
 export type MediaExternalLink = {
-  readonly __typename?: 'MediaExternalLink'
-  readonly color?: Maybe<Scalars['String']['output']>
+  __typename?: 'MediaExternalLink'
+  color?: Maybe<Scalars['String']['output']>
   /** The icon image url of the site. Not available for all links. Transparent PNG 64x64 */
-  readonly icon?: Maybe<Scalars['String']['output']>
+  icon?: Maybe<Scalars['String']['output']>
   /** The id of the external link */
-  readonly id: Scalars['Int']['output']
-  readonly isDisabled?: Maybe<Scalars['Boolean']['output']>
+  id: Scalars['Int']['output']
+  isDisabled?: Maybe<Scalars['Boolean']['output']>
   /** Language the site content is in. See Staff language field for values. */
-  readonly language?: Maybe<Scalars['String']['output']>
-  readonly notes?: Maybe<Scalars['String']['output']>
+  language?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
   /** The links website site name */
-  readonly site: Scalars['String']['output']
+  site: Scalars['String']['output']
   /** The links website site id */
-  readonly siteId?: Maybe<Scalars['Int']['output']>
-  readonly type?: Maybe<ExternalLinkType | `${ExternalLinkType}`>
+  siteId?: Maybe<Scalars['Int']['output']>
+  type?: Maybe<ExternalLinkType | `${ExternalLinkType}`>
   /** The url of the external link or base url of link source */
-  readonly url?: Maybe<Scalars['String']['output']>
+  url?: Maybe<Scalars['String']['output']>
 }
 
 /** An external link to another site related to the media */
 export type MediaExternalLinkInput = {
   /** The id of the external link */
-  readonly id: Scalars['Int']['input']
+  id: Scalars['Int']['input']
   /** The site location of the external link */
-  readonly site: Scalars['String']['input']
+  site: Scalars['String']['input']
   /** The url of the external link */
-  readonly url: Scalars['String']['input']
+  url: Scalars['String']['input']
 }
 
 /** The format the media was released in */
@@ -1431,45 +1429,45 @@ export type MediaFormat =
 
 /** List of anime or manga */
 export type MediaList = {
-  readonly __typename?: 'MediaList'
+  __typename?: 'MediaList'
   /** Map of advanced scores with name keys */
-  readonly advancedScores?: Maybe<Scalars['Json']['output']>
+  advancedScores?: Maybe<Scalars['Json']['output']>
   /** When the entry was completed by the user */
-  readonly completedAt?: Maybe<FuzzyDate>
+  completedAt?: Maybe<FuzzyDate>
   /** When the entry data was created */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** Map of booleans for which custom lists the entry are in */
-  readonly customLists?: Maybe<Scalars['Json']['output']>
+  customLists?: Maybe<Scalars['Json']['output']>
   /** If the entry shown be hidden from non-custom lists */
-  readonly hiddenFromStatusLists?: Maybe<Scalars['Boolean']['output']>
+  hiddenFromStatusLists?: Maybe<Scalars['Boolean']['output']>
   /** The id of the list entry */
-  readonly id: Scalars['Int']['output']
-  readonly media?: Maybe<Media>
+  id: Scalars['Int']['output']
+  media?: Maybe<Media>
   /** The id of the media */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** Text notes */
-  readonly notes?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
   /** Priority of planning */
-  readonly priority?: Maybe<Scalars['Int']['output']>
+  priority?: Maybe<Scalars['Int']['output']>
   /** If the entry should only be visible to authenticated user */
-  readonly private?: Maybe<Scalars['Boolean']['output']>
+  private?: Maybe<Scalars['Boolean']['output']>
   /** The amount of episodes/chapters consumed by the user */
-  readonly progress?: Maybe<Scalars['Int']['output']>
+  progress?: Maybe<Scalars['Int']['output']>
   /** The amount of volumes read by the user */
-  readonly progressVolumes?: Maybe<Scalars['Int']['output']>
+  progressVolumes?: Maybe<Scalars['Int']['output']>
   /** The amount of times the user has rewatched/read the media */
-  readonly repeat?: Maybe<Scalars['Int']['output']>
+  repeat?: Maybe<Scalars['Int']['output']>
   /** The score of the entry */
-  readonly score?: Maybe<Scalars['Float']['output']>
+  score?: Maybe<Scalars['Float']['output']>
   /** When the entry was started by the user */
-  readonly startedAt?: Maybe<FuzzyDate>
+  startedAt?: Maybe<FuzzyDate>
   /** The watching/reading status */
-  readonly status?: Maybe<MediaListStatus | `${MediaListStatus}`>
+  status?: Maybe<MediaListStatus | `${MediaListStatus}`>
   /** When the entry data was last updated */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
-  readonly user?: Maybe<User>
+  updatedAt?: Maybe<Scalars['Int']['output']>
+  user?: Maybe<User>
   /** The id of the user owner of the list entry */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** List of anime or manga */
@@ -1484,23 +1482,23 @@ export type MediaListScoreArgs = {
 
 /** List of anime or manga */
 export type MediaListCollection = {
-  readonly __typename?: 'MediaListCollection'
+  __typename?: 'MediaListCollection'
   /**
    * A map of media list entry arrays grouped by custom lists
    * @deprecated Not GraphQL spec compliant, use lists field instead.
    */
-  readonly customLists?: Maybe<ReadonlyArray<Maybe<ReadonlyArray<Maybe<MediaList>>>>>
+  customLists?: Maybe<Array<Maybe<Array<Maybe<MediaList>>>>>
   /** If there is another chunk */
-  readonly hasNextChunk?: Maybe<Scalars['Boolean']['output']>
+  hasNextChunk?: Maybe<Scalars['Boolean']['output']>
   /** Grouped media list entries */
-  readonly lists?: Maybe<ReadonlyArray<Maybe<MediaListGroup>>>
+  lists?: Maybe<Array<Maybe<MediaListGroup>>>
   /**
    * A map of media list entry arrays grouped by status
    * @deprecated Not GraphQL spec compliant, use lists field instead.
    */
-  readonly statusLists?: Maybe<ReadonlyArray<Maybe<ReadonlyArray<Maybe<MediaList>>>>>
+  statusLists?: Maybe<Array<Maybe<Array<Maybe<MediaList>>>>>
   /** The owner of the list */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
 }
 
 /** List of anime or manga */
@@ -1515,54 +1513,54 @@ export type MediaListCollectionStatusListsArgs = {
 
 /** List group of anime or manga entries */
 export type MediaListGroup = {
-  readonly __typename?: 'MediaListGroup'
+  __typename?: 'MediaListGroup'
   /** Media list entries */
-  readonly entries?: Maybe<ReadonlyArray<Maybe<MediaList>>>
-  readonly isCustomList?: Maybe<Scalars['Boolean']['output']>
-  readonly isSplitCompletedList?: Maybe<Scalars['Boolean']['output']>
-  readonly name?: Maybe<Scalars['String']['output']>
-  readonly status?: Maybe<MediaListStatus | `${MediaListStatus}`>
+  entries?: Maybe<Array<Maybe<MediaList>>>
+  isCustomList?: Maybe<Scalars['Boolean']['output']>
+  isSplitCompletedList?: Maybe<Scalars['Boolean']['output']>
+  name?: Maybe<Scalars['String']['output']>
+  status?: Maybe<MediaListStatus | `${MediaListStatus}`>
 }
 
 /** A user's list options */
 export type MediaListOptions = {
-  readonly __typename?: 'MediaListOptions'
+  __typename?: 'MediaListOptions'
   /** The user's anime list options */
-  readonly animeList?: Maybe<MediaListTypeOptions>
+  animeList?: Maybe<MediaListTypeOptions>
   /** The user's manga list options */
-  readonly mangaList?: Maybe<MediaListTypeOptions>
+  mangaList?: Maybe<MediaListTypeOptions>
   /** The default order list rows should be displayed in */
-  readonly rowOrder?: Maybe<Scalars['String']['output']>
+  rowOrder?: Maybe<Scalars['String']['output']>
   /** The score format the user is using for media lists */
-  readonly scoreFormat?: Maybe<ScoreFormat | `${ScoreFormat}`>
+  scoreFormat?: Maybe<ScoreFormat | `${ScoreFormat}`>
   /**
    * The list theme options for both lists
    * @deprecated No longer used
    */
-  readonly sharedTheme?: Maybe<Scalars['Json']['output']>
+  sharedTheme?: Maybe<Scalars['Json']['output']>
   /**
    * If the shared theme should be used instead of the individual list themes
    * @deprecated No longer used
    */
-  readonly sharedThemeEnabled?: Maybe<Scalars['Boolean']['output']>
+  sharedThemeEnabled?: Maybe<Scalars['Boolean']['output']>
   /** @deprecated No longer used */
-  readonly useLegacyLists?: Maybe<Scalars['Boolean']['output']>
+  useLegacyLists?: Maybe<Scalars['Boolean']['output']>
 }
 
 /** A user's list options for anime or manga lists */
 export type MediaListOptionsInput = {
   /** The names of the user's advanced scoring sections */
-  readonly advancedScoring?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  advancedScoring?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** If advanced scoring is enabled */
-  readonly advancedScoringEnabled?: InputMaybe<Scalars['Boolean']['input']>
+  advancedScoringEnabled?: InputMaybe<Scalars['Boolean']['input']>
   /** The names of the user's custom lists */
-  readonly customLists?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  customLists?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** The order each list should be displayed in */
-  readonly sectionOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  sectionOrder?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** If the completed sections of the list should be separated by format */
-  readonly splitCompletedSectionByFormat?: InputMaybe<Scalars['Boolean']['input']>
+  splitCompletedSectionByFormat?: InputMaybe<Scalars['Boolean']['input']>
   /** list theme */
-  readonly theme?: InputMaybe<Scalars['String']['input']>
+  theme?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Media list sort enums */
@@ -1615,64 +1613,64 @@ export type MediaListStatus =
 
 /** A user's list options for anime or manga lists */
 export type MediaListTypeOptions = {
-  readonly __typename?: 'MediaListTypeOptions'
+  __typename?: 'MediaListTypeOptions'
   /** The names of the user's advanced scoring sections */
-  readonly advancedScoring?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  advancedScoring?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** If advanced scoring is enabled */
-  readonly advancedScoringEnabled?: Maybe<Scalars['Boolean']['output']>
+  advancedScoringEnabled?: Maybe<Scalars['Boolean']['output']>
   /** The names of the user's custom lists */
-  readonly customLists?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  customLists?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The order each list should be displayed in */
-  readonly sectionOrder?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  sectionOrder?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** If the completed sections of the list should be separated by format */
-  readonly splitCompletedSectionByFormat?: Maybe<Scalars['Boolean']['output']>
+  splitCompletedSectionByFormat?: Maybe<Scalars['Boolean']['output']>
   /**
    * The list theme options
    * @deprecated This field has not yet been fully implemented and may change without warning
    */
-  readonly theme?: Maybe<Scalars['Json']['output']>
+  theme?: Maybe<Scalars['Json']['output']>
 }
 
 /** Notification for when a media entry is merged into another for a user who had it on their list */
 export type MediaMergeNotification = {
-  readonly __typename?: 'MediaMergeNotification'
+  __typename?: 'MediaMergeNotification'
   /** The reason for the media data change */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The title of the deleted media */
-  readonly deletedMediaTitles?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  deletedMediaTitles?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media that was merged into */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The id of the media that was merged into */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** The reason for the media merge */
-  readonly reason?: Maybe<Scalars['String']['output']>
+  reason?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** The ranking of a media in a particular time span and format compared to other media */
 export type MediaRank = {
-  readonly __typename?: 'MediaRank'
+  __typename?: 'MediaRank'
   /** If the ranking is based on all time instead of a season/year */
-  readonly allTime?: Maybe<Scalars['Boolean']['output']>
+  allTime?: Maybe<Scalars['Boolean']['output']>
   /** String that gives context to the ranking type and time span */
-  readonly context: Scalars['String']['output']
+  context: Scalars['String']['output']
   /** The format the media is ranked within */
-  readonly format: MediaFormat | `${MediaFormat}`
+  format: MediaFormat | `${MediaFormat}`
   /** The id of the rank */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The numerical rank of the media */
-  readonly rank: Scalars['Int']['output']
+  rank: Scalars['Int']['output']
   /** The season the media is ranked within */
-  readonly season?: Maybe<MediaSeason | `${MediaSeason}`>
+  season?: Maybe<MediaSeason | `${MediaSeason}`>
   /** The type of ranking */
-  readonly type: MediaRankType | `${MediaRankType}`
+  type: MediaRankType | `${MediaRankType}`
   /** The year the media is ranked within */
-  readonly year?: Maybe<Scalars['Int']['output']>
+  year?: Maybe<Scalars['Int']['output']>
 }
 
 /** The type of ranking */
@@ -1796,11 +1794,11 @@ export type MediaSource =
 
 /** A media's statistics */
 export type MediaStats = {
-  readonly __typename?: 'MediaStats'
+  __typename?: 'MediaStats'
   /** @deprecated Replaced by MediaTrends */
-  readonly airingProgression?: Maybe<ReadonlyArray<Maybe<AiringProgression>>>
-  readonly scoreDistribution?: Maybe<ReadonlyArray<Maybe<ScoreDistribution>>>
-  readonly statusDistribution?: Maybe<ReadonlyArray<Maybe<StatusDistribution>>>
+  airingProgression?: Maybe<Array<Maybe<AiringProgression>>>
+  scoreDistribution?: Maybe<Array<Maybe<ScoreDistribution>>>
+  statusDistribution?: Maybe<Array<Maybe<StatusDistribution>>>
 }
 
 /** The current releasing status of the media */
@@ -1818,130 +1816,130 @@ export type MediaStatus =
 
 /** Data and links to legal streaming episodes on external sites */
 export type MediaStreamingEpisode = {
-  readonly __typename?: 'MediaStreamingEpisode'
+  __typename?: 'MediaStreamingEpisode'
   /** The site location of the streaming episodes */
-  readonly site?: Maybe<Scalars['String']['output']>
+  site?: Maybe<Scalars['String']['output']>
   /** Url of episode image thumbnail */
-  readonly thumbnail?: Maybe<Scalars['String']['output']>
+  thumbnail?: Maybe<Scalars['String']['output']>
   /** Title of the episode */
-  readonly title?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
   /** The url of the episode */
-  readonly url?: Maybe<Scalars['String']['output']>
+  url?: Maybe<Scalars['String']['output']>
 }
 
 /** Media submission */
 export type MediaSubmission = {
-  readonly __typename?: 'MediaSubmission'
+  __typename?: 'MediaSubmission'
   /** Data Mod assigned to handle the submission */
-  readonly assignee?: Maybe<User>
-  readonly changes?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
-  readonly characters?: Maybe<ReadonlyArray<Maybe<MediaSubmissionComparison>>>
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
-  readonly externalLinks?: Maybe<ReadonlyArray<Maybe<MediaSubmissionComparison>>>
+  assignee?: Maybe<User>
+  changes?: Maybe<Array<Maybe<Scalars['String']['output']>>>
+  characters?: Maybe<Array<Maybe<MediaSubmissionComparison>>>
+  createdAt?: Maybe<Scalars['Int']['output']>
+  externalLinks?: Maybe<Array<Maybe<MediaSubmissionComparison>>>
   /** The id of the submission */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** Whether the submission is locked */
-  readonly locked?: Maybe<Scalars['Boolean']['output']>
-  readonly media?: Maybe<Media>
-  readonly notes?: Maybe<Scalars['String']['output']>
-  readonly relations?: Maybe<ReadonlyArray<Maybe<MediaEdge>>>
-  readonly source?: Maybe<Scalars['String']['output']>
-  readonly staff?: Maybe<ReadonlyArray<Maybe<MediaSubmissionComparison>>>
+  locked?: Maybe<Scalars['Boolean']['output']>
+  media?: Maybe<Media>
+  notes?: Maybe<Scalars['String']['output']>
+  relations?: Maybe<Array<Maybe<MediaEdge>>>
+  source?: Maybe<Scalars['String']['output']>
+  staff?: Maybe<Array<Maybe<MediaSubmissionComparison>>>
   /** Status of the submission */
-  readonly status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
-  readonly studios?: Maybe<ReadonlyArray<Maybe<MediaSubmissionComparison>>>
-  readonly submission?: Maybe<Media>
+  status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
+  studios?: Maybe<Array<Maybe<MediaSubmissionComparison>>>
+  submission?: Maybe<Media>
   /** User submitter of the submission */
-  readonly submitter?: Maybe<User>
-  readonly submitterStats?: Maybe<Scalars['Json']['output']>
+  submitter?: Maybe<User>
+  submitterStats?: Maybe<Scalars['Json']['output']>
 }
 
 /** Media submission with comparison to current data */
 export type MediaSubmissionComparison = {
-  readonly __typename?: 'MediaSubmissionComparison'
-  readonly character?: Maybe<MediaCharacter>
-  readonly externalLink?: Maybe<MediaExternalLink>
-  readonly staff?: Maybe<StaffEdge>
-  readonly studio?: Maybe<StudioEdge>
-  readonly submission?: Maybe<MediaSubmissionEdge>
+  __typename?: 'MediaSubmissionComparison'
+  character?: Maybe<MediaCharacter>
+  externalLink?: Maybe<MediaExternalLink>
+  staff?: Maybe<StaffEdge>
+  studio?: Maybe<StudioEdge>
+  submission?: Maybe<MediaSubmissionEdge>
 }
 
 export type MediaSubmissionEdge = {
-  readonly __typename?: 'MediaSubmissionEdge'
-  readonly character?: Maybe<Character>
-  readonly characterName?: Maybe<Scalars['String']['output']>
-  readonly characterRole?: Maybe<CharacterRole | `${CharacterRole}`>
-  readonly characterSubmission?: Maybe<Character>
-  readonly dubGroup?: Maybe<Scalars['String']['output']>
-  readonly externalLink?: Maybe<MediaExternalLink>
+  __typename?: 'MediaSubmissionEdge'
+  character?: Maybe<Character>
+  characterName?: Maybe<Scalars['String']['output']>
+  characterRole?: Maybe<CharacterRole | `${CharacterRole}`>
+  characterSubmission?: Maybe<Character>
+  dubGroup?: Maybe<Scalars['String']['output']>
+  externalLink?: Maybe<MediaExternalLink>
   /** The id of the direct submission */
-  readonly id?: Maybe<Scalars['Int']['output']>
-  readonly isMain?: Maybe<Scalars['Boolean']['output']>
-  readonly media?: Maybe<Media>
-  readonly roleNotes?: Maybe<Scalars['String']['output']>
-  readonly staff?: Maybe<Staff>
-  readonly staffRole?: Maybe<Scalars['String']['output']>
-  readonly staffSubmission?: Maybe<Staff>
-  readonly studio?: Maybe<Studio>
-  readonly voiceActor?: Maybe<Staff>
-  readonly voiceActorSubmission?: Maybe<Staff>
+  id?: Maybe<Scalars['Int']['output']>
+  isMain?: Maybe<Scalars['Boolean']['output']>
+  media?: Maybe<Media>
+  roleNotes?: Maybe<Scalars['String']['output']>
+  staff?: Maybe<Staff>
+  staffRole?: Maybe<Scalars['String']['output']>
+  staffSubmission?: Maybe<Staff>
+  studio?: Maybe<Studio>
+  voiceActor?: Maybe<Staff>
+  voiceActorSubmission?: Maybe<Staff>
 }
 
 /** Notification for when a media submission is accepted, partially accepted, or rejected */
 export type MediaSubmissionUpdateNotification = {
-  readonly __typename?: 'MediaSubmissionUpdateNotification'
+  __typename?: 'MediaSubmissionUpdateNotification'
   /** The notification context text */
-  readonly contexts?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  contexts?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media that was created or modified. If this submission was to create a new media and it was rejected, this will be null. */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The notes of the submission */
-  readonly notes?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
   /** The status of the submission */
-  readonly status?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
   /** The title of the media that was submitted. If this submission was to edit an existing media, this will be null. */
-  readonly submittedTitle?: Maybe<Scalars['String']['output']>
+  submittedTitle?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** A tag that describes a theme or element of the media */
 export type MediaTag = {
-  readonly __typename?: 'MediaTag'
+  __typename?: 'MediaTag'
   /** The categories of tags this tag belongs to */
-  readonly category?: Maybe<Scalars['String']['output']>
+  category?: Maybe<Scalars['String']['output']>
   /** A general description of the tag */
-  readonly description?: Maybe<Scalars['String']['output']>
+  description?: Maybe<Scalars['String']['output']>
   /** The id of the tag */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the tag is only for adult 18+ media */
-  readonly isAdult?: Maybe<Scalars['Boolean']['output']>
+  isAdult?: Maybe<Scalars['Boolean']['output']>
   /** If the tag could be a spoiler for any media */
-  readonly isGeneralSpoiler?: Maybe<Scalars['Boolean']['output']>
+  isGeneralSpoiler?: Maybe<Scalars['Boolean']['output']>
   /** If the tag is a spoiler for this media */
-  readonly isMediaSpoiler?: Maybe<Scalars['Boolean']['output']>
+  isMediaSpoiler?: Maybe<Scalars['Boolean']['output']>
   /** The name of the tag */
-  readonly name: Scalars['String']['output']
+  name: Scalars['String']['output']
   /** The relevance ranking of the tag out of the 100 for this media */
-  readonly rank?: Maybe<Scalars['Int']['output']>
+  rank?: Maybe<Scalars['Int']['output']>
   /** The user who submitted the tag */
-  readonly userId?: Maybe<Scalars['Int']['output']>
+  userId?: Maybe<Scalars['Int']['output']>
 }
 
 /** The official titles of the media in various languages */
 export type MediaTitle = {
-  readonly __typename?: 'MediaTitle'
+  __typename?: 'MediaTitle'
   /** The official english title */
-  readonly english?: Maybe<Scalars['String']['output']>
+  english?: Maybe<Scalars['String']['output']>
   /** Official title in it's native language */
-  readonly native?: Maybe<Scalars['String']['output']>
+  native?: Maybe<Scalars['String']['output']>
   /** The romanization of the native language title */
-  readonly romaji?: Maybe<Scalars['String']['output']>
+  romaji?: Maybe<Scalars['String']['output']>
   /** The currently authenticated users preferred title language. Default romaji for non-authenticated */
-  readonly userPreferred?: Maybe<Scalars['String']['output']>
+  userPreferred?: Maybe<Scalars['String']['output']>
 }
 
 /** The official titles of the media in various languages */
@@ -1962,59 +1960,59 @@ export type MediaTitleRomajiArgs = {
 /** The official titles of the media in various languages */
 export type MediaTitleInput = {
   /** The official english title */
-  readonly english?: InputMaybe<Scalars['String']['input']>
+  english?: InputMaybe<Scalars['String']['input']>
   /** Official title in it's native language */
-  readonly native?: InputMaybe<Scalars['String']['input']>
+  native?: InputMaybe<Scalars['String']['input']>
   /** The romanization of the native language title */
-  readonly romaji?: InputMaybe<Scalars['String']['input']>
+  romaji?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Media trailer or advertisement */
 export type MediaTrailer = {
-  readonly __typename?: 'MediaTrailer'
+  __typename?: 'MediaTrailer'
   /** The trailer video id */
-  readonly id?: Maybe<Scalars['String']['output']>
+  id?: Maybe<Scalars['String']['output']>
   /** The site the video is hosted by (Currently either youtube or dailymotion) */
-  readonly site?: Maybe<Scalars['String']['output']>
+  site?: Maybe<Scalars['String']['output']>
   /** The url for the thumbnail image of the video */
-  readonly thumbnail?: Maybe<Scalars['String']['output']>
+  thumbnail?: Maybe<Scalars['String']['output']>
 }
 
 /** Daily media statistics */
 export type MediaTrend = {
-  readonly __typename?: 'MediaTrend'
+  __typename?: 'MediaTrend'
   /** A weighted average score of all the user's scores of the media */
-  readonly averageScore?: Maybe<Scalars['Int']['output']>
+  averageScore?: Maybe<Scalars['Int']['output']>
   /** The day the data was recorded (timestamp) */
-  readonly date: Scalars['Int']['output']
+  date: Scalars['Int']['output']
   /** The episode number of the anime released on this day */
-  readonly episode?: Maybe<Scalars['Int']['output']>
+  episode?: Maybe<Scalars['Int']['output']>
   /** The number of users with watching/reading the media */
-  readonly inProgress?: Maybe<Scalars['Int']['output']>
+  inProgress?: Maybe<Scalars['Int']['output']>
   /** The related media */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The id of the tag */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** The number of users with the media on their list */
-  readonly popularity?: Maybe<Scalars['Int']['output']>
+  popularity?: Maybe<Scalars['Int']['output']>
   /** If the media was being released at this time */
-  readonly releasing: Scalars['Boolean']['output']
+  releasing: Scalars['Boolean']['output']
   /** The amount of media activity on the day */
-  readonly trending: Scalars['Int']['output']
+  trending: Scalars['Int']['output']
 }
 
 export type MediaTrendConnection = {
-  readonly __typename?: 'MediaTrendConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<MediaTrendEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<MediaTrend>>>
+  __typename?: 'MediaTrendConnection'
+  edges?: Maybe<Array<Maybe<MediaTrendEdge>>>
+  nodes?: Maybe<Array<Maybe<MediaTrend>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Media trend connection edge */
 export type MediaTrendEdge = {
-  readonly __typename?: 'MediaTrendEdge'
-  readonly node?: Maybe<MediaTrend>
+  __typename?: 'MediaTrendEdge'
+  node?: Maybe<MediaTrend>
 }
 
 /** Media trend sort enums */
@@ -2043,41 +2041,41 @@ export type MediaType =
 
 /** User message activity */
 export type MessageActivity = {
-  readonly __typename?: 'MessageActivity'
+  __typename?: 'MessageActivity'
   /** The time the activity was created at */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the activity */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the activity */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** If the activity is locked and can receive replies */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** If the message is private and only viewable to the sender and recipients */
-  readonly isPrivate?: Maybe<Scalars['Boolean']['output']>
+  isPrivate?: Maybe<Scalars['Boolean']['output']>
   /** If the currently authenticated user is subscribed to the activity */
-  readonly isSubscribed?: Maybe<Scalars['Boolean']['output']>
+  isSubscribed?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the activity has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the activity */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The message text (Markdown) */
-  readonly message?: Maybe<Scalars['String']['output']>
+  message?: Maybe<Scalars['String']['output']>
   /** The user who sent the activity message */
-  readonly messenger?: Maybe<User>
+  messenger?: Maybe<User>
   /** The user id of the activity's sender */
-  readonly messengerId?: Maybe<Scalars['Int']['output']>
+  messengerId?: Maybe<Scalars['Int']['output']>
   /** The user who the activity message was sent to */
-  readonly recipient?: Maybe<User>
+  recipient?: Maybe<User>
   /** The user id of the activity's recipient */
-  readonly recipientId?: Maybe<Scalars['Int']['output']>
+  recipientId?: Maybe<Scalars['Int']['output']>
   /** The written replies to the activity */
-  readonly replies?: Maybe<ReadonlyArray<Maybe<ActivityReply>>>
+  replies?: Maybe<Array<Maybe<ActivityReply>>>
   /** The number of activity replies */
-  readonly replyCount: Scalars['Int']['output']
+  replyCount: Scalars['Int']['output']
   /** The url for the activity page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The type of the activity */
-  readonly type?: Maybe<ActivityType | `${ActivityType}`>
+  type?: Maybe<ActivityType | `${ActivityType}`>
 }
 
 /** User message activity */
@@ -2086,16 +2084,16 @@ export type MessageActivityMessageArgs = {
 }
 
 export type ModAction = {
-  readonly __typename?: 'ModAction'
-  readonly createdAt: Scalars['Int']['output']
-  readonly data?: Maybe<Scalars['String']['output']>
+  __typename?: 'ModAction'
+  createdAt: Scalars['Int']['output']
+  data?: Maybe<Scalars['String']['output']>
   /** The id of the action */
-  readonly id: Scalars['Int']['output']
-  readonly mod?: Maybe<User>
-  readonly objectId?: Maybe<Scalars['Int']['output']>
-  readonly objectType?: Maybe<Scalars['String']['output']>
-  readonly type?: Maybe<ModActionType | `${ModActionType}`>
-  readonly user?: Maybe<User>
+  id: Scalars['Int']['output']
+  mod?: Maybe<User>
+  objectId?: Maybe<Scalars['Int']['output']>
+  objectType?: Maybe<Scalars['String']['output']>
+  type?: Maybe<ModActionType | `${ModActionType}`>
+  user?: Maybe<User>
 }
 
 export type ModActionType =
@@ -2142,65 +2140,65 @@ export type ModRole =
   | 'STAFF_DATA'
 
 export type Mutation = {
-  readonly __typename?: 'Mutation'
+  __typename?: 'Mutation'
   /** Delete an activity item of the authenticated users */
-  readonly DeleteActivity?: Maybe<Deleted>
+  DeleteActivity?: Maybe<Deleted>
   /** Delete an activity reply of the authenticated users */
-  readonly DeleteActivityReply?: Maybe<Deleted>
+  DeleteActivityReply?: Maybe<Deleted>
   /** Delete a custom list and remove the list entries from it */
-  readonly DeleteCustomList?: Maybe<Deleted>
+  DeleteCustomList?: Maybe<Deleted>
   /** Delete a media list entry */
-  readonly DeleteMediaListEntry?: Maybe<Deleted>
+  DeleteMediaListEntry?: Maybe<Deleted>
   /** Delete a review */
-  readonly DeleteReview?: Maybe<Deleted>
+  DeleteReview?: Maybe<Deleted>
   /** Delete a thread */
-  readonly DeleteThread?: Maybe<Deleted>
+  DeleteThread?: Maybe<Deleted>
   /** Delete a thread comment */
-  readonly DeleteThreadComment?: Maybe<Deleted>
+  DeleteThreadComment?: Maybe<Deleted>
   /** Rate a review */
-  readonly RateReview?: Maybe<Review>
+  RateReview?: Maybe<Review>
   /** Create or update an activity reply */
-  readonly SaveActivityReply?: Maybe<ActivityReply>
+  SaveActivityReply?: Maybe<ActivityReply>
   /** Update list activity (Mod Only) */
-  readonly SaveListActivity?: Maybe<ListActivity>
+  SaveListActivity?: Maybe<ListActivity>
   /** Create or update a media list entry */
-  readonly SaveMediaListEntry?: Maybe<MediaList>
+  SaveMediaListEntry?: Maybe<MediaList>
   /** Create or update message activity for the currently authenticated user */
-  readonly SaveMessageActivity?: Maybe<MessageActivity>
+  SaveMessageActivity?: Maybe<MessageActivity>
   /** Recommendation a media */
-  readonly SaveRecommendation?: Maybe<Recommendation>
+  SaveRecommendation?: Maybe<Recommendation>
   /** Create or update a review */
-  readonly SaveReview?: Maybe<Review>
+  SaveReview?: Maybe<Review>
   /** Create or update text activity for the currently authenticated user */
-  readonly SaveTextActivity?: Maybe<TextActivity>
+  SaveTextActivity?: Maybe<TextActivity>
   /** Create or update a forum thread */
-  readonly SaveThread?: Maybe<Thread>
+  SaveThread?: Maybe<Thread>
   /** Create or update a thread comment */
-  readonly SaveThreadComment?: Maybe<ThreadComment>
+  SaveThreadComment?: Maybe<ThreadComment>
   /** Toggle activity to be pinned to the top of the user's activity feed */
-  readonly ToggleActivityPin?: Maybe<ActivityUnion>
+  ToggleActivityPin?: Maybe<ActivityUnion>
   /** Toggle the subscription of an activity item */
-  readonly ToggleActivitySubscription?: Maybe<ActivityUnion>
+  ToggleActivitySubscription?: Maybe<ActivityUnion>
   /** Favourite or unfavourite an anime, manga, character, staff member, or studio */
-  readonly ToggleFavourite?: Maybe<Favourites>
+  ToggleFavourite?: Maybe<Favourites>
   /** Toggle the un/following of a user */
-  readonly ToggleFollow?: Maybe<User>
+  ToggleFollow?: Maybe<User>
   /**
    * Add or remove a like from a likeable type.
    *                           Returns all the users who liked the same model
    */
-  readonly ToggleLike?: Maybe<ReadonlyArray<Maybe<User>>>
+  ToggleLike?: Maybe<Array<Maybe<User>>>
   /** Add or remove a like from a likeable type. */
-  readonly ToggleLikeV2?: Maybe<LikeableUnion>
+  ToggleLikeV2?: Maybe<LikeableUnion>
   /** Toggle the subscription of a forum thread */
-  readonly ToggleThreadSubscription?: Maybe<Thread>
-  readonly UpdateAniChartHighlights?: Maybe<Scalars['Json']['output']>
-  readonly UpdateAniChartSettings?: Maybe<Scalars['Json']['output']>
+  ToggleThreadSubscription?: Maybe<Thread>
+  UpdateAniChartHighlights?: Maybe<Scalars['Json']['output']>
+  UpdateAniChartSettings?: Maybe<Scalars['Json']['output']>
   /** Update the order favourites are displayed in */
-  readonly UpdateFavouriteOrder?: Maybe<Favourites>
+  UpdateFavouriteOrder?: Maybe<Favourites>
   /** Update multiple media list entries to the same values */
-  readonly UpdateMediaListEntries?: Maybe<ReadonlyArray<Maybe<MediaList>>>
-  readonly UpdateUser?: Maybe<User>
+  UpdateMediaListEntries?: Maybe<Array<Maybe<MediaList>>>
+  UpdateUser?: Maybe<User>
 }
 
 export type MutationDeleteActivityArgs = {
@@ -2250,9 +2248,9 @@ export type MutationSaveListActivityArgs = {
 }
 
 export type MutationSaveMediaListEntryArgs = {
-  advancedScores?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']['input']>>>
+  advancedScores?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>
   completedAt?: InputMaybe<FuzzyDateInput>
-  customLists?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  customLists?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   hiddenFromStatusLists?: InputMaybe<Scalars['Boolean']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
@@ -2300,10 +2298,10 @@ export type MutationSaveTextActivityArgs = {
 
 export type MutationSaveThreadArgs = {
   body?: InputMaybe<Scalars['String']['input']>
-  categories?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  categories?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
   locked?: InputMaybe<Scalars['Boolean']['input']>
-  mediaCategories?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaCategories?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   sticky?: InputMaybe<Scalars['Boolean']['input']>
   title?: InputMaybe<Scalars['String']['input']>
 }
@@ -2354,7 +2352,7 @@ export type MutationToggleThreadSubscriptionArgs = {
 }
 
 export type MutationUpdateAniChartHighlightsArgs = {
-  highlights?: InputMaybe<ReadonlyArray<InputMaybe<AniChartHighlightInput>>>
+  highlights?: InputMaybe<Array<InputMaybe<AniChartHighlightInput>>>
 }
 
 export type MutationUpdateAniChartSettingsArgs = {
@@ -2365,23 +2363,23 @@ export type MutationUpdateAniChartSettingsArgs = {
 }
 
 export type MutationUpdateFavouriteOrderArgs = {
-  animeIds?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  animeOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  characterIds?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  characterOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  mangaIds?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  mangaOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  staffIds?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  staffOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  studioIds?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  studioOrder?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  animeIds?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  animeOrder?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  characterIds?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  characterOrder?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  mangaIds?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  mangaOrder?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  staffIds?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  staffOrder?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  studioIds?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  studioOrder?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
 }
 
 export type MutationUpdateMediaListEntriesArgs = {
-  advancedScores?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Float']['input']>>>
+  advancedScores?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>
   completedAt?: InputMaybe<FuzzyDateInput>
   hiddenFromStatusLists?: InputMaybe<Scalars['Boolean']['input']>
-  ids?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  ids?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notes?: InputMaybe<Scalars['String']['input']>
   priority?: InputMaybe<Scalars['Int']['input']>
   private?: InputMaybe<Scalars['Boolean']['input']>
@@ -2399,11 +2397,11 @@ export type MutationUpdateUserArgs = {
   activityMergeTime?: InputMaybe<Scalars['Int']['input']>
   airingNotifications?: InputMaybe<Scalars['Boolean']['input']>
   animeListOptions?: InputMaybe<MediaListOptionsInput>
-  disabledListActivity?: InputMaybe<ReadonlyArray<InputMaybe<ListActivityOptionInput>>>
+  disabledListActivity?: InputMaybe<Array<InputMaybe<ListActivityOptionInput>>>
   displayAdultContent?: InputMaybe<Scalars['Boolean']['input']>
   donatorBadge?: InputMaybe<Scalars['String']['input']>
   mangaListOptions?: InputMaybe<MediaListOptionsInput>
-  notificationOptions?: InputMaybe<ReadonlyArray<InputMaybe<NotificationOptionInput>>>
+  notificationOptions?: InputMaybe<Array<InputMaybe<NotificationOptionInput>>>
   profileColor?: InputMaybe<Scalars['String']['input']>
   restrictMessagesToFollowing?: InputMaybe<Scalars['Boolean']['input']>
   rowOrder?: InputMaybe<Scalars['String']['input']>
@@ -2415,19 +2413,19 @@ export type MutationUpdateUserArgs = {
 
 /** Notification option */
 export type NotificationOption = {
-  readonly __typename?: 'NotificationOption'
+  __typename?: 'NotificationOption'
   /** Whether this type of notification is enabled */
-  readonly enabled?: Maybe<Scalars['Boolean']['output']>
+  enabled?: Maybe<Scalars['Boolean']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** Notification option input */
 export type NotificationOptionInput = {
   /** Whether this type of notification is enabled */
-  readonly enabled?: InputMaybe<Scalars['Boolean']['input']>
+  enabled?: InputMaybe<Scalars['Boolean']['input']>
   /** The type of notification */
-  readonly type?: InputMaybe<NotificationType | `${NotificationType}`>
+  type?: InputMaybe<NotificationType | `${NotificationType}`>
 }
 
 /** Notification type enum */
@@ -2498,27 +2496,27 @@ export type NotificationUnion =
 
 /** Page of data */
 export type Page = {
-  readonly __typename?: 'Page'
-  readonly activities?: Maybe<ReadonlyArray<Maybe<ActivityUnion>>>
-  readonly activityReplies?: Maybe<ReadonlyArray<Maybe<ActivityReply>>>
-  readonly airingSchedules?: Maybe<ReadonlyArray<Maybe<AiringSchedule>>>
-  readonly characters?: Maybe<ReadonlyArray<Maybe<Character>>>
-  readonly followers?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly following?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly media?: Maybe<ReadonlyArray<Maybe<Media>>>
-  readonly mediaList?: Maybe<ReadonlyArray<Maybe<MediaList>>>
-  readonly mediaTrends?: Maybe<ReadonlyArray<Maybe<MediaTrend>>>
-  readonly notifications?: Maybe<ReadonlyArray<Maybe<NotificationUnion>>>
+  __typename?: 'Page'
+  activities?: Maybe<Array<Maybe<ActivityUnion>>>
+  activityReplies?: Maybe<Array<Maybe<ActivityReply>>>
+  airingSchedules?: Maybe<Array<Maybe<AiringSchedule>>>
+  characters?: Maybe<Array<Maybe<Character>>>
+  followers?: Maybe<Array<Maybe<User>>>
+  following?: Maybe<Array<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
+  media?: Maybe<Array<Maybe<Media>>>
+  mediaList?: Maybe<Array<Maybe<MediaList>>>
+  mediaTrends?: Maybe<Array<Maybe<MediaTrend>>>
+  notifications?: Maybe<Array<Maybe<NotificationUnion>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
-  readonly recommendations?: Maybe<ReadonlyArray<Maybe<Recommendation>>>
-  readonly reviews?: Maybe<ReadonlyArray<Maybe<Review>>>
-  readonly staff?: Maybe<ReadonlyArray<Maybe<Staff>>>
-  readonly studios?: Maybe<ReadonlyArray<Maybe<Studio>>>
-  readonly threadComments?: Maybe<ReadonlyArray<Maybe<ThreadComment>>>
-  readonly threads?: Maybe<ReadonlyArray<Maybe<Thread>>>
-  readonly users?: Maybe<ReadonlyArray<Maybe<User>>>
+  pageInfo?: Maybe<PageInfo>
+  recommendations?: Maybe<Array<Maybe<Recommendation>>>
+  reviews?: Maybe<Array<Maybe<Review>>>
+  staff?: Maybe<Array<Maybe<Staff>>>
+  studios?: Maybe<Array<Maybe<Studio>>>
+  threadComments?: Maybe<Array<Maybe<ThreadComment>>>
+  threads?: Maybe<Array<Maybe<Thread>>>
+  users?: Maybe<Array<Maybe<User>>>
 }
 
 /** Page of data */
@@ -2529,27 +2527,27 @@ export type PageActivitiesArgs = {
   hasReplies?: InputMaybe<Scalars['Boolean']['input']>
   hasRepliesOrTypeText?: InputMaybe<Scalars['Boolean']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId?: InputMaybe<Scalars['Int']['input']>
-  messengerId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  messengerId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId_not?: InputMaybe<Scalars['Int']['input']>
-  messengerId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ActivitySort>>>
+  messengerId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  sort?: InputMaybe<Array<InputMaybe<ActivitySort>>>
   type?: InputMaybe<ActivityType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   type_not?: InputMaybe<ActivityType>
-  type_not_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_not_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userId_not?: InputMaybe<Scalars['Int']['input']>
-  userId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
 }
 
 /** Page of data */
@@ -2565,42 +2563,42 @@ export type PageAiringSchedulesArgs = {
   airingAt_lesser?: InputMaybe<Scalars['Int']['input']>
   episode?: InputMaybe<Scalars['Int']['input']>
   episode_greater?: InputMaybe<Scalars['Int']['input']>
-  episode_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
-  episode_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notYetAired?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<AiringSort>>>
+  sort?: InputMaybe<Array<InputMaybe<AiringSort>>>
 }
 
 /** Page of data */
 export type PageCharactersArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterSort>>>
+  sort?: InputMaybe<Array<InputMaybe<CharacterSort>>>
 }
 
 /** Page of data */
 export type PageFollowersArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
 /** Page of data */
 export type PageFollowingArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
@@ -2631,26 +2629,26 @@ export type PageMediaArgs = {
   episodes_greater?: InputMaybe<Scalars['Int']['input']>
   episodes_lesser?: InputMaybe<Scalars['Int']['input']>
   format?: InputMaybe<MediaFormat>
-  format_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   format_not?: InputMaybe<MediaFormat>
-  format_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_not_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   genre?: InputMaybe<Scalars['String']['input']>
-  genre_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  genre_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  genre_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  genre_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
   idMal?: InputMaybe<Scalars['Int']['input']>
-  idMal_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   idMal_not?: InputMaybe<Scalars['Int']['input']>
-  idMal_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isAdult?: InputMaybe<Scalars['Boolean']['input']>
   isLicensed?: InputMaybe<Scalars['Boolean']['input']>
   licensedBy?: InputMaybe<Scalars['String']['input']>
   licensedById?: InputMaybe<Scalars['Int']['input']>
-  licensedById_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  licensedBy_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  licensedById_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  licensedBy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   minimumTagRank?: InputMaybe<Scalars['Int']['input']>
   onList?: InputMaybe<Scalars['Boolean']['input']>
   popularity?: InputMaybe<Scalars['Int']['input']>
@@ -2660,23 +2658,23 @@ export type PageMediaArgs = {
   search?: InputMaybe<Scalars['String']['input']>
   season?: InputMaybe<MediaSeason>
   seasonYear?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
   source?: InputMaybe<MediaSource>
-  source_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaSource>>>
+  source_in?: InputMaybe<Array<InputMaybe<MediaSource>>>
   startDate?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   status_not?: InputMaybe<MediaStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   tag?: InputMaybe<Scalars['String']['input']>
   tagCategory?: InputMaybe<Scalars['String']['input']>
-  tagCategory_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tagCategory_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   type?: InputMaybe<MediaType>
   volumes?: InputMaybe<Scalars['Int']['input']>
   volumes_greater?: InputMaybe<Scalars['Int']['input']>
@@ -2693,22 +2691,22 @@ export type PageMediaListArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notes?: InputMaybe<Scalars['String']['input']>
   notes_like?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaListSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaListSort>>>
   startedAt?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaListStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   status_not?: InputMaybe<MediaListStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   type?: InputMaybe<MediaType>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userName?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -2726,15 +2724,15 @@ export type PageMediaTrendsArgs = {
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   popularity?: InputMaybe<Scalars['Int']['input']>
   popularity_greater?: InputMaybe<Scalars['Int']['input']>
   popularity_lesser?: InputMaybe<Scalars['Int']['input']>
   popularity_not?: InputMaybe<Scalars['Int']['input']>
   releasing?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaTrendSort>>>
   trending?: InputMaybe<Scalars['Int']['input']>
   trending_greater?: InputMaybe<Scalars['Int']['input']>
   trending_lesser?: InputMaybe<Scalars['Int']['input']>
@@ -2745,7 +2743,7 @@ export type PageMediaTrendsArgs = {
 export type PageNotificationsArgs = {
   resetNotificationCount?: InputMaybe<Scalars['Boolean']['input']>
   type?: InputMaybe<NotificationType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<NotificationType>>>
+  type_in?: InputMaybe<Array<InputMaybe<NotificationType>>>
 }
 
 /** Page of data */
@@ -2757,7 +2755,7 @@ export type PageRecommendationsArgs = {
   rating?: InputMaybe<Scalars['Int']['input']>
   rating_greater?: InputMaybe<Scalars['Int']['input']>
   rating_lesser?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<RecommendationSort>>>
+  sort?: InputMaybe<Array<InputMaybe<RecommendationSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
@@ -2766,35 +2764,35 @@ export type PageReviewsArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
   mediaType?: InputMaybe<MediaType>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ReviewSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ReviewSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** Page of data */
 export type PageStaffArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 /** Page of data */
 export type PageStudiosArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StudioSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StudioSort>>>
 }
 
 /** Page of data */
 export type PageThreadCommentsArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadCommentSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadCommentSort>>>
   threadId?: InputMaybe<Scalars['Int']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -2803,11 +2801,11 @@ export type PageThreadCommentsArgs = {
 export type PageThreadsArgs = {
   categoryId?: InputMaybe<Scalars['Int']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaCategoryId?: InputMaybe<Scalars['Int']['input']>
   replyUserId?: InputMaybe<Scalars['Int']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadSort>>>
   subscribed?: InputMaybe<Scalars['Boolean']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -2818,84 +2816,84 @@ export type PageUsersArgs = {
   isModerator?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
 }
 
 export type PageInfo = {
-  readonly __typename?: 'PageInfo'
+  __typename?: 'PageInfo'
   /** The current page */
-  readonly currentPage?: Maybe<Scalars['Int']['output']>
+  currentPage?: Maybe<Scalars['Int']['output']>
   /** If there is another page */
-  readonly hasNextPage?: Maybe<Scalars['Boolean']['output']>
+  hasNextPage?: Maybe<Scalars['Boolean']['output']>
   /** The last page */
-  readonly lastPage?: Maybe<Scalars['Int']['output']>
+  lastPage?: Maybe<Scalars['Int']['output']>
   /** The count on a page */
-  readonly perPage?: Maybe<Scalars['Int']['output']>
+  perPage?: Maybe<Scalars['Int']['output']>
   /** The total number of items. Note: This value is not guaranteed to be accurate, do not rely on this for logic */
-  readonly total?: Maybe<Scalars['Int']['output']>
+  total?: Maybe<Scalars['Int']['output']>
 }
 
 /** Provides the parsed markdown as html */
 export type ParsedMarkdown = {
-  readonly __typename?: 'ParsedMarkdown'
+  __typename?: 'ParsedMarkdown'
   /** The parsed markdown as html */
-  readonly html?: Maybe<Scalars['String']['output']>
+  html?: Maybe<Scalars['String']['output']>
 }
 
 export type Query = {
-  readonly __typename?: 'Query'
+  __typename?: 'Query'
   /** Activity query */
-  readonly Activity?: Maybe<ActivityUnion>
+  Activity?: Maybe<ActivityUnion>
   /** Activity reply query */
-  readonly ActivityReply?: Maybe<ActivityReply>
+  ActivityReply?: Maybe<ActivityReply>
   /** Airing schedule query */
-  readonly AiringSchedule?: Maybe<AiringSchedule>
-  readonly AniChartUser?: Maybe<AniChartUser>
+  AiringSchedule?: Maybe<AiringSchedule>
+  AniChartUser?: Maybe<AniChartUser>
   /** Character query */
-  readonly Character?: Maybe<Character>
+  Character?: Maybe<Character>
   /** ExternalLinkSource collection query */
-  readonly ExternalLinkSourceCollection?: Maybe<ReadonlyArray<Maybe<MediaExternalLink>>>
+  ExternalLinkSourceCollection?: Maybe<Array<Maybe<MediaExternalLink>>>
   /** Follower query */
-  readonly Follower?: Maybe<User>
+  Follower?: Maybe<User>
   /** Following query */
-  readonly Following?: Maybe<User>
+  Following?: Maybe<User>
   /** Collection of all the possible media genres */
-  readonly GenreCollection?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  GenreCollection?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** Like query */
-  readonly Like?: Maybe<User>
+  Like?: Maybe<User>
   /** Provide AniList markdown to be converted to html (Requires auth) */
-  readonly Markdown?: Maybe<ParsedMarkdown>
+  Markdown?: Maybe<ParsedMarkdown>
   /** Media query */
-  readonly Media?: Maybe<Media>
+  Media?: Maybe<Media>
   /** Media list query */
-  readonly MediaList?: Maybe<MediaList>
+  MediaList?: Maybe<MediaList>
   /** Media list collection query, provides list pre-grouped by status & custom lists. User ID and Media Type arguments required. */
-  readonly MediaListCollection?: Maybe<MediaListCollection>
+  MediaListCollection?: Maybe<MediaListCollection>
   /** Collection of all the possible media tags */
-  readonly MediaTagCollection?: Maybe<ReadonlyArray<Maybe<MediaTag>>>
+  MediaTagCollection?: Maybe<Array<Maybe<MediaTag>>>
   /** Media Trend query */
-  readonly MediaTrend?: Maybe<MediaTrend>
+  MediaTrend?: Maybe<MediaTrend>
   /** Notification query */
-  readonly Notification?: Maybe<NotificationUnion>
-  readonly Page?: Maybe<Page>
+  Notification?: Maybe<NotificationUnion>
+  Page?: Maybe<Page>
   /** Recommendation query */
-  readonly Recommendation?: Maybe<Recommendation>
+  Recommendation?: Maybe<Recommendation>
   /** Review query */
-  readonly Review?: Maybe<Review>
+  Review?: Maybe<Review>
   /** Site statistics query */
-  readonly SiteStatistics?: Maybe<SiteStatistics>
+  SiteStatistics?: Maybe<SiteStatistics>
   /** Staff query */
-  readonly Staff?: Maybe<Staff>
+  Staff?: Maybe<Staff>
   /** Studio query */
-  readonly Studio?: Maybe<Studio>
+  Studio?: Maybe<Studio>
   /** Thread query */
-  readonly Thread?: Maybe<Thread>
+  Thread?: Maybe<Thread>
   /** Comment query */
-  readonly ThreadComment?: Maybe<ReadonlyArray<Maybe<ThreadComment>>>
+  ThreadComment?: Maybe<Array<Maybe<ThreadComment>>>
   /** User query */
-  readonly User?: Maybe<User>
+  User?: Maybe<User>
   /** Get the currently authenticated user */
-  readonly Viewer?: Maybe<User>
+  Viewer?: Maybe<User>
 }
 
 export type QueryActivityArgs = {
@@ -2905,27 +2903,27 @@ export type QueryActivityArgs = {
   hasReplies?: InputMaybe<Scalars['Boolean']['input']>
   hasRepliesOrTypeText?: InputMaybe<Scalars['Boolean']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId?: InputMaybe<Scalars['Int']['input']>
-  messengerId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  messengerId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   messengerId_not?: InputMaybe<Scalars['Int']['input']>
-  messengerId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ActivitySort>>>
+  messengerId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  sort?: InputMaybe<Array<InputMaybe<ActivitySort>>>
   type?: InputMaybe<ActivityType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   type_not?: InputMaybe<ActivityType>
-  type_not_in?: InputMaybe<ReadonlyArray<InputMaybe<ActivityType>>>
+  type_not_in?: InputMaybe<Array<InputMaybe<ActivityType>>>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userId_not?: InputMaybe<Scalars['Int']['input']>
-  userId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
 }
 
 export type QueryActivityReplyArgs = {
@@ -2939,30 +2937,30 @@ export type QueryAiringScheduleArgs = {
   airingAt_lesser?: InputMaybe<Scalars['Int']['input']>
   episode?: InputMaybe<Scalars['Int']['input']>
   episode_greater?: InputMaybe<Scalars['Int']['input']>
-  episode_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
-  episode_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  episode_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notYetAired?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<AiringSort>>>
+  sort?: InputMaybe<Array<InputMaybe<AiringSort>>>
 }
 
 export type QueryCharacterArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterSort>>>
+  sort?: InputMaybe<Array<InputMaybe<CharacterSort>>>
 }
 
 export type QueryExternalLinkSourceCollectionArgs = {
@@ -2972,12 +2970,12 @@ export type QueryExternalLinkSourceCollectionArgs = {
 }
 
 export type QueryFollowerArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
 export type QueryFollowingArgs = {
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
   userId: Scalars['Int']['input']
 }
 
@@ -3010,26 +3008,26 @@ export type QueryMediaArgs = {
   episodes_greater?: InputMaybe<Scalars['Int']['input']>
   episodes_lesser?: InputMaybe<Scalars['Int']['input']>
   format?: InputMaybe<MediaFormat>
-  format_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   format_not?: InputMaybe<MediaFormat>
-  format_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>>>
+  format_not_in?: InputMaybe<Array<InputMaybe<MediaFormat>>>
   genre?: InputMaybe<Scalars['String']['input']>
-  genre_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  genre_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  genre_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  genre_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   id?: InputMaybe<Scalars['Int']['input']>
   idMal?: InputMaybe<Scalars['Int']['input']>
-  idMal_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   idMal_not?: InputMaybe<Scalars['Int']['input']>
-  idMal_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  idMal_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isAdult?: InputMaybe<Scalars['Boolean']['input']>
   isLicensed?: InputMaybe<Scalars['Boolean']['input']>
   licensedBy?: InputMaybe<Scalars['String']['input']>
   licensedById?: InputMaybe<Scalars['Int']['input']>
-  licensedById_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  licensedBy_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  licensedById_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  licensedBy_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   minimumTagRank?: InputMaybe<Scalars['Int']['input']>
   onList?: InputMaybe<Scalars['Boolean']['input']>
   popularity?: InputMaybe<Scalars['Int']['input']>
@@ -3039,23 +3037,23 @@ export type QueryMediaArgs = {
   search?: InputMaybe<Scalars['String']['input']>
   season?: InputMaybe<MediaSeason>
   seasonYear?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
   source?: InputMaybe<MediaSource>
-  source_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaSource>>>
+  source_in?: InputMaybe<Array<InputMaybe<MediaSource>>>
   startDate?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startDate_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   status_not?: InputMaybe<MediaStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaStatus>>>
   tag?: InputMaybe<Scalars['String']['input']>
   tagCategory?: InputMaybe<Scalars['String']['input']>
-  tagCategory_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tagCategory_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
-  tag_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tagCategory_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   type?: InputMaybe<MediaType>
   volumes?: InputMaybe<Scalars['Int']['input']>
   volumes_greater?: InputMaybe<Scalars['Int']['input']>
@@ -3071,22 +3069,22 @@ export type QueryMediaListArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   isFollowing?: InputMaybe<Scalars['Boolean']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   notes?: InputMaybe<Scalars['String']['input']>
   notes_like?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaListSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaListSort>>>
   startedAt?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaListStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   status_not?: InputMaybe<MediaListStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   type?: InputMaybe<MediaType>
   userId?: InputMaybe<Scalars['Int']['input']>
-  userId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  userId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   userName?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -3100,15 +3098,15 @@ export type QueryMediaListCollectionArgs = {
   notes?: InputMaybe<Scalars['String']['input']>
   notes_like?: InputMaybe<Scalars['String']['input']>
   perChunk?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaListSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaListSort>>>
   startedAt?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_greater?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_lesser?: InputMaybe<Scalars['FuzzyDateInt']['input']>
   startedAt_like?: InputMaybe<Scalars['String']['input']>
   status?: InputMaybe<MediaListStatus>
-  status_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   status_not?: InputMaybe<MediaListStatus>
-  status_not_in?: InputMaybe<ReadonlyArray<InputMaybe<MediaListStatus>>>
+  status_not_in?: InputMaybe<Array<InputMaybe<MediaListStatus>>>
   type?: InputMaybe<MediaType>
   userId?: InputMaybe<Scalars['Int']['input']>
   userName?: InputMaybe<Scalars['String']['input']>
@@ -3131,15 +3129,15 @@ export type QueryMediaTrendArgs = {
   episode_lesser?: InputMaybe<Scalars['Int']['input']>
   episode_not?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
-  mediaId_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaId_not?: InputMaybe<Scalars['Int']['input']>
-  mediaId_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  mediaId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   popularity?: InputMaybe<Scalars['Int']['input']>
   popularity_greater?: InputMaybe<Scalars['Int']['input']>
   popularity_lesser?: InputMaybe<Scalars['Int']['input']>
   popularity_not?: InputMaybe<Scalars['Int']['input']>
   releasing?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaTrendSort>>>
   trending?: InputMaybe<Scalars['Int']['input']>
   trending_greater?: InputMaybe<Scalars['Int']['input']>
   trending_lesser?: InputMaybe<Scalars['Int']['input']>
@@ -3149,7 +3147,7 @@ export type QueryMediaTrendArgs = {
 export type QueryNotificationArgs = {
   resetNotificationCount?: InputMaybe<Scalars['Boolean']['input']>
   type?: InputMaybe<NotificationType>
-  type_in?: InputMaybe<ReadonlyArray<InputMaybe<NotificationType>>>
+  type_in?: InputMaybe<Array<InputMaybe<NotificationType>>>
 }
 
 export type QueryPageArgs = {
@@ -3165,7 +3163,7 @@ export type QueryRecommendationArgs = {
   rating?: InputMaybe<Scalars['Int']['input']>
   rating_greater?: InputMaybe<Scalars['Int']['input']>
   rating_lesser?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<RecommendationSort>>>
+  sort?: InputMaybe<Array<InputMaybe<RecommendationSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
@@ -3173,44 +3171,44 @@ export type QueryReviewArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
   mediaId?: InputMaybe<Scalars['Int']['input']>
   mediaType?: InputMaybe<MediaType>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ReviewSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ReviewSort>>>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
 export type QueryStaffArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   isBirthday?: InputMaybe<Scalars['Boolean']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StaffSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StaffSort>>>
 }
 
 export type QueryStudioArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   id_not?: InputMaybe<Scalars['Int']['input']>
-  id_not_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<StudioSort>>>
+  sort?: InputMaybe<Array<InputMaybe<StudioSort>>>
 }
 
 export type QueryThreadArgs = {
   categoryId?: InputMaybe<Scalars['Int']['input']>
   id?: InputMaybe<Scalars['Int']['input']>
-  id_in?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['Int']['input']>>>
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>
   mediaCategoryId?: InputMaybe<Scalars['Int']['input']>
   replyUserId?: InputMaybe<Scalars['Int']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadSort>>>
   subscribed?: InputMaybe<Scalars['Boolean']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
 
 export type QueryThreadCommentArgs = {
   id?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<ThreadCommentSort>>>
+  sort?: InputMaybe<Array<InputMaybe<ThreadCommentSort>>>
   threadId?: InputMaybe<Scalars['Int']['input']>
   userId?: InputMaybe<Scalars['Int']['input']>
 }
@@ -3220,38 +3218,38 @@ export type QueryUserArgs = {
   isModerator?: InputMaybe<Scalars['Boolean']['input']>
   name?: InputMaybe<Scalars['String']['input']>
   search?: InputMaybe<Scalars['String']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserSort>>>
 }
 
 /** Media recommendation */
 export type Recommendation = {
-  readonly __typename?: 'Recommendation'
+  __typename?: 'Recommendation'
   /** The id of the recommendation */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media the recommendation is from */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The recommended media */
-  readonly mediaRecommendation?: Maybe<Media>
+  mediaRecommendation?: Maybe<Media>
   /** Users rating of the recommendation */
-  readonly rating?: Maybe<Scalars['Int']['output']>
+  rating?: Maybe<Scalars['Int']['output']>
   /** The user that first created the recommendation */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The rating of the recommendation by currently authenticated user */
-  readonly userRating?: Maybe<RecommendationRating | `${RecommendationRating}`>
+  userRating?: Maybe<RecommendationRating | `${RecommendationRating}`>
 }
 
 export type RecommendationConnection = {
-  readonly __typename?: 'RecommendationConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<RecommendationEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Recommendation>>>
+  __typename?: 'RecommendationConnection'
+  edges?: Maybe<Array<Maybe<RecommendationEdge>>>
+  nodes?: Maybe<Array<Maybe<Recommendation>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Recommendation connection edge */
 export type RecommendationEdge = {
-  readonly __typename?: 'RecommendationEdge'
-  readonly node?: Maybe<Recommendation>
+  __typename?: 'RecommendationEdge'
+  node?: Maybe<Recommendation>
 }
 
 /** Recommendation rating enums */
@@ -3262,67 +3260,67 @@ export type RecommendationSort = 'ID' | 'ID_DESC' | 'RATING' | 'RATING_DESC'
 
 /** Notification for when new media is added to the site */
 export type RelatedMediaAdditionNotification = {
-  readonly __typename?: 'RelatedMediaAdditionNotification'
+  __typename?: 'RelatedMediaAdditionNotification'
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The associated media of the airing schedule */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The id of the new media */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 export type Report = {
-  readonly __typename?: 'Report'
-  readonly cleared?: Maybe<Scalars['Boolean']['output']>
+  __typename?: 'Report'
+  cleared?: Maybe<Scalars['Boolean']['output']>
   /** When the entry data was created */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
-  readonly id: Scalars['Int']['output']
-  readonly reason?: Maybe<Scalars['String']['output']>
-  readonly reported?: Maybe<User>
-  readonly reporter?: Maybe<User>
+  createdAt?: Maybe<Scalars['Int']['output']>
+  id: Scalars['Int']['output']
+  reason?: Maybe<Scalars['String']['output']>
+  reported?: Maybe<User>
+  reporter?: Maybe<User>
 }
 
 /** A Review that features in an anime or manga */
 export type Review = {
-  readonly __typename?: 'Review'
+  __typename?: 'Review'
   /** The main review body text */
-  readonly body?: Maybe<Scalars['String']['output']>
+  body?: Maybe<Scalars['String']['output']>
   /** The time of the thread creation */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the review */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media the review is of */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The id of the review's media */
-  readonly mediaId: Scalars['Int']['output']
+  mediaId: Scalars['Int']['output']
   /** For which type of media the review is for */
-  readonly mediaType?: Maybe<MediaType | `${MediaType}`>
+  mediaType?: Maybe<MediaType | `${MediaType}`>
   /** If the review is not yet publicly published and is only viewable by creator */
-  readonly private?: Maybe<Scalars['Boolean']['output']>
+  private?: Maybe<Scalars['Boolean']['output']>
   /** The total user rating of the review */
-  readonly rating?: Maybe<Scalars['Int']['output']>
+  rating?: Maybe<Scalars['Int']['output']>
   /** The amount of user ratings of the review */
-  readonly ratingAmount?: Maybe<Scalars['Int']['output']>
+  ratingAmount?: Maybe<Scalars['Int']['output']>
   /** The review score of the media */
-  readonly score?: Maybe<Scalars['Int']['output']>
+  score?: Maybe<Scalars['Int']['output']>
   /** The url for the review page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** A short summary of the review */
-  readonly summary?: Maybe<Scalars['String']['output']>
+  summary?: Maybe<Scalars['String']['output']>
   /** The time of the thread last update */
-  readonly updatedAt: Scalars['Int']['output']
+  updatedAt: Scalars['Int']['output']
   /** The creator of the review */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the review's creator */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
   /** The rating of the review by currently authenticated user */
-  readonly userRating?: Maybe<ReviewRating | `${ReviewRating}`>
+  userRating?: Maybe<ReviewRating | `${ReviewRating}`>
 }
 
 /** A Review that features in an anime or manga */
@@ -3331,17 +3329,17 @@ export type ReviewBodyArgs = {
 }
 
 export type ReviewConnection = {
-  readonly __typename?: 'ReviewConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<ReviewEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Review>>>
+  __typename?: 'ReviewConnection'
+  edges?: Maybe<Array<Maybe<ReviewEdge>>>
+  nodes?: Maybe<Array<Maybe<Review>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Review connection edge */
 export type ReviewEdge = {
-  readonly __typename?: 'ReviewEdge'
-  readonly node?: Maybe<Review>
+  __typename?: 'ReviewEdge'
+  node?: Maybe<Review>
 }
 
 /** Review rating enums */
@@ -3362,27 +3360,27 @@ export type ReviewSort =
 
 /** Feed of mod edit activity */
 export type RevisionHistory = {
-  readonly __typename?: 'RevisionHistory'
+  __typename?: 'RevisionHistory'
   /** The action taken on the objects */
-  readonly action?: Maybe<RevisionHistoryAction | `${RevisionHistoryAction}`>
+  action?: Maybe<RevisionHistoryAction | `${RevisionHistoryAction}`>
   /** A JSON object of the fields that changed */
-  readonly changes?: Maybe<Scalars['Json']['output']>
+  changes?: Maybe<Scalars['Json']['output']>
   /** The character the mod feed entry references */
-  readonly character?: Maybe<Character>
+  character?: Maybe<Character>
   /** When the mod feed entry was created */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The external link source the mod feed entry references */
-  readonly externalLink?: Maybe<MediaExternalLink>
+  externalLink?: Maybe<MediaExternalLink>
   /** The id of the media */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The media the mod feed entry references */
-  readonly media?: Maybe<Media>
+  media?: Maybe<Media>
   /** The staff member the mod feed entry references */
-  readonly staff?: Maybe<Staff>
+  staff?: Maybe<Staff>
   /** The studio the mod feed entry references */
-  readonly studio?: Maybe<Studio>
+  studio?: Maybe<Studio>
   /** The user who made the edit to the object */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
 }
 
 /** Revision history actions */
@@ -3390,10 +3388,10 @@ export type RevisionHistoryAction = 'CREATE' | 'EDIT'
 
 /** A user's list score distribution. */
 export type ScoreDistribution = {
-  readonly __typename?: 'ScoreDistribution'
+  __typename?: 'ScoreDistribution'
   /** The amount of list entries with this score */
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly score?: Maybe<Scalars['Int']['output']>
+  amount?: Maybe<Scalars['Int']['output']>
+  score?: Maybe<Scalars['Int']['output']>
 }
 
 /** Media list scoring type */
@@ -3410,80 +3408,80 @@ export type ScoreFormat =
   | 'POINT_100'
 
 export type SiteStatistics = {
-  readonly __typename?: 'SiteStatistics'
-  readonly anime?: Maybe<SiteTrendConnection>
-  readonly characters?: Maybe<SiteTrendConnection>
-  readonly manga?: Maybe<SiteTrendConnection>
-  readonly reviews?: Maybe<SiteTrendConnection>
-  readonly staff?: Maybe<SiteTrendConnection>
-  readonly studios?: Maybe<SiteTrendConnection>
-  readonly users?: Maybe<SiteTrendConnection>
+  __typename?: 'SiteStatistics'
+  anime?: Maybe<SiteTrendConnection>
+  characters?: Maybe<SiteTrendConnection>
+  manga?: Maybe<SiteTrendConnection>
+  reviews?: Maybe<SiteTrendConnection>
+  staff?: Maybe<SiteTrendConnection>
+  studios?: Maybe<SiteTrendConnection>
+  users?: Maybe<SiteTrendConnection>
 }
 
 export type SiteStatisticsAnimeArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsCharactersArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsMangaArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsReviewsArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsStaffArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsStudiosArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 export type SiteStatisticsUsersArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<SiteTrendSort>>>
+  sort?: InputMaybe<Array<InputMaybe<SiteTrendSort>>>
 }
 
 /** Daily site statistics */
 export type SiteTrend = {
-  readonly __typename?: 'SiteTrend'
+  __typename?: 'SiteTrend'
   /** The change from yesterday */
-  readonly change: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
+  change: Scalars['Int']['output']
+  count: Scalars['Int']['output']
   /** The day the data was recorded (timestamp) */
-  readonly date: Scalars['Int']['output']
+  date: Scalars['Int']['output']
 }
 
 export type SiteTrendConnection = {
-  readonly __typename?: 'SiteTrendConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<SiteTrendEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<SiteTrend>>>
+  __typename?: 'SiteTrendConnection'
+  edges?: Maybe<Array<Maybe<SiteTrendEdge>>>
+  nodes?: Maybe<Array<Maybe<SiteTrend>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Site trend connection edge */
 export type SiteTrendEdge = {
-  readonly __typename?: 'SiteTrendEdge'
-  readonly node?: Maybe<SiteTrend>
+  __typename?: 'SiteTrendEdge'
+  node?: Maybe<SiteTrend>
 }
 
 /** Site trend sort enums */
@@ -3491,62 +3489,62 @@ export type SiteTrendSort = 'CHANGE' | 'CHANGE_DESC' | 'COUNT' | 'COUNT_DESC' | 
 
 /** Voice actors or production staff */
 export type Staff = {
-  readonly __typename?: 'Staff'
+  __typename?: 'Staff'
   /** The person's age in years */
-  readonly age?: Maybe<Scalars['Int']['output']>
+  age?: Maybe<Scalars['Int']['output']>
   /** The persons blood type */
-  readonly bloodType?: Maybe<Scalars['String']['output']>
+  bloodType?: Maybe<Scalars['String']['output']>
   /** Media the actor voiced characters in. (Same data as characters with media as node instead of characters) */
-  readonly characterMedia?: Maybe<MediaConnection>
+  characterMedia?: Maybe<MediaConnection>
   /** Characters voiced by the actor */
-  readonly characters?: Maybe<CharacterConnection>
-  readonly dateOfBirth?: Maybe<FuzzyDate>
-  readonly dateOfDeath?: Maybe<FuzzyDate>
+  characters?: Maybe<CharacterConnection>
+  dateOfBirth?: Maybe<FuzzyDate>
+  dateOfDeath?: Maybe<FuzzyDate>
   /** A general description of the staff member */
-  readonly description?: Maybe<Scalars['String']['output']>
+  description?: Maybe<Scalars['String']['output']>
   /** The amount of user's who have favourited the staff member */
-  readonly favourites?: Maybe<Scalars['Int']['output']>
+  favourites?: Maybe<Scalars['Int']['output']>
   /** The staff's gender. Usually Male, Female, or Non-binary but can be any string. */
-  readonly gender?: Maybe<Scalars['String']['output']>
+  gender?: Maybe<Scalars['String']['output']>
   /** The persons birthplace or hometown */
-  readonly homeTown?: Maybe<Scalars['String']['output']>
+  homeTown?: Maybe<Scalars['String']['output']>
   /** The id of the staff member */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The staff images */
-  readonly image?: Maybe<StaffImage>
+  image?: Maybe<StaffImage>
   /** If the staff member is marked as favourite by the currently authenticated user */
-  readonly isFavourite: Scalars['Boolean']['output']
+  isFavourite: Scalars['Boolean']['output']
   /** If the staff member is blocked from being added to favourites */
-  readonly isFavouriteBlocked: Scalars['Boolean']['output']
+  isFavouriteBlocked: Scalars['Boolean']['output']
   /**
    * The primary language the staff member dub's in
    * @deprecated Replaced with languageV2
    */
-  readonly language?: Maybe<StaffLanguage | `${StaffLanguage}`>
+  language?: Maybe<StaffLanguage | `${StaffLanguage}`>
   /** The primary language of the staff member. Current values: Japanese, English, Korean, Italian, Spanish, Portuguese, French, German, Hebrew, Hungarian, Chinese, Arabic, Filipino, Catalan, Finnish, Turkish, Dutch, Swedish, Thai, Tagalog, Malaysian, Indonesian, Vietnamese, Nepali, Hindi, Urdu */
-  readonly languageV2?: Maybe<Scalars['String']['output']>
+  languageV2?: Maybe<Scalars['String']['output']>
   /** Notes for site moderators */
-  readonly modNotes?: Maybe<Scalars['String']['output']>
+  modNotes?: Maybe<Scalars['String']['output']>
   /** The names of the staff member */
-  readonly name?: Maybe<StaffName>
+  name?: Maybe<StaffName>
   /** The person's primary occupations */
-  readonly primaryOccupations?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  primaryOccupations?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The url for the staff page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** Staff member that the submission is referencing */
-  readonly staff?: Maybe<Staff>
+  staff?: Maybe<Staff>
   /** Media where the staff member has a production role */
-  readonly staffMedia?: Maybe<MediaConnection>
+  staffMedia?: Maybe<MediaConnection>
   /** Inner details of submission status */
-  readonly submissionNotes?: Maybe<Scalars['String']['output']>
+  submissionNotes?: Maybe<Scalars['String']['output']>
   /** Status of the submission */
-  readonly submissionStatus?: Maybe<Scalars['Int']['output']>
+  submissionStatus?: Maybe<Scalars['Int']['output']>
   /** Submitter for the submission */
-  readonly submitter?: Maybe<User>
+  submitter?: Maybe<User>
   /** @deprecated No data available */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['Int']['output']>
   /** [startYear, endYear] (If the 2nd value is not present staff is still active) */
-  readonly yearsActive?: Maybe<ReadonlyArray<Maybe<Scalars['Int']['output']>>>
+  yearsActive?: Maybe<Array<Maybe<Scalars['Int']['output']>>>
 }
 
 /** Voice actors or production staff */
@@ -3554,14 +3552,14 @@ export type StaffCharacterMediaArgs = {
   onList?: InputMaybe<Scalars['Boolean']['input']>
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
 }
 
 /** Voice actors or production staff */
 export type StaffCharactersArgs = {
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<CharacterSort>>>
+  sort?: InputMaybe<Array<InputMaybe<CharacterSort>>>
 }
 
 /** Voice actors or production staff */
@@ -3574,36 +3572,36 @@ export type StaffStaffMediaArgs = {
   onList?: InputMaybe<Scalars['Boolean']['input']>
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
   type?: InputMaybe<MediaType>
 }
 
 export type StaffConnection = {
-  readonly __typename?: 'StaffConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<StaffEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Staff>>>
+  __typename?: 'StaffConnection'
+  edges?: Maybe<Array<Maybe<StaffEdge>>>
+  nodes?: Maybe<Array<Maybe<Staff>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Staff connection edge */
 export type StaffEdge = {
-  readonly __typename?: 'StaffEdge'
+  __typename?: 'StaffEdge'
   /** The order the staff should be displayed from the users favourites */
-  readonly favouriteOrder?: Maybe<Scalars['Int']['output']>
+  favouriteOrder?: Maybe<Scalars['Int']['output']>
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
-  readonly node?: Maybe<Staff>
+  id?: Maybe<Scalars['Int']['output']>
+  node?: Maybe<Staff>
   /** The role of the staff member in the production of the media */
-  readonly role?: Maybe<Scalars['String']['output']>
+  role?: Maybe<Scalars['String']['output']>
 }
 
 export type StaffImage = {
-  readonly __typename?: 'StaffImage'
+  __typename?: 'StaffImage'
   /** The person's image of media at its largest size */
-  readonly large?: Maybe<Scalars['String']['output']>
+  large?: Maybe<Scalars['String']['output']>
   /** The person's image of media at medium size */
-  readonly medium?: Maybe<Scalars['String']['output']>
+  medium?: Maybe<Scalars['String']['output']>
 }
 
 /** The primary language of the voice actor */
@@ -3631,46 +3629,46 @@ export type StaffLanguage =
 
 /** The names of the staff member */
 export type StaffName = {
-  readonly __typename?: 'StaffName'
+  __typename?: 'StaffName'
   /** Other names the staff member might be referred to as (pen names) */
-  readonly alternative?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  alternative?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The person's given name */
-  readonly first?: Maybe<Scalars['String']['output']>
+  first?: Maybe<Scalars['String']['output']>
   /** The person's first and last name */
-  readonly full?: Maybe<Scalars['String']['output']>
+  full?: Maybe<Scalars['String']['output']>
   /** The person's surname */
-  readonly last?: Maybe<Scalars['String']['output']>
+  last?: Maybe<Scalars['String']['output']>
   /** The person's middle name */
-  readonly middle?: Maybe<Scalars['String']['output']>
+  middle?: Maybe<Scalars['String']['output']>
   /** The person's full name in their native language */
-  readonly native?: Maybe<Scalars['String']['output']>
+  native?: Maybe<Scalars['String']['output']>
   /** The currently authenticated users preferred name language. Default romaji for non-authenticated */
-  readonly userPreferred?: Maybe<Scalars['String']['output']>
+  userPreferred?: Maybe<Scalars['String']['output']>
 }
 
 /** The names of the staff member */
 export type StaffNameInput = {
   /** Other names the character might be referred by */
-  readonly alternative?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>
+  alternative?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   /** The person's given name */
-  readonly first?: InputMaybe<Scalars['String']['input']>
+  first?: InputMaybe<Scalars['String']['input']>
   /** The person's surname */
-  readonly last?: InputMaybe<Scalars['String']['input']>
+  last?: InputMaybe<Scalars['String']['input']>
   /** The person's middle name */
-  readonly middle?: InputMaybe<Scalars['String']['input']>
+  middle?: InputMaybe<Scalars['String']['input']>
   /** The person's full name in their native language */
-  readonly native?: InputMaybe<Scalars['String']['input']>
+  native?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Voice actor role for a character */
 export type StaffRoleType = {
-  readonly __typename?: 'StaffRoleType'
+  __typename?: 'StaffRoleType'
   /** Used for grouping roles where multiple dubs exist for the same language. Either dubbing company name or language variant. */
-  readonly dubGroup?: Maybe<Scalars['String']['output']>
+  dubGroup?: Maybe<Scalars['String']['output']>
   /** Notes regarding the VA's role for the character */
-  readonly roleNotes?: Maybe<Scalars['String']['output']>
+  roleNotes?: Maybe<Scalars['String']['output']>
   /** The voice actors of the character */
-  readonly voiceActor?: Maybe<Staff>
+  voiceActor?: Maybe<Staff>
 }
 
 /** Staff sort enums */
@@ -3689,82 +3687,82 @@ export type StaffSort =
 
 /** User's staff statistics */
 export type StaffStats = {
-  readonly __typename?: 'StaffStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
-  readonly staff?: Maybe<Staff>
+  __typename?: 'StaffStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
+  staff?: Maybe<Staff>
   /** The amount of time in minutes the staff member has been watched by the user */
-  readonly timeWatched?: Maybe<Scalars['Int']['output']>
+  timeWatched?: Maybe<Scalars['Int']['output']>
 }
 
 /** A submission for a staff that features in an anime or manga */
 export type StaffSubmission = {
-  readonly __typename?: 'StaffSubmission'
+  __typename?: 'StaffSubmission'
   /** Data Mod assigned to handle the submission */
-  readonly assignee?: Maybe<User>
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  assignee?: Maybe<User>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the submission */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** Whether the submission is locked */
-  readonly locked?: Maybe<Scalars['Boolean']['output']>
+  locked?: Maybe<Scalars['Boolean']['output']>
   /** Inner details of submission status */
-  readonly notes?: Maybe<Scalars['String']['output']>
-  readonly source?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
+  source?: Maybe<Scalars['String']['output']>
   /** Staff that the submission is referencing */
-  readonly staff?: Maybe<Staff>
+  staff?: Maybe<Staff>
   /** Status of the submission */
-  readonly status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
+  status?: Maybe<SubmissionStatus | `${SubmissionStatus}`>
   /** The staff submission changes */
-  readonly submission?: Maybe<Staff>
+  submission?: Maybe<Staff>
   /** Submitter for the submission */
-  readonly submitter?: Maybe<User>
+  submitter?: Maybe<User>
 }
 
 /** Notification for when a staff submission is accepted, partially accepted, or rejected */
 export type StaffSubmissionUpdateNotification = {
-  readonly __typename?: 'StaffSubmissionUpdateNotification'
+  __typename?: 'StaffSubmissionUpdateNotification'
   /** The notification context text */
-  readonly contexts?: Maybe<ReadonlyArray<Maybe<Scalars['String']['output']>>>
+  contexts?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The notes of the submission */
-  readonly notes?: Maybe<Scalars['String']['output']>
+  notes?: Maybe<Scalars['String']['output']>
   /** The staff that was modified. */
-  readonly staff?: Maybe<Staff>
+  staff?: Maybe<Staff>
   /** The status of the submission */
-  readonly status?: Maybe<Scalars['String']['output']>
+  status?: Maybe<Scalars['String']['output']>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
 }
 
 /** The distribution of the watching/reading status of media or a user's list */
 export type StatusDistribution = {
-  readonly __typename?: 'StatusDistribution'
+  __typename?: 'StatusDistribution'
   /** The amount of entries with this status */
-  readonly amount?: Maybe<Scalars['Int']['output']>
+  amount?: Maybe<Scalars['Int']['output']>
   /** The day the activity took place (Unix timestamp) */
-  readonly status?: Maybe<MediaListStatus | `${MediaListStatus}`>
+  status?: Maybe<MediaListStatus | `${MediaListStatus}`>
 }
 
 /** Animation or production company */
 export type Studio = {
-  readonly __typename?: 'Studio'
+  __typename?: 'Studio'
   /** The amount of user's who have favourited the studio */
-  readonly favourites?: Maybe<Scalars['Int']['output']>
+  favourites?: Maybe<Scalars['Int']['output']>
   /** The id of the studio */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the studio is an animation studio or a different kind of company */
-  readonly isAnimationStudio: Scalars['Boolean']['output']
+  isAnimationStudio: Scalars['Boolean']['output']
   /** If the studio is marked as favourite by the currently authenticated user */
-  readonly isFavourite: Scalars['Boolean']['output']
+  isFavourite: Scalars['Boolean']['output']
   /** The media the studio has worked on */
-  readonly media?: Maybe<MediaConnection>
+  media?: Maybe<MediaConnection>
   /** The name of the studio */
-  readonly name: Scalars['String']['output']
+  name: Scalars['String']['output']
   /** The url for the studio page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
 }
 
 /** Animation or production company */
@@ -3773,27 +3771,27 @@ export type StudioMediaArgs = {
   onList?: InputMaybe<Scalars['Boolean']['input']>
   page?: InputMaybe<Scalars['Int']['input']>
   perPage?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>>>
+  sort?: InputMaybe<Array<InputMaybe<MediaSort>>>
 }
 
 export type StudioConnection = {
-  readonly __typename?: 'StudioConnection'
-  readonly edges?: Maybe<ReadonlyArray<Maybe<StudioEdge>>>
-  readonly nodes?: Maybe<ReadonlyArray<Maybe<Studio>>>
+  __typename?: 'StudioConnection'
+  edges?: Maybe<Array<Maybe<StudioEdge>>>
+  nodes?: Maybe<Array<Maybe<Studio>>>
   /** The pagination information */
-  readonly pageInfo?: Maybe<PageInfo>
+  pageInfo?: Maybe<PageInfo>
 }
 
 /** Studio connection edge */
 export type StudioEdge = {
-  readonly __typename?: 'StudioEdge'
+  __typename?: 'StudioEdge'
   /** The order the character should be displayed from the users favourites */
-  readonly favouriteOrder?: Maybe<Scalars['Int']['output']>
+  favouriteOrder?: Maybe<Scalars['Int']['output']>
   /** The id of the connection */
-  readonly id?: Maybe<Scalars['Int']['output']>
+  id?: Maybe<Scalars['Int']['output']>
   /** If the studio is the main animation studio of the anime */
-  readonly isMain: Scalars['Boolean']['output']
-  readonly node?: Maybe<Studio>
+  isMain: Scalars['Boolean']['output']
+  node?: Maybe<Studio>
 }
 
 /** Studio sort enums */
@@ -3808,12 +3806,12 @@ export type StudioSort =
 
 /** User's studio statistics */
 export type StudioStats = {
-  readonly __typename?: 'StudioStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
-  readonly studio?: Maybe<Studio>
+  __typename?: 'StudioStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
+  studio?: Maybe<Studio>
   /** The amount of time in minutes the studio's works have been watched by the user */
-  readonly timeWatched?: Maybe<Scalars['Int']['output']>
+  timeWatched?: Maybe<Scalars['Int']['output']>
 }
 
 /** Submission sort enums */
@@ -3824,47 +3822,47 @@ export type SubmissionStatus = 'ACCEPTED' | 'PARTIALLY_ACCEPTED' | 'PENDING' | '
 
 /** User's tag statistics */
 export type TagStats = {
-  readonly __typename?: 'TagStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
-  readonly tag?: Maybe<MediaTag>
+  __typename?: 'TagStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
+  tag?: Maybe<MediaTag>
   /** The amount of time in minutes the tag has been watched by the user */
-  readonly timeWatched?: Maybe<Scalars['Int']['output']>
+  timeWatched?: Maybe<Scalars['Int']['output']>
 }
 
 /** User text activity */
 export type TextActivity = {
-  readonly __typename?: 'TextActivity'
+  __typename?: 'TextActivity'
   /** The time the activity was created at */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the activity */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the activity */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** If the activity is locked and can receive replies */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** If the activity is pinned to the top of the users activity feed */
-  readonly isPinned?: Maybe<Scalars['Boolean']['output']>
+  isPinned?: Maybe<Scalars['Boolean']['output']>
   /** If the currently authenticated user is subscribed to the activity */
-  readonly isSubscribed?: Maybe<Scalars['Boolean']['output']>
+  isSubscribed?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the activity has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the activity */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The written replies to the activity */
-  readonly replies?: Maybe<ReadonlyArray<Maybe<ActivityReply>>>
+  replies?: Maybe<Array<Maybe<ActivityReply>>>
   /** The number of activity replies */
-  readonly replyCount: Scalars['Int']['output']
+  replyCount: Scalars['Int']['output']
   /** The url for the activity page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The status text (Markdown) */
-  readonly text?: Maybe<Scalars['String']['output']>
+  text?: Maybe<Scalars['String']['output']>
   /** The type of activity */
-  readonly type?: Maybe<ActivityType | `${ActivityType}`>
+  type?: Maybe<ActivityType | `${ActivityType}`>
   /** The user who created the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The user id of the activity's creator */
-  readonly userId?: Maybe<Scalars['Int']['output']>
+  userId?: Maybe<Scalars['Int']['output']>
 }
 
 /** User text activity */
@@ -3874,51 +3872,51 @@ export type TextActivityTextArgs = {
 
 /** Forum Thread */
 export type Thread = {
-  readonly __typename?: 'Thread'
+  __typename?: 'Thread'
   /** The text body of the thread (Markdown) */
-  readonly body?: Maybe<Scalars['String']['output']>
+  body?: Maybe<Scalars['String']['output']>
   /** The categories of the thread */
-  readonly categories?: Maybe<ReadonlyArray<Maybe<ThreadCategory>>>
+  categories?: Maybe<Array<Maybe<ThreadCategory>>>
   /** The time of the thread creation */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the thread */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the thread */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** If the thread is locked and can receive comments */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** If the thread is stickied and should be displayed at the top of the page */
-  readonly isSticky?: Maybe<Scalars['Boolean']['output']>
+  isSticky?: Maybe<Scalars['Boolean']['output']>
   /** If the currently authenticated user is subscribed to the thread */
-  readonly isSubscribed?: Maybe<Scalars['Boolean']['output']>
+  isSubscribed?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the thread has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the thread */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The media categories of the thread */
-  readonly mediaCategories?: Maybe<ReadonlyArray<Maybe<Media>>>
+  mediaCategories?: Maybe<Array<Maybe<Media>>>
   /** The time of the last reply */
-  readonly repliedAt?: Maybe<Scalars['Int']['output']>
+  repliedAt?: Maybe<Scalars['Int']['output']>
   /** The id of the most recent comment on the thread */
-  readonly replyCommentId?: Maybe<Scalars['Int']['output']>
+  replyCommentId?: Maybe<Scalars['Int']['output']>
   /** The number of comments on the thread */
-  readonly replyCount?: Maybe<Scalars['Int']['output']>
+  replyCount?: Maybe<Scalars['Int']['output']>
   /** The user to last reply to the thread */
-  readonly replyUser?: Maybe<User>
+  replyUser?: Maybe<User>
   /** The id of the user who most recently commented on the thread */
-  readonly replyUserId?: Maybe<Scalars['Int']['output']>
+  replyUserId?: Maybe<Scalars['Int']['output']>
   /** The url for the thread page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The title of the thread */
-  readonly title?: Maybe<Scalars['String']['output']>
+  title?: Maybe<Scalars['String']['output']>
   /** The time of the thread last update */
-  readonly updatedAt: Scalars['Int']['output']
+  updatedAt: Scalars['Int']['output']
   /** The owner of the thread */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the thread owner user */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
   /** The number of times users have viewed the thread */
-  readonly viewCount?: Maybe<Scalars['Int']['output']>
+  viewCount?: Maybe<Scalars['Int']['output']>
 }
 
 /** Forum Thread */
@@ -3928,44 +3926,44 @@ export type ThreadBodyArgs = {
 
 /** A forum thread category */
 export type ThreadCategory = {
-  readonly __typename?: 'ThreadCategory'
+  __typename?: 'ThreadCategory'
   /** The id of the category */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The name of the category */
-  readonly name: Scalars['String']['output']
+  name: Scalars['String']['output']
 }
 
 /** Forum Thread Comment */
 export type ThreadComment = {
-  readonly __typename?: 'ThreadComment'
+  __typename?: 'ThreadComment'
   /** The comment's child reply comments */
-  readonly childComments?: Maybe<Scalars['Json']['output']>
+  childComments?: Maybe<Scalars['Json']['output']>
   /** The text content of the comment (Markdown) */
-  readonly comment?: Maybe<Scalars['String']['output']>
+  comment?: Maybe<Scalars['String']['output']>
   /** The time of the comments creation */
-  readonly createdAt: Scalars['Int']['output']
+  createdAt: Scalars['Int']['output']
   /** The id of the comment */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the currently authenticated user liked the comment */
-  readonly isLiked?: Maybe<Scalars['Boolean']['output']>
+  isLiked?: Maybe<Scalars['Boolean']['output']>
   /** If the comment tree is locked and may not receive replies or edits */
-  readonly isLocked?: Maybe<Scalars['Boolean']['output']>
+  isLocked?: Maybe<Scalars['Boolean']['output']>
   /** The amount of likes the comment has */
-  readonly likeCount: Scalars['Int']['output']
+  likeCount: Scalars['Int']['output']
   /** The users who liked the comment */
-  readonly likes?: Maybe<ReadonlyArray<Maybe<User>>>
+  likes?: Maybe<Array<Maybe<User>>>
   /** The url for the comment page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The thread the comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The id of thread the comment belongs to */
-  readonly threadId?: Maybe<Scalars['Int']['output']>
+  threadId?: Maybe<Scalars['Int']['output']>
   /** The time of the comments last update */
-  readonly updatedAt: Scalars['Int']['output']
+  updatedAt: Scalars['Int']['output']
   /** The user who created the comment */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The user id of the comment's owner */
-  readonly userId?: Maybe<Scalars['Int']['output']>
+  userId?: Maybe<Scalars['Int']['output']>
 }
 
 /** Forum Thread Comment */
@@ -3975,71 +3973,71 @@ export type ThreadCommentCommentArgs = {
 
 /** Notification for when a thread comment is liked */
 export type ThreadCommentLikeNotification = {
-  readonly __typename?: 'ThreadCommentLikeNotification'
+  __typename?: 'ThreadCommentLikeNotification'
   /** The thread comment that was liked */
-  readonly comment?: Maybe<ThreadComment>
+  comment?: Maybe<ThreadComment>
   /** The id of the activity which was liked */
-  readonly commentId: Scalars['Int']['output']
+  commentId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The thread that the relevant comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who liked the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who liked to the activity */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when authenticated user is @ mentioned in a forum thread comment */
 export type ThreadCommentMentionNotification = {
-  readonly __typename?: 'ThreadCommentMentionNotification'
+  __typename?: 'ThreadCommentMentionNotification'
   /** The thread comment that included the @ mention */
-  readonly comment?: Maybe<ThreadComment>
+  comment?: Maybe<ThreadComment>
   /** The id of the comment where mentioned */
-  readonly commentId: Scalars['Int']['output']
+  commentId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The thread that the relevant comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who mentioned the authenticated user */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who mentioned the authenticated user */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when a user replies to your forum thread comment */
 export type ThreadCommentReplyNotification = {
-  readonly __typename?: 'ThreadCommentReplyNotification'
+  __typename?: 'ThreadCommentReplyNotification'
   /** The reply thread comment */
-  readonly comment?: Maybe<ThreadComment>
+  comment?: Maybe<ThreadComment>
   /** The id of the reply comment */
-  readonly commentId: Scalars['Int']['output']
+  commentId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The thread that the relevant comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who replied to the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who create the comment reply */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Thread comments sort enums */
@@ -4047,48 +4045,48 @@ export type ThreadCommentSort = 'ID' | 'ID_DESC'
 
 /** Notification for when a user replies to a subscribed forum thread */
 export type ThreadCommentSubscribedNotification = {
-  readonly __typename?: 'ThreadCommentSubscribedNotification'
+  __typename?: 'ThreadCommentSubscribedNotification'
   /** The reply thread comment */
-  readonly comment?: Maybe<ThreadComment>
+  comment?: Maybe<ThreadComment>
   /** The id of the new comment in the subscribed thread */
-  readonly commentId: Scalars['Int']['output']
+  commentId: Scalars['Int']['output']
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The thread that the relevant comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who replied to the subscribed thread */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who commented on the thread */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Notification for when a thread is liked */
 export type ThreadLikeNotification = {
-  readonly __typename?: 'ThreadLikeNotification'
+  __typename?: 'ThreadLikeNotification'
   /** The liked thread comment */
-  readonly comment?: Maybe<ThreadComment>
+  comment?: Maybe<ThreadComment>
   /** The notification context text */
-  readonly context?: Maybe<Scalars['String']['output']>
+  context?: Maybe<Scalars['String']['output']>
   /** The time the notification was created at */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** The id of the Notification */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** The thread that the relevant comment belongs to */
-  readonly thread?: Maybe<Thread>
+  thread?: Maybe<Thread>
   /** The id of the thread which was liked */
-  readonly threadId: Scalars['Int']['output']
+  threadId: Scalars['Int']['output']
   /** The type of notification */
-  readonly type?: Maybe<NotificationType | `${NotificationType}`>
+  type?: Maybe<NotificationType | `${NotificationType}`>
   /** The user who liked the activity */
-  readonly user?: Maybe<User>
+  user?: Maybe<User>
   /** The id of the user who liked to the activity */
-  readonly userId: Scalars['Int']['output']
+  userId: Scalars['Int']['output']
 }
 
 /** Thread sort enums */
@@ -4112,58 +4110,58 @@ export type ThreadSort =
 
 /** A user */
 export type User = {
-  readonly __typename?: 'User'
+  __typename?: 'User'
   /** The bio written by user (Markdown) */
-  readonly about?: Maybe<Scalars['String']['output']>
+  about?: Maybe<Scalars['String']['output']>
   /** The user's avatar images */
-  readonly avatar?: Maybe<UserAvatar>
+  avatar?: Maybe<UserAvatar>
   /** The user's banner images */
-  readonly bannerImage?: Maybe<Scalars['String']['output']>
-  readonly bans?: Maybe<Scalars['Json']['output']>
+  bannerImage?: Maybe<Scalars['String']['output']>
+  bans?: Maybe<Scalars['Json']['output']>
   /** When the user's account was created. (Does not exist for accounts created before 2020) */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** Custom donation badge text */
-  readonly donatorBadge?: Maybe<Scalars['String']['output']>
+  donatorBadge?: Maybe<Scalars['String']['output']>
   /** The donation tier of the user */
-  readonly donatorTier?: Maybe<Scalars['Int']['output']>
+  donatorTier?: Maybe<Scalars['Int']['output']>
   /** The users favourites */
-  readonly favourites?: Maybe<Favourites>
+  favourites?: Maybe<Favourites>
   /** The id of the user */
-  readonly id: Scalars['Int']['output']
+  id: Scalars['Int']['output']
   /** If the user is blocked by the authenticated user */
-  readonly isBlocked?: Maybe<Scalars['Boolean']['output']>
+  isBlocked?: Maybe<Scalars['Boolean']['output']>
   /** If this user if following the authenticated user */
-  readonly isFollower?: Maybe<Scalars['Boolean']['output']>
+  isFollower?: Maybe<Scalars['Boolean']['output']>
   /** If the authenticated user if following this user */
-  readonly isFollowing?: Maybe<Scalars['Boolean']['output']>
+  isFollowing?: Maybe<Scalars['Boolean']['output']>
   /** The user's media list options */
-  readonly mediaListOptions?: Maybe<MediaListOptions>
+  mediaListOptions?: Maybe<MediaListOptions>
   /** The user's moderator roles if they are a site moderator */
-  readonly moderatorRoles?: Maybe<ReadonlyArray<Maybe<ModRole | `${ModRole}`>>>
+  moderatorRoles?: Maybe<Array<Maybe<ModRole | `${ModRole}`>>>
   /**
    * If the user is a moderator or data moderator
    * @deprecated Deprecated. Replaced with moderatorRoles field.
    */
-  readonly moderatorStatus?: Maybe<Scalars['String']['output']>
+  moderatorStatus?: Maybe<Scalars['String']['output']>
   /** The name of the user */
-  readonly name: Scalars['String']['output']
+  name: Scalars['String']['output']
   /** The user's general options */
-  readonly options?: Maybe<UserOptions>
+  options?: Maybe<UserOptions>
   /** The user's previously used names. */
-  readonly previousNames?: Maybe<ReadonlyArray<Maybe<UserPreviousName>>>
+  previousNames?: Maybe<Array<Maybe<UserPreviousName>>>
   /** The url for the user page on the AniList website */
-  readonly siteUrl?: Maybe<Scalars['String']['output']>
+  siteUrl?: Maybe<Scalars['String']['output']>
   /** The users anime & manga list statistics */
-  readonly statistics?: Maybe<UserStatisticTypes>
+  statistics?: Maybe<UserStatisticTypes>
   /**
    * The user's statistics
    * @deprecated Deprecated. Replaced with statistics field.
    */
-  readonly stats?: Maybe<UserStats>
+  stats?: Maybe<UserStats>
   /** The number of unread notifications the user has */
-  readonly unreadNotificationCount?: Maybe<Scalars['Int']['output']>
+  unreadNotificationCount?: Maybe<Scalars['Int']['output']>
   /** When the user's data was last updated */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['Int']['output']>
 }
 
 /** A user */
@@ -4178,129 +4176,129 @@ export type UserFavouritesArgs = {
 
 /** A user's activity history stats. */
 export type UserActivityHistory = {
-  readonly __typename?: 'UserActivityHistory'
+  __typename?: 'UserActivityHistory'
   /** The amount of activity on the day */
-  readonly amount?: Maybe<Scalars['Int']['output']>
+  amount?: Maybe<Scalars['Int']['output']>
   /** The day the activity took place (Unix timestamp) */
-  readonly date?: Maybe<Scalars['Int']['output']>
+  date?: Maybe<Scalars['Int']['output']>
   /** The level of activity represented on a 1-10 scale */
-  readonly level?: Maybe<Scalars['Int']['output']>
+  level?: Maybe<Scalars['Int']['output']>
 }
 
 /** A user's avatars */
 export type UserAvatar = {
-  readonly __typename?: 'UserAvatar'
+  __typename?: 'UserAvatar'
   /** The avatar of user at its largest size */
-  readonly large?: Maybe<Scalars['String']['output']>
+  large?: Maybe<Scalars['String']['output']>
   /** The avatar of user at medium size */
-  readonly medium?: Maybe<Scalars['String']['output']>
+  medium?: Maybe<Scalars['String']['output']>
 }
 
 export type UserCountryStatistic = {
-  readonly __typename?: 'UserCountryStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly country?: Maybe<Scalars['CountryCode']['output']>
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
+  __typename?: 'UserCountryStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  country?: Maybe<Scalars['CountryCode']['output']>
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
 }
 
 export type UserFormatStatistic = {
-  readonly __typename?: 'UserFormatStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly format?: Maybe<MediaFormat | `${MediaFormat}`>
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
+  __typename?: 'UserFormatStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  format?: Maybe<MediaFormat | `${MediaFormat}`>
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
 }
 
 export type UserGenreStatistic = {
-  readonly __typename?: 'UserGenreStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly genre?: Maybe<Scalars['String']['output']>
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
+  __typename?: 'UserGenreStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  genre?: Maybe<Scalars['String']['output']>
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
 }
 
 export type UserLengthStatistic = {
-  readonly __typename?: 'UserLengthStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly length?: Maybe<Scalars['String']['output']>
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
+  __typename?: 'UserLengthStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  length?: Maybe<Scalars['String']['output']>
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
 }
 
 /** User data for moderators */
 export type UserModData = {
-  readonly __typename?: 'UserModData'
-  readonly alts?: Maybe<ReadonlyArray<Maybe<User>>>
-  readonly bans?: Maybe<Scalars['Json']['output']>
-  readonly counts?: Maybe<Scalars['Json']['output']>
-  readonly email?: Maybe<Scalars['String']['output']>
-  readonly ip?: Maybe<Scalars['Json']['output']>
-  readonly privacy?: Maybe<Scalars['Int']['output']>
+  __typename?: 'UserModData'
+  alts?: Maybe<Array<Maybe<User>>>
+  bans?: Maybe<Scalars['Json']['output']>
+  counts?: Maybe<Scalars['Json']['output']>
+  email?: Maybe<Scalars['String']['output']>
+  ip?: Maybe<Scalars['Json']['output']>
+  privacy?: Maybe<Scalars['Int']['output']>
 }
 
 /** A user's general options */
 export type UserOptions = {
-  readonly __typename?: 'UserOptions'
+  __typename?: 'UserOptions'
   /** Minutes between activity for them to be merged together. 0 is Never, Above 2 weeks (20160 mins) is Always. */
-  readonly activityMergeTime?: Maybe<Scalars['Int']['output']>
+  activityMergeTime?: Maybe<Scalars['Int']['output']>
   /** Whether the user receives notifications when a show they are watching aires */
-  readonly airingNotifications?: Maybe<Scalars['Boolean']['output']>
+  airingNotifications?: Maybe<Scalars['Boolean']['output']>
   /** The list activity types the user has disabled from being created from list updates */
-  readonly disabledListActivity?: Maybe<ReadonlyArray<Maybe<ListActivityOption>>>
+  disabledListActivity?: Maybe<Array<Maybe<ListActivityOption>>>
   /** Whether the user has enabled viewing of 18+ content */
-  readonly displayAdultContent?: Maybe<Scalars['Boolean']['output']>
+  displayAdultContent?: Maybe<Scalars['Boolean']['output']>
   /** Notification options */
-  readonly notificationOptions?: Maybe<ReadonlyArray<Maybe<NotificationOption>>>
+  notificationOptions?: Maybe<Array<Maybe<NotificationOption>>>
   /** Profile highlight color (blue, purple, pink, orange, red, green, gray) */
-  readonly profileColor?: Maybe<Scalars['String']['output']>
+  profileColor?: Maybe<Scalars['String']['output']>
   /** Whether the user only allow messages from users they follow */
-  readonly restrictMessagesToFollowing?: Maybe<Scalars['Boolean']['output']>
+  restrictMessagesToFollowing?: Maybe<Scalars['Boolean']['output']>
   /** The language the user wants to see staff and character names in */
-  readonly staffNameLanguage?: Maybe<UserStaffNameLanguage | `${UserStaffNameLanguage}`>
+  staffNameLanguage?: Maybe<UserStaffNameLanguage | `${UserStaffNameLanguage}`>
   /** The user's timezone offset (Auth user only) */
-  readonly timezone?: Maybe<Scalars['String']['output']>
+  timezone?: Maybe<Scalars['String']['output']>
   /** The language the user wants to see media titles in */
-  readonly titleLanguage?: Maybe<UserTitleLanguage | `${UserTitleLanguage}`>
+  titleLanguage?: Maybe<UserTitleLanguage | `${UserTitleLanguage}`>
 }
 
 /** A user's previous name */
 export type UserPreviousName = {
-  readonly __typename?: 'UserPreviousName'
+  __typename?: 'UserPreviousName'
   /** When the user first changed from this name. */
-  readonly createdAt?: Maybe<Scalars['Int']['output']>
+  createdAt?: Maybe<Scalars['Int']['output']>
   /** A previous name of the user. */
-  readonly name?: Maybe<Scalars['String']['output']>
+  name?: Maybe<Scalars['String']['output']>
   /** When the user most recently changed from this name. */
-  readonly updatedAt?: Maybe<Scalars['Int']['output']>
+  updatedAt?: Maybe<Scalars['Int']['output']>
 }
 
 export type UserReleaseYearStatistic = {
-  readonly __typename?: 'UserReleaseYearStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly releaseYear?: Maybe<Scalars['Int']['output']>
+  __typename?: 'UserReleaseYearStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  releaseYear?: Maybe<Scalars['Int']['output']>
 }
 
 export type UserScoreStatistic = {
-  readonly __typename?: 'UserScoreStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly score?: Maybe<Scalars['Int']['output']>
+  __typename?: 'UserScoreStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  score?: Maybe<Scalars['Int']['output']>
 }
 
 /** User sort enums */
@@ -4325,112 +4323,112 @@ export type UserStaffNameLanguage =
   | 'ROMAJI_WESTERN'
 
 export type UserStaffStatistic = {
-  readonly __typename?: 'UserStaffStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly staff?: Maybe<Staff>
+  __typename?: 'UserStaffStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  staff?: Maybe<Staff>
 }
 
 export type UserStartYearStatistic = {
-  readonly __typename?: 'UserStartYearStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly startYear?: Maybe<Scalars['Int']['output']>
+  __typename?: 'UserStartYearStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  startYear?: Maybe<Scalars['Int']['output']>
 }
 
 export type UserStatisticTypes = {
-  readonly __typename?: 'UserStatisticTypes'
-  readonly anime?: Maybe<UserStatistics>
-  readonly manga?: Maybe<UserStatistics>
+  __typename?: 'UserStatisticTypes'
+  anime?: Maybe<UserStatistics>
+  manga?: Maybe<UserStatistics>
 }
 
 export type UserStatistics = {
-  readonly __typename?: 'UserStatistics'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly countries?: Maybe<ReadonlyArray<Maybe<UserCountryStatistic>>>
-  readonly episodesWatched: Scalars['Int']['output']
-  readonly formats?: Maybe<ReadonlyArray<Maybe<UserFormatStatistic>>>
-  readonly genres?: Maybe<ReadonlyArray<Maybe<UserGenreStatistic>>>
-  readonly lengths?: Maybe<ReadonlyArray<Maybe<UserLengthStatistic>>>
-  readonly meanScore: Scalars['Float']['output']
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly releaseYears?: Maybe<ReadonlyArray<Maybe<UserReleaseYearStatistic>>>
-  readonly scores?: Maybe<ReadonlyArray<Maybe<UserScoreStatistic>>>
-  readonly staff?: Maybe<ReadonlyArray<Maybe<UserStaffStatistic>>>
-  readonly standardDeviation: Scalars['Float']['output']
-  readonly startYears?: Maybe<ReadonlyArray<Maybe<UserStartYearStatistic>>>
-  readonly statuses?: Maybe<ReadonlyArray<Maybe<UserStatusStatistic>>>
-  readonly studios?: Maybe<ReadonlyArray<Maybe<UserStudioStatistic>>>
-  readonly tags?: Maybe<ReadonlyArray<Maybe<UserTagStatistic>>>
-  readonly voiceActors?: Maybe<ReadonlyArray<Maybe<UserVoiceActorStatistic>>>
-  readonly volumesRead: Scalars['Int']['output']
+  __typename?: 'UserStatistics'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  countries?: Maybe<Array<Maybe<UserCountryStatistic>>>
+  episodesWatched: Scalars['Int']['output']
+  formats?: Maybe<Array<Maybe<UserFormatStatistic>>>
+  genres?: Maybe<Array<Maybe<UserGenreStatistic>>>
+  lengths?: Maybe<Array<Maybe<UserLengthStatistic>>>
+  meanScore: Scalars['Float']['output']
+  minutesWatched: Scalars['Int']['output']
+  releaseYears?: Maybe<Array<Maybe<UserReleaseYearStatistic>>>
+  scores?: Maybe<Array<Maybe<UserScoreStatistic>>>
+  staff?: Maybe<Array<Maybe<UserStaffStatistic>>>
+  standardDeviation: Scalars['Float']['output']
+  startYears?: Maybe<Array<Maybe<UserStartYearStatistic>>>
+  statuses?: Maybe<Array<Maybe<UserStatusStatistic>>>
+  studios?: Maybe<Array<Maybe<UserStudioStatistic>>>
+  tags?: Maybe<Array<Maybe<UserTagStatistic>>>
+  voiceActors?: Maybe<Array<Maybe<UserVoiceActorStatistic>>>
+  volumesRead: Scalars['Int']['output']
 }
 
 export type UserStatisticsCountriesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsFormatsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsGenresArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsLengthsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsReleaseYearsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsScoresArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsStaffArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsStartYearsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsStatusesArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsStudiosArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsTagsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 export type UserStatisticsVoiceActorsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<UserStatisticsSort>>>
+  sort?: InputMaybe<Array<InputMaybe<UserStatisticsSort>>>
 }
 
 /** User statistics sort enum */
@@ -4446,56 +4444,56 @@ export type UserStatisticsSort =
 
 /** A user's statistics */
 export type UserStats = {
-  readonly __typename?: 'UserStats'
-  readonly activityHistory?: Maybe<ReadonlyArray<Maybe<UserActivityHistory>>>
-  readonly animeListScores?: Maybe<ListScoreStats>
-  readonly animeScoreDistribution?: Maybe<ReadonlyArray<Maybe<ScoreDistribution>>>
-  readonly animeStatusDistribution?: Maybe<ReadonlyArray<Maybe<StatusDistribution>>>
+  __typename?: 'UserStats'
+  activityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>
+  animeListScores?: Maybe<ListScoreStats>
+  animeScoreDistribution?: Maybe<Array<Maybe<ScoreDistribution>>>
+  animeStatusDistribution?: Maybe<Array<Maybe<StatusDistribution>>>
   /** The amount of manga chapters the user has read */
-  readonly chaptersRead?: Maybe<Scalars['Int']['output']>
-  readonly favouredActors?: Maybe<ReadonlyArray<Maybe<StaffStats>>>
-  readonly favouredFormats?: Maybe<ReadonlyArray<Maybe<FormatStats>>>
-  readonly favouredGenres?: Maybe<ReadonlyArray<Maybe<GenreStats>>>
-  readonly favouredGenresOverview?: Maybe<ReadonlyArray<Maybe<GenreStats>>>
-  readonly favouredStaff?: Maybe<ReadonlyArray<Maybe<StaffStats>>>
-  readonly favouredStudios?: Maybe<ReadonlyArray<Maybe<StudioStats>>>
-  readonly favouredTags?: Maybe<ReadonlyArray<Maybe<TagStats>>>
-  readonly favouredYears?: Maybe<ReadonlyArray<Maybe<YearStats>>>
-  readonly mangaListScores?: Maybe<ListScoreStats>
-  readonly mangaScoreDistribution?: Maybe<ReadonlyArray<Maybe<ScoreDistribution>>>
-  readonly mangaStatusDistribution?: Maybe<ReadonlyArray<Maybe<StatusDistribution>>>
+  chaptersRead?: Maybe<Scalars['Int']['output']>
+  favouredActors?: Maybe<Array<Maybe<StaffStats>>>
+  favouredFormats?: Maybe<Array<Maybe<FormatStats>>>
+  favouredGenres?: Maybe<Array<Maybe<GenreStats>>>
+  favouredGenresOverview?: Maybe<Array<Maybe<GenreStats>>>
+  favouredStaff?: Maybe<Array<Maybe<StaffStats>>>
+  favouredStudios?: Maybe<Array<Maybe<StudioStats>>>
+  favouredTags?: Maybe<Array<Maybe<TagStats>>>
+  favouredYears?: Maybe<Array<Maybe<YearStats>>>
+  mangaListScores?: Maybe<ListScoreStats>
+  mangaScoreDistribution?: Maybe<Array<Maybe<ScoreDistribution>>>
+  mangaStatusDistribution?: Maybe<Array<Maybe<StatusDistribution>>>
   /** The amount of anime the user has watched in minutes */
-  readonly watchedTime?: Maybe<Scalars['Int']['output']>
+  watchedTime?: Maybe<Scalars['Int']['output']>
 }
 
 export type UserStatusStatistic = {
-  readonly __typename?: 'UserStatusStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly status?: Maybe<MediaListStatus | `${MediaListStatus}`>
+  __typename?: 'UserStatusStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  status?: Maybe<MediaListStatus | `${MediaListStatus}`>
 }
 
 export type UserStudioStatistic = {
-  readonly __typename?: 'UserStudioStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly studio?: Maybe<Studio>
+  __typename?: 'UserStudioStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  studio?: Maybe<Studio>
 }
 
 export type UserTagStatistic = {
-  readonly __typename?: 'UserTagStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly tag?: Maybe<MediaTag>
+  __typename?: 'UserTagStatistic'
+  chaptersRead: Scalars['Int']['output']
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  tag?: Maybe<MediaTag>
 }
 
 /** The language the user wants to see media titles in */
@@ -4514,283 +4512,20 @@ export type UserTitleLanguage =
   | 'ROMAJI_STYLISED'
 
 export type UserVoiceActorStatistic = {
-  readonly __typename?: 'UserVoiceActorStatistic'
-  readonly chaptersRead: Scalars['Int']['output']
-  readonly characterIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly count: Scalars['Int']['output']
-  readonly meanScore: Scalars['Float']['output']
-  readonly mediaIds: ReadonlyArray<Maybe<Scalars['Int']['output']>>
-  readonly minutesWatched: Scalars['Int']['output']
-  readonly voiceActor?: Maybe<Staff>
+  __typename?: 'UserVoiceActorStatistic'
+  chaptersRead: Scalars['Int']['output']
+  characterIds: Array<Maybe<Scalars['Int']['output']>>
+  count: Scalars['Int']['output']
+  meanScore: Scalars['Float']['output']
+  mediaIds: Array<Maybe<Scalars['Int']['output']>>
+  minutesWatched: Scalars['Int']['output']
+  voiceActor?: Maybe<Staff>
 }
 
 /** User's year statistics */
 export type YearStats = {
-  readonly __typename?: 'YearStats'
-  readonly amount?: Maybe<Scalars['Int']['output']>
-  readonly meanScore?: Maybe<Scalars['Int']['output']>
-  readonly year?: Maybe<Scalars['Int']['output']>
+  __typename?: 'YearStats'
+  amount?: Maybe<Scalars['Int']['output']>
+  meanScore?: Maybe<Scalars['Int']['output']>
+  year?: Maybe<Scalars['Int']['output']>
 }
-
-export type GetGenresQueryVariables = Exact<{ [key: string]: never }>
-
-export type GetGenresQuery = {
-  readonly __typename?: 'Query'
-  readonly GenreCollection?: ReadonlyArray<string | null> | null
-}
-
-export type SearchQueryVariables = Exact<{
-  search?: InputMaybe<Scalars['String']['input']>
-  type?: InputMaybe<MediaType>
-  isAdult?: InputMaybe<Scalars['Boolean']['input']>
-  sort?: InputMaybe<ReadonlyArray<InputMaybe<MediaSort>> | InputMaybe<MediaSort>>
-  page?: InputMaybe<Scalars['Int']['input']>
-  statusIn?: InputMaybe<ReadonlyArray<InputMaybe<MediaStatus>> | InputMaybe<MediaStatus>>
-  formatIn?: InputMaybe<ReadonlyArray<InputMaybe<MediaFormat>> | InputMaybe<MediaFormat>>
-  idMalNot?: InputMaybe<Scalars['Int']['input']>
-  idMalIn?: InputMaybe<
-    ReadonlyArray<InputMaybe<Scalars['Int']['input']>> | InputMaybe<Scalars['Int']['input']>
-  >
-}>
-
-export type SearchQuery = {
-  readonly __typename?: 'Query'
-  readonly Page?: {
-    readonly __typename?: 'Page'
-    readonly pageInfo?: {
-      readonly __typename?: 'PageInfo'
-      readonly total?: number | null
-      readonly perPage?: number | null
-      readonly currentPage?: number | null
-      readonly lastPage?: number | null
-      readonly hasNextPage?: boolean | null
-    } | null
-    readonly media?: ReadonlyArray<{
-      readonly __typename?: 'Media'
-      readonly id: number
-      readonly idMal?: number | null
-      readonly description?: string | null
-      readonly meanScore?: number | null
-      readonly type?: MediaType | null
-      readonly status?: MediaStatus | null
-      readonly genres?: ReadonlyArray<string | null> | null
-      readonly format?: MediaFormat | null
-      readonly episodes?: number | null
-      readonly season?: MediaSeason | null
-      readonly seasonYear?: number | null
-      readonly isAdult?: boolean | null
-      readonly duration?: number | null
-      readonly bannerImage?: string | null
-      readonly title?: {
-        readonly __typename?: 'MediaTitle'
-        readonly english?: string | null
-        readonly romaji?: string | null
-        readonly native?: string | null
-      } | null
-      readonly startDate?: {
-        readonly __typename?: 'FuzzyDate'
-        readonly year?: number | null
-        readonly month?: number | null
-        readonly day?: number | null
-      } | null
-      readonly endDate?: {
-        readonly __typename?: 'FuzzyDate'
-        readonly year?: number | null
-        readonly month?: number | null
-        readonly day?: number | null
-      } | null
-      readonly coverImage?: {
-        readonly __typename?: 'MediaCoverImage'
-        readonly extraLarge?: string | null
-        readonly large?: string | null
-        readonly medium?: string | null
-      } | null
-      readonly airingSchedule?: {
-        readonly __typename?: 'AiringScheduleConnection'
-        readonly nodes?: ReadonlyArray<{
-          readonly __typename?: 'AiringSchedule'
-          readonly airingAt: number
-          readonly episode: number
-          readonly timeUntilAiring: number
-        } | null> | null
-      } | null
-      readonly trailer?: {
-        readonly __typename?: 'MediaTrailer'
-        readonly site?: string | null
-        readonly id?: string | null
-      } | null
-      readonly relations?: {
-        readonly __typename?: 'MediaConnection'
-        readonly edges?: ReadonlyArray<{
-          readonly __typename?: 'MediaEdge'
-          readonly relationType?: MediaRelation | null
-          readonly node?: {
-            readonly __typename?: 'Media'
-            readonly id: number
-            readonly idMal?: number | null
-            readonly type?: MediaType | null
-            readonly title?: {
-              readonly __typename?: 'MediaTitle'
-              readonly romaji?: string | null
-            } | null
-          } | null
-        } | null> | null
-      } | null
-      readonly recommendations?: {
-        readonly __typename?: 'RecommendationConnection'
-        readonly edges?: ReadonlyArray<{
-          readonly __typename?: 'RecommendationEdge'
-          readonly node?: {
-            readonly __typename?: 'Recommendation'
-            readonly mediaRecommendation?: {
-              readonly __typename?: 'Media'
-              readonly id: number
-              readonly idMal?: number | null
-              readonly type?: MediaType | null
-              readonly title?: {
-                readonly __typename?: 'MediaTitle'
-                readonly romaji?: string | null
-              } | null
-            } | null
-          } | null
-        } | null> | null
-      } | null
-    } | null> | null
-  } | null
-}
-
-export const GetGenresDocument = gql`
-  query GetGenres {
-    GenreCollection
-  }
-`
-export const SearchDocument = gql`
-  query Search(
-    $search: String
-    $type: MediaType
-    $isAdult: Boolean
-    $sort: [MediaSort]
-    $page: Int
-    $statusIn: [MediaStatus]
-    $formatIn: [MediaFormat]
-    $idMalNot: Int
-    $idMalIn: [Int]
-  ) {
-    Page(page: $page) {
-      pageInfo {
-        total
-        perPage
-        currentPage
-        lastPage
-        hasNextPage
-      }
-      media(
-        search: $search
-        type: $type
-        isAdult: $isAdult
-        sort: $sort
-        status_in: $statusIn
-        format_in: $formatIn
-        idMal_not: $idMalNot
-        idMal_in: $idMalIn
-      ) {
-        id
-        idMal
-        title {
-          english
-          romaji
-          native
-        }
-        description
-        startDate {
-          year
-          month
-          day
-        }
-        endDate {
-          year
-          month
-          day
-        }
-        meanScore
-        type
-        status
-        genres
-        format
-        episodes
-        coverImage {
-          extraLarge
-          large
-          medium
-        }
-        season
-        seasonYear
-        airingSchedule {
-          nodes {
-            airingAt
-            episode
-            timeUntilAiring
-          }
-        }
-        isAdult
-        trailer {
-          site
-          id
-        }
-        duration
-        bannerImage
-        relations {
-          edges {
-            relationType
-            node {
-              id
-              idMal
-              title {
-                romaji
-              }
-              type
-            }
-          }
-        }
-        recommendations {
-          edges {
-            node {
-              mediaRecommendation {
-                title {
-                  romaji
-                }
-                id
-                idMal
-                type
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-export type Requester<C = {}> = <R, V>(
-  doc: DocumentNode,
-  vars?: V,
-  options?: C
-) => Promise<R> | AsyncIterable<R>
-export function getSdk<C>(requester: Requester<C>) {
-  return {
-    GetGenres(variables?: GetGenresQueryVariables, options?: C): Promise<GetGenresQuery> {
-      return requester<GetGenresQuery, GetGenresQueryVariables>(
-        GetGenresDocument,
-        variables,
-        options
-      ) as Promise<GetGenresQuery>
-    },
-    Search(variables?: SearchQueryVariables, options?: C): Promise<SearchQuery> {
-      return requester<SearchQuery, SearchQueryVariables>(
-        SearchDocument,
-        variables,
-        options
-      ) as Promise<SearchQuery>
-    },
-  }
-}
-export type Sdk = ReturnType<typeof getSdk>

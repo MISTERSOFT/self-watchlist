@@ -1,4 +1,4 @@
-import { getSdk, type Requester } from '#graphql/generated/anilist/types'
+import { getSdk, type Requester } from '#graphql/generated/anilist/sdk'
 import { print, type DocumentNode } from 'graphql'
 
 const requester: Requester = async (

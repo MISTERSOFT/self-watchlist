@@ -1,5 +1,5 @@
 import { anilist } from '#graphql/clients/anilist_client'
-import type { SearchQueryVariables } from '#graphql/generated/anilist/types'
+import type { SearchQueryVariables } from '#graphql/generated/anilist/operations'
 
 const DEFAULT_GET_ANIMES_QUERY_VARIABLES: SearchQueryVariables = {
   type: 'ANIME',
@@ -24,9 +24,5 @@ export class AnilistService {
       ...DEFAULT_GET_ANIMES_QUERY_VARIABLES,
       ...queryVariables,
     })
-  }
-
-  async getGenres() {
-    return await anilist.GetGenres()
   }
 }
