@@ -33,7 +33,6 @@ export class AnimeSchema extends BaseModel {
     'score',
     'season',
     'seasonYear',
-    'slug',
     'status',
     'synopsis',
     'thumbnailUrl',
@@ -71,8 +70,6 @@ export class AnimeSchema extends BaseModel {
   @column()
   declare seasonYear: number | null
   @column()
-  declare slug: string
-  @column()
   declare status: string | null
   @column()
   declare synopsis: string | null
@@ -103,6 +100,33 @@ export class GenreSchema extends BaseModel {
   declare slug: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+}
+
+export class UserAnimeSchema extends BaseModel {
+  static $columns = [
+    'animeId',
+    'createdAt',
+    'currentEpisode',
+    'id',
+    'updatedAt',
+    'userId',
+    'watchStatus',
+  ] as const
+  $columns = UserAnimeSchema.$columns
+  @column()
+  declare animeId: number | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare currentEpisode: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+  @column()
+  declare watchStatus: string
 }
 
 export class UserSchema extends BaseModel {

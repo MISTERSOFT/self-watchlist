@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.string('external_source').nullable() // Provider: anilist, jikan, etc...
       table.string('myanimelist_id').nullable() // MyAnimeList ID
 
-      table.text('slug').notNullable().unique()
+      // table.text('slug').notNullable().unique()
       table.text('title').notNullable()
       table.text('alternative_titles').nullable()
       table.string('type').nullable()

@@ -1,7 +1,7 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'anime_genres'
+  protected tableName = 'anime_genre'
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
