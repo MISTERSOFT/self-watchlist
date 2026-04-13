@@ -3,10 +3,9 @@ import type { SearchQueryVariables } from '#graphql/generated/anilist/operations
 
 const DEFAULT_GET_ANIMES_QUERY_VARIABLES: SearchQueryVariables = {
   type: 'ANIME',
-  isAdult: false,
   sort: 'POPULARITY_DESC',
   statusIn: ['FINISHED', 'RELEASING'],
-  formatIn: ['TV', 'MOVIE', 'SPECIAL', 'OVA', 'ONA'],
+  formatIn: ['TV', 'TV_SHORT', 'MOVIE', 'SPECIAL', 'OVA', 'ONA'],
   idMalNot: null,
   page: 1,
 }
