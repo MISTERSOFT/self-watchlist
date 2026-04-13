@@ -8,7 +8,8 @@
       "installZsh": true,
       "configureZshAsDefaultShell": true,
       "installOhMyZsh": true
-    }
+    },
+    "ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {}
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
@@ -24,7 +25,9 @@
         "jripouteau.adonis-vscode-extension",
         "EditorConfig.EditorConfig",
         "YoavBls.pretty-ts-errors",
-        "CarlSaqui.handlebars-syntax-highlighter"
+        "CarlSaqui.handlebars-syntax-highlighter",
+        "alexcvzz.vscode-sqlite",
+        "bradlc.vscode-tailwindcss"
       ]
     }
   }
