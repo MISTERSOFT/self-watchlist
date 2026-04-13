@@ -1,4 +1,5 @@
 import Genre from '#models/genre'
+import User from '#models/user'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 import vine from '@vinejs/vine'
 
@@ -24,7 +25,16 @@ const kitsuGenreSchema = vine.object({
 export default class extends BaseSeeder {
   async run() {
     // Write your database queries inside the run method
+    await this.createDefaultUser()
     await this.createAnimeGenres()
+  }
+
+  async createDefaultUser() {
+    await User.create({
+      email: 'root@dev.fr',
+      fullName: 'Root',
+      password: 'rootroot',
+    })
   }
 
   async fetchNextGenrePage(url: string) {
