@@ -98,7 +98,7 @@ export interface Registry {
       body: {}
       paramsTuple: []
       params: {}
-      query: ExtractQueryForGet<InferInput<(typeof import('#validators/search').searchNewMediaValidator)>>
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/media').searchNewMediaValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
@@ -107,10 +107,10 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/medias/add'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/search').addNewMediaValidator)>>
+      body: ExtractBody<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#validators/search').addNewMediaValidator)>>
+      query: ExtractQuery<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
