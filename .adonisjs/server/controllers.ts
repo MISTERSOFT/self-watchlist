@@ -6,6 +6,7 @@
 export const controllers = {
   Home: () => import('#controllers/home_controller'),
   ImportMyanimelist: () => import('#controllers/import_myanimelist_controller'),
+  Medias: () => import('#controllers/medias_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Session: () => import('#controllers/session_controller'),
 }

@@ -1,18 +1,15 @@
 import MyAnimeListImportFailedException from '#exceptions/my_anime_list_import_failed_exception'
-import type { Media } from '#graphql/generated/anilist/types'
-import Anime from '#models/anime'
 import { AbtractImporterService } from '#services/abstract_importer_service'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import { AnilistService } from '#services/anilist_service'
+import { AnimesService } from '#services/animes_service'
+import type { SearchQueryMediaArray, WatchStatus } from '#types/types'
 import { malUserAnimeListUrlSchema } from '#validators/myanimelist'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 import logger from '@adonisjs/core/services/logger'
-import db from '@adonisjs/lucid/services/db'
 import vine from '@vinejs/vine'
 import { difference } from 'es-toolkit'
-
-type WatchStatus = 'plan_to_watch' | 'watching' | 'completed' | 'on_hold' | 'dropped'
 
 // NOTE: MAL Status
 // 1: Currently watching
@@ -30,9 +27,10 @@ const checkMalUserListResultSchema = vine.array(
 @inject()
 export class MyAnimeListImporterService extends AbtractImporterService {
   constructor(
+    protected readonly _ctx: HttpContext,
     protected readonly _anilistService: AnilistService,
     protected readonly _anilistNormalizerService: AnilistNormalizerService,
-    protected readonly _ctx: HttpContext
+    protected readonly _animesService: AnimesService
   ) {
     super()
   }
@@ -68,7 +66,7 @@ export class MyAnimeListImporterService extends AbtractImporterService {
 
     let hasNextPage = true
     let page = 1
-    let anilistAnimes: Media[] = []
+    let anilistAnimes: SearchQueryMediaArray = []
 
     // Fetch all animes details from Anilist
     do {
@@ -77,65 +75,29 @@ export class MyAnimeListImporterService extends AbtractImporterService {
         page,
       })
 
-      anilistAnimes = anilistAnimes.concat(animes.Page?.media as Media[])
+      anilistAnimes = anilistAnimes.concat(animes.Page?.media!)
 
       hasNextPage = animes.Page?.pageInfo?.hasNextPage || false
       page += 1
     } while (hasNextPage)
 
+    // Log unmatched MAL animes from Anilist API
     logger.info(
       `[${MyAnimeListImporterService.name}] MAL count: ${kvAnimeWatchStatus.size} | Anilist count: ${anilistAnimes.length}`
     )
     const malAnimeIds = kvAnimeWatchStatus.keys().toArray()
     let missingAnimes = difference(
       malAnimeIds,
-      anilistAnimes.map((a) => a.idMal!)
+      anilistAnimes.map((a) => a!.idMal!)
     )
     logger.debug(missingAnimes, `[${MyAnimeListImporterService.name}] Missing animes`)
 
-    // Normalize all animes to fit the database
-    const normalizedData = await this._anilistNormalizerService.normalizeData(anilistAnimes)
-
     // Save in db
-    await db.transaction(async (trx) => {
-      // NOTE: Genres come from the database
-      await Promise.all(
-        normalizedData.map(async ({ anime: animeProps, genres: animeGenres }) => {
-          const anime = new Anime()
-          anime.externalSourceId = animeProps.externalSourceId!
-          anime.externalSource = animeProps.externalSource!
-          anime.myanimelistId = animeProps.myanimelistId!
-          // anime.slug = animeProps.slug!
-          anime.title = animeProps.title!
-          anime.alternativeTitles = animeProps.alternativeTitles!
-          anime.type = animeProps.type!
-          anime.synopsis = animeProps.synopsis!
-          anime.score = animeProps.score!
-          anime.status = animeProps.status!
-          anime.season = animeProps.season!
-          anime.seasonYear = animeProps.seasonYear!
-          anime.thumbnailUrl = animeProps.thumbnailUrl!
-          anime.backgroundUrl = animeProps.backgroundUrl!
-          anime.trailerSource = animeProps.trailerSource!
-          anime.trailerId = animeProps.trailerId!
-          anime.episodesCount = animeProps.episodesCount!
-          anime.nsfw = animeProps.nsfw!
-          anime.releasedAt = animeProps.releasedAt!
-
-          anime.useTransaction(trx)
-          await anime.save()
-
-          // Associate genres to anime
-          await anime.related('genres').attach(animeGenres.map((genre) => genre.id))
-          // Associate current user to anime
-          await anime.related('users').attach({
-            [user.id]: {
-              watch_status: kvAnimeWatchStatus.get(+anime.myanimelistId),
-            },
-          })
-        })
-      )
-    })
+    await this._animesService.saveAnilistGqlMedia(
+      anilistAnimes,
+      user.id,
+      (anime) => kvAnimeWatchStatus.get(+anime.myanimelistId!)!
+    )
   }
 
   /**

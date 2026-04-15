@@ -7,18 +7,6 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
-  'home': {
-    methods: ["GET","HEAD"]
-    pattern: '/'
-    types: {
-      body: {}
-      paramsTuple: []
-      params: {}
-      query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/home_controller').default['index']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/home_controller').default['index']>>>
-    }
-  }
   'new_account.create': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
@@ -67,6 +55,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/session_controller').default['store']>>>
     }
   }
+  'home': {
+    methods: ["GET","HEAD"]
+    pattern: '/'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/home_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/home_controller').default['index']>>>
+    }
+  }
   'session.destroy': {
     methods: ["POST"]
     pattern: '/logout'
@@ -89,6 +89,30 @@ export interface Registry {
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/import_myanimelist_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/import_myanimelist_controller').default['store']>>>
+    }
+  }
+  'medias.search': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/medias/search'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: ExtractQueryForGet<InferInput<(typeof import('#validators/search').searchNewMediaValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'medias.add': {
+    methods: ["POST"]
+    pattern: '/api/medias/add'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/search').addNewMediaValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/search').addNewMediaValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
 }

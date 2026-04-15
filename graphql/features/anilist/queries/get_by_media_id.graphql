@@ -1,0 +1,7 @@
+query GetByMediaId($mediaId: Int!) {
+  Page {
+    media(id: $mediaId) {
+      ...mediaFieldsFragment
+    }
+  }
+}

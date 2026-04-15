@@ -1,0 +1,74 @@
+fragment mediaFieldsFragment on Media {
+  id
+  idMal
+  title {
+    english
+    romaji
+    native
+  }
+  description
+  startDate {
+    year
+    month
+    day
+  }
+  endDate {
+    year
+    month
+    day
+  }
+  meanScore
+  type
+  status
+  genres
+  format
+  episodes
+  coverImage {
+    extraLarge
+    large
+    medium
+  }
+  season
+  seasonYear
+  airingSchedule {
+    nodes {
+      airingAt
+      episode
+      timeUntilAiring
+    }
+  }
+  isAdult
+  trailer {
+    site
+    id
+  }
+  duration
+  bannerImage
+  relations {
+    edges {
+      relationType
+      node {
+        id
+        idMal
+        title {
+          romaji
+        }
+        type
+      }
+    }
+  }
+  recommendations {
+    edges {
+      node {
+        mediaRecommendation {
+          title {
+            romaji
+          }
+          id
+          idMal
+          type
+        }
+      }
+    }
+  }
+}

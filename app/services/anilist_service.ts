@@ -1,5 +1,8 @@
 import { anilist } from '#graphql/clients/anilist_client'
-import type { SearchQueryVariables } from '#graphql/generated/anilist/operations'
+import type {
+  GetByMediaIdQueryVariables,
+  SearchQueryVariables,
+} from '#graphql/generated/anilist/operations'
 
 const DEFAULT_GET_ANIMES_QUERY_VARIABLES: SearchQueryVariables = {
   type: 'ANIME',
@@ -7,11 +10,12 @@ const DEFAULT_GET_ANIMES_QUERY_VARIABLES: SearchQueryVariables = {
   statusIn: ['FINISHED', 'RELEASING'],
   formatIn: ['TV', 'TV_SHORT', 'MOVIE', 'SPECIAL', 'OVA', 'ONA'],
   idMalNot: null,
+  idNotIn: [],
   page: 1,
 }
 
 export class AnilistService {
-  async search(queryVariables: Pick<SearchQueryVariables, 'search' | 'page'>) {
+  async search(queryVariables: Pick<SearchQueryVariables, 'search' | 'page' | 'idNotIn'>) {
     return await anilist.Search({
       ...DEFAULT_GET_ANIMES_QUERY_VARIABLES,
       ...queryVariables,
@@ -23,5 +27,9 @@ export class AnilistService {
       ...DEFAULT_GET_ANIMES_QUERY_VARIABLES,
       ...queryVariables,
     })
+  }
+
+  async getByMediaId(queryVariables: GetByMediaIdQueryVariables) {
+    return await anilist.GetByMediaId(queryVariables)
   }
 }

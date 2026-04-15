@@ -8,6 +8,7 @@ query Search(
   $formatIn: [MediaFormat]
   $idMalNot: Int
   $idMalIn: [Int]
+  $idNotIn: [Int]
 ) {
   Page(page: $page) {
     pageInfo {
@@ -26,6 +27,7 @@ query Search(
       format_in: $formatIn
       idMal_not: $idMalNot
       idMal_in: $idMalIn
+      id_not_in: $idNotIn
     ) {
       id
       idMal

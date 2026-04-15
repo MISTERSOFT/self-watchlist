@@ -6,12 +6,6 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'home': {
-    methods: ["GET","HEAD"],
-    pattern: '/',
-    tokens: [{"old":"/","type":0,"val":"/","end":""}],
-    types: placeholder as Registry['home']['types'],
-  },
   'new_account.create': {
     methods: ["GET","HEAD"],
     pattern: '/signup',
@@ -36,6 +30,12 @@ const routes = {
     tokens: [{"old":"/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['session.store']['types'],
   },
+  'home': {
+    methods: ["GET","HEAD"],
+    pattern: '/',
+    tokens: [{"old":"/","type":0,"val":"/","end":""}],
+    types: placeholder as Registry['home']['types'],
+  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',
@@ -47,6 +47,18 @@ const routes = {
     pattern: '/api/import/mal',
     tokens: [{"old":"/api/import/mal","type":0,"val":"api","end":""},{"old":"/api/import/mal","type":0,"val":"import","end":""},{"old":"/api/import/mal","type":0,"val":"mal","end":""}],
     types: placeholder as Registry['import_myanimelist.store']['types'],
+  },
+  'medias.search': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/medias/search',
+    tokens: [{"old":"/api/medias/search","type":0,"val":"api","end":""},{"old":"/api/medias/search","type":0,"val":"medias","end":""},{"old":"/api/medias/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['medias.search']['types'],
+  },
+  'medias.add': {
+    methods: ["POST"],
+    pattern: '/api/medias/add',
+    tokens: [{"old":"/api/medias/add","type":0,"val":"api","end":""},{"old":"/api/medias/add","type":0,"val":"medias","end":""},{"old":"/api/medias/add","type":0,"val":"add","end":""}],
+    types: placeholder as Registry['medias.add']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

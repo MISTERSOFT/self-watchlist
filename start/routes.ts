@@ -11,8 +11,6 @@ import { controllers } from '#generated/controllers'
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-router.get('/', [controllers.Home, 'index']).as('home')
-
 router
   .group(() => {
     router.get('signup', [controllers.NewAccount, 'create'])
@@ -25,11 +23,19 @@ router
 
 router
   .group(() => {
+    router.get('/', [controllers.Home, 'index']).as('home')
     router.post('logout', [controllers.Session, 'destroy'])
 
     router
       .group(() => {
         router.post('import/mal', [controllers.ImportMyanimelist, 'store'])
+
+        router
+          .group(() => {
+            router.get('search', [controllers.Medias, 'search'])
+            router.post('add', [controllers.Medias, 'add'])
+          })
+          .prefix('/medias')
       })
       .prefix('/api')
   })
