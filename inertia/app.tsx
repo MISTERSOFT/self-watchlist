@@ -1,18 +1,13 @@
-import { ThemeProvider } from '@/components/theme-provider'
+import { AppProviders } from '@/components/app-providers'
+import { appName } from '@/constants'
 import Layout from '@/layouts/default'
-import string from '@adonisjs/core/helpers/string'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
-import { TuyauProvider } from '@adonisjs/inertia/react'
 import { Data } from '@generated/data'
 import { createInertiaApp } from '@inertiajs/react'
-import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactElement } from 'react'
 import { createRoot } from 'react-dom/client'
-import { client, queryClient } from './client'
 import './css/app.css'
 
-const appName = import.meta.env.VITE_APP_NAME || 'Self Watchlist'
-const themeStorageKey = `${string.snakeCase(appName)}-ui-theme`
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -25,16 +20,12 @@ createInertiaApp({
   },
   setup({ el, App, props }) {
     createRoot(el).render(
-      <QueryClientProvider client={queryClient}>
-        <TuyauProvider client={client}>
-          <ThemeProvider defaultTheme="dark" storageKey={themeStorageKey}>
-            <App {...props} />
-          </ThemeProvider>
-        </TuyauProvider>
-      </QueryClientProvider>
+      <AppProviders>
+        <App {...props} />
+      </AppProviders>
     )
   },
   progress: {
-    color: 'var(--primary)', //'#ca3500',
+    color: 'var(--primary)',
   },
 })
