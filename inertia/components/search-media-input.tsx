@@ -29,8 +29,8 @@ type SearchMediaQueryData =
     any,
     any
   >
-  ? TData
-  : never
+    ? TData
+    : never
 
 function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
   search: string,
@@ -59,9 +59,9 @@ function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
   )
 }
 
-interface SearchMediaInputProps { }
+interface SearchMediaInputProps {}
 
-export function SearchMediaInput({ }: SearchMediaInputProps) {
+export function SearchMediaInput({}: SearchMediaInputProps) {
   const [open, setOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
   const [debouncedSearch] = useDebounce(searchValue, 300)
@@ -81,7 +81,7 @@ export function SearchMediaInput({ }: SearchMediaInputProps) {
       body: {
         externalSourceId: media.externalSourceId,
         type: media.type,
-      }
+      },
     })
     toast.promise(mutatePromise, {
       loading: 'Adding anime...',

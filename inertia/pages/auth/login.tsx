@@ -60,7 +60,7 @@ export default function Login() {
                 </Button>
               </div>
               <div className="text-center text-sm">
-                {t('pages.signin.no_account')}{" "}
+                {t('pages.signin.no_account')}{' '}
                 <Link route="new_account.create" className="underline underline-offset-4">
                   {t('pages.signin.register')}
                 </Link>
