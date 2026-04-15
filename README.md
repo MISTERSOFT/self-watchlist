@@ -1,10 +1,12 @@
 # Self Watchlist
 
-A watchlist that brings in one place anime, movies, and TV shows in one place.
+A watchlist app that brings in one place anime, movies, and TV shows.
 
 ## Key features
 
-- [ ] Search into TMDB and Anilist APIs resources
+- [ ] Search into:
+  - [ ] TMDB API
+  - [ ] Anilist API
 - [ ] Browse your watchlist
 - [ ] Filter your watchlist
 - [ ] Add or remove
