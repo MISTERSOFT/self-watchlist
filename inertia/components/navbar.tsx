@@ -1,11 +1,11 @@
 import { ImportMyAnimeListDialog } from '@/components/import-my-anime-list-dialog'
 import { SearchMediaInput } from '@/components/search-media-input'
 import { ThemeModeToggle } from '@/components/theme-mode-toggle'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { InertiaProps } from '@/types'
 import { Form, Link } from '@adonisjs/inertia/react'
 import { usePage } from '@inertiajs/react'
-import { Button, buttonVariants } from './ui/button'
 
 interface NavbarProps {}
 

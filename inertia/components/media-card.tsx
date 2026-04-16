@@ -1,6 +1,9 @@
 import { Card, CardContent } from '@/components/ui/card'
+import { useSidebar } from '@/components/ui/sidebar'
 import { useTranslations } from '@/hooks/use-translations'
 import { Data } from '@generated/data'
+import { router } from '@inertiajs/react'
+import { useCallback } from 'react'
 
 interface MediaCardProps {
   media: Data.Media
@@ -8,10 +11,19 @@ interface MediaCardProps {
 
 export function MediaCard({ media }: MediaCardProps) {
   const { t } = useTranslations()
+  const { setOpen } = useSidebar()
+
+  const openSidebar = useCallback(() => {
+    setOpen(true)
+    router.reload({ data: { mediaId: media.id }, only: ['selectedMedia', 'watchStatuses'] })
+  }, [])
 
   return (
-    <Card className="py-0 group cursor-pointer transition-all duration-300 hover:shadow-lg bg-card border-border overflow-hidden gap-0">
-      <div className="relative aspect-[3/4] overflow-hidden">
+    <Card
+      className="py-0 group cursor-pointer transition-all duration-300 hover:shadow-lg bg-card border-border overflow-hidden gap-0 select-none"
+      onClick={openSidebar}
+    >
+      <div className="relative aspect-3/4 overflow-hidden">
         <img
           src={media.thumbnailUrl || '/public/logo_bg_white.png'}
           alt={media.title}

@@ -3,11 +3,32 @@ import Anime from '#models/anime'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import type { SearchQueryMediaArray, WatchStatus } from '#types/types'
 import { inject } from '@adonisjs/core'
+import { HttpContext } from '@adonisjs/core/http'
 import db from '@adonisjs/lucid/services/db'
 
 @inject()
 export class AnimesService {
-  constructor(protected readonly _anilistNormalizerService: AnilistNormalizerService) {}
+  constructor(
+    protected readonly _httpContext: HttpContext,
+    protected readonly _anilistNormalizerService: AnilistNormalizerService
+  ) {}
+
+  async getById(id: number) {
+    const user = this._httpContext.auth.getUserOrFail()
+
+    const anime = await Anime.query()
+      .debug(true)
+      .where('id', id)
+      .andWhereHas('users', (query) => {
+        query.where('user_id', user.id)
+      })
+      .preload('genres')
+      .preload('users', (query) => {
+        query.pivotColumns(['watch_status'])
+      })
+      .firstOrFail()
+    return anime
+  }
 
   /**
    * Get user's animes where `watch_status` is different from `completed`.
