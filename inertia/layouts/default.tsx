@@ -1,3 +1,4 @@
+import { AppProviders } from '@/components/app-providers'
 import Navbar from '@/components/navbar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
@@ -20,10 +21,10 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
   }
 
   return (
-    <>
+    <AppProviders>
       {page.props.user && <Navbar />}
       <main className="min-h-screen bg-background">{children}</main>
       <Toaster position="bottom-right" richColors />
-    </>
+    </AppProviders>
   )
 }

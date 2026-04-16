@@ -1,4 +1,3 @@
-import { AppProviders } from '@/components/app-providers'
 import { appName } from '@/constants'
 import Layout from '@/layouts/default'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
@@ -7,7 +6,6 @@ import { createInertiaApp } from '@inertiajs/react'
 import { ReactElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import './css/app.css'
-
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -19,11 +17,7 @@ createInertiaApp({
     )
   },
   setup({ el, App, props }) {
-    createRoot(el).render(
-      <AppProviders>
-        <App {...props} />
-      </AppProviders>
-    )
+    createRoot(el).render(<App {...props} />)
   },
   progress: {
     color: 'var(--primary)',

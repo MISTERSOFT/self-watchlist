@@ -1,4 +1,3 @@
-import { AppProviders } from '@/components/app-providers'
 import Layout from '@/layouts/default'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { Data } from '@generated/data'
@@ -18,11 +17,7 @@ export default function render(page: any) {
       )
     },
     setup: ({ App, props }) => {
-      return (
-        <AppProviders>
-          <App {...props} />
-        </AppProviders>
-      )
+      return <App {...props} />
     },
   })
 }
