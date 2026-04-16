@@ -33,7 +33,8 @@ router
         router
           .group(() => {
             router.get('search', [controllers.Medias, 'search'])
-            router.post('add', [controllers.Medias, 'add'])
+            router.post('addToWatchlist', [controllers.Medias, 'addToWatchlist'])
+            router.delete('removeFromWatchlist', [controllers.Medias, 'removeFromWatchlist'])
           })
           .prefix('/medias')
       })

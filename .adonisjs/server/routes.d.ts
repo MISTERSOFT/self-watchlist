@@ -12,7 +12,8 @@ export type ScannedRoutes = {
     'session.destroy': { paramsTuple?: []; params?: {} }
     'import_myanimelist.store': { paramsTuple?: []; params?: {} }
     'medias.search': { paramsTuple?: []; params?: {} }
-    'medias.add': { paramsTuple?: []; params?: {} }
+    'medias.add_to_watchlist': { paramsTuple?: []; params?: {} }
+    'medias.remove_from_watchlist': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'new_account.create': { paramsTuple?: []; params?: {} }
@@ -31,7 +32,10 @@ export type ScannedRoutes = {
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
     'import_myanimelist.store': { paramsTuple?: []; params?: {} }
-    'medias.add': { paramsTuple?: []; params?: {} }
+    'medias.add_to_watchlist': { paramsTuple?: []; params?: {} }
+  }
+  DELETE: {
+    'medias.remove_from_watchlist': { paramsTuple?: []; params?: {} }
   }
 }
 declare module '@adonisjs/core/types/http' {

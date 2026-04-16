@@ -11,3 +11,8 @@ export const addNewMediaValidator = vine.create({
   externalSourceId: vine.string().transform((id) => +id),
   type: mediaTypeSchema,
 })
+
+export const deleteUserMediaValidator = vine.create({
+  mediaId: vine.number(),
+  type: mediaTypeSchema,
+})

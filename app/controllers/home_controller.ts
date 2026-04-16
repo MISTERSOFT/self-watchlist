@@ -22,7 +22,7 @@ export default class HomeController {
         if (!mediaId) {
           return undefined
         }
-        const selectedMedia = await this._animesService.getById(+mediaId)
+        const selectedMedia = await this._animesService.getByIdByUser(+mediaId, user.id)
         return AnimeDetailTransformer.transform(selectedMedia)
       },
       watchStatuses: inertia.optional(

@@ -66,8 +66,8 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
   const [searchValue, setSearchValue] = useState('')
   const [debouncedSearch] = useDebounce(searchValue, 300)
   const searchQuery = useSearchMediaQuery(debouncedSearch, (data) => data.data)
-  const addMedia = useMutation(
-    api.medias.add.mutationOptions({
+  const addMediaToWatchlist = useMutation(
+    api.medias.addToWatchlist.mutationOptions({
       onSuccess: () => {
         router.reload()
       },
@@ -77,7 +77,7 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
   const handleSelectMedia = (media: SearchMedia) => {
     setOpen(false)
     setSearchValue('')
-    const mutatePromise = addMedia.mutateAsync({
+    const mutatePromise = addMediaToWatchlist.mutateAsync({
       body: {
         externalSourceId: media.externalSourceId,
         type: media.type,

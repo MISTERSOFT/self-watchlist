@@ -54,11 +54,17 @@ const routes = {
     tokens: [{"old":"/api/medias/search","type":0,"val":"api","end":""},{"old":"/api/medias/search","type":0,"val":"medias","end":""},{"old":"/api/medias/search","type":0,"val":"search","end":""}],
     types: placeholder as Registry['medias.search']['types'],
   },
-  'medias.add': {
+  'medias.add_to_watchlist': {
     methods: ["POST"],
-    pattern: '/api/medias/add',
-    tokens: [{"old":"/api/medias/add","type":0,"val":"api","end":""},{"old":"/api/medias/add","type":0,"val":"medias","end":""},{"old":"/api/medias/add","type":0,"val":"add","end":""}],
-    types: placeholder as Registry['medias.add']['types'],
+    pattern: '/api/medias/addToWatchlist',
+    tokens: [{"old":"/api/medias/addToWatchlist","type":0,"val":"api","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"medias","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"addToWatchlist","end":""}],
+    types: placeholder as Registry['medias.add_to_watchlist']['types'],
+  },
+  'medias.remove_from_watchlist': {
+    methods: ["DELETE"],
+    pattern: '/api/medias/removeFromWatchlist',
+    tokens: [{"old":"/api/medias/removeFromWatchlist","type":0,"val":"api","end":""},{"old":"/api/medias/removeFromWatchlist","type":0,"val":"medias","end":""},{"old":"/api/medias/removeFromWatchlist","type":0,"val":"removeFromWatchlist","end":""}],
+    types: placeholder as Registry['medias.remove_from_watchlist']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

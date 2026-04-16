@@ -3,7 +3,11 @@ import type Anime from '#models/anime'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import { AnilistService } from '#services/anilist_service'
 import { AnimesService } from '#services/animes_service'
-import { addNewMediaValidator, searchNewMediaValidator } from '#validators/media'
+import {
+  addNewMediaValidator,
+  deleteUserMediaValidator,
+  searchNewMediaValidator,
+} from '#validators/media'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -64,7 +68,7 @@ export default class MediasController {
     }
   }
 
-  async add({ request, auth, serialize }: HttpContext) {
+  async addToWatchlist({ request, auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
     const { externalSourceId, type } = await request.validateUsing(addNewMediaValidator)
 
@@ -86,5 +90,27 @@ export default class MediasController {
       success: true,
       name,
     })
+  }
+
+  async removeFromWatchlist({ request, serialize, auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const { mediaId, type } = await request.validateUsing(deleteUserMediaValidator)
+
+    switch (type) {
+      case 'anime':
+        await this._animesService.removeFromWatchlist(mediaId, user.id)
+        break
+
+      case 'movie':
+        break
+
+      case 'tvshow':
+        break
+
+      default:
+        break
+    }
+
+    return serialize({ success: true })
   }
 }

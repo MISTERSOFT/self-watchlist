@@ -3,15 +3,16 @@ import Navbar from '@/components/navbar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
 import { usePage } from '@inertiajs/react'
-import { ReactElement, useEffect } from 'react'
+import { ReactElement } from 'react'
 import { toast, Toaster } from 'sonner'
 
 export default function Layout({ children }: { children: ReactElement<Data.SharedProps> }) {
   const page = usePage<InertiaProps>()
+  console.log(page.props)
 
-  useEffect(() => {
-    toast.dismiss()
-  }, [page.url])
+  // useEffect(() => {
+  //   toast.dismiss()
+  // }, [page.url])
 
   if (children.props.flash.error) {
     toast.error(children.props.flash.error)

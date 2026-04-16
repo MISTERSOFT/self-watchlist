@@ -1,4 +1,6 @@
 import type { WatchStatus } from '#types/types'
+import { api } from '@/client'
+import { ConfirmDialog } from '@/components/confirm-dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
@@ -9,9 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useSidebar } from '@/components/ui/sidebar'
 import { cn } from '@/lib/utils'
+import { useRouter } from '@adonisjs/inertia/react'
 import { Data } from '@generated/data'
+import { useMutation } from '@tanstack/react-query'
 import { ExternalLink, Play, Trash } from 'lucide-react'
+import { toast } from 'sonner'
 
 interface MediaDetailsProps {
   media: Data.AnimeDetail
@@ -19,6 +25,35 @@ interface MediaDetailsProps {
 }
 
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
+  const router = useRouter()
+  const { setOpen } = useSidebar()
+  const removeMediaFromWatchlist = useMutation(
+    api.medias.removeFromWatchlist.mutationOptions({
+      onSuccess: () => {
+        router.visit<'home'>({ route: 'home' }, { preserveScroll: false, only: ['medias'] })
+      },
+      onSettled: () => {
+        setOpen(false)
+      },
+    })
+  )
+
+  const handleRemoveConfirm = () => {
+    const mutatePromise = removeMediaFromWatchlist.mutateAsync({
+      body: {
+        mediaId: media.id,
+        type: 'anime',
+      },
+    })
+    toast.promise(mutatePromise, {
+      loading: 'Removing media...',
+      success: () => {
+        return `"${media.title}" has been removed from your watchlist`
+      },
+      error: 'An error occured. Unable to remove the media from your watchlist.',
+    })
+  }
+
   return (
     <div className="flex flex-col items-start gap-4 p-2 text-sm whitespace-break-spaces leading-tight">
       <div className="flex flex-col gap-2 w-full">
@@ -45,11 +80,8 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
           className="object-cover"
         />
       </div>
-
       <div className="text-lg font-medium">{media.title}</div>
-
       <div className="text-xs font-medium">{media.alternativeTitles}</div>
-
       <div className="space-x-2">
         <Button>
           Trailer <Play />
@@ -62,7 +94,6 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
           MAL page <ExternalLink size={12} />
         </a>
       </div>
-
       <div className="flex flex-col gap-2">
         <span className="font-medium">Synopsis</span>
         <p className="font-light text-justify ">{media.synopsis}</p>
@@ -97,10 +128,17 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
           {media.status}
         </div>
       </div>
-      <Button variant="destructive" size="lg" className="w-full">
-        Remove from watchlist
-        <Trash />
-      </Button>
+
+      <ConfirmDialog
+        title="Confirm deletion"
+        text="Are you sure you want to remove this content from your favorites list?"
+        onConfirm={handleRemoveConfirm}
+      >
+        <Button variant="destructive" size="lg" className="w-full">
+          Remove from watchlist
+          <Trash />
+        </Button>
+      </ConfirmDialog>
     </div>
   )
 }

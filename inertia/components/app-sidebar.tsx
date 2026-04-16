@@ -32,7 +32,7 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            {page.props.selectedMedia && (
+            {page.props.selectedMedia && page.props.watchStatuses && (
               <MediaDetails
                 media={page.props.selectedMedia}
                 watchStatuses={page.props.watchStatuses}

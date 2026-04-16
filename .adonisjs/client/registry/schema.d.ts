@@ -103,16 +103,28 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'medias.add': {
+  'medias.add_to_watchlist': {
     methods: ["POST"]
-    pattern: '/api/medias/add'
+    pattern: '/api/medias/addToWatchlist'
     types: {
       body: ExtractBody<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['add']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['addToWatchlist']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['addToWatchlist']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'medias.remove_from_watchlist': {
+    methods: ["DELETE"]
+    pattern: '/api/medias/removeFromWatchlist'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/media').deleteUserMediaValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/media').deleteUserMediaValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['removeFromWatchlist']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['removeFromWatchlist']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
 }

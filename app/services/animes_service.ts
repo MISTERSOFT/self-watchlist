@@ -3,24 +3,18 @@ import Anime from '#models/anime'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import type { SearchQueryMediaArray, WatchStatus } from '#types/types'
 import { inject } from '@adonisjs/core'
-import { HttpContext } from '@adonisjs/core/http'
 import db from '@adonisjs/lucid/services/db'
 
 @inject()
 export class AnimesService {
-  constructor(
-    protected readonly _httpContext: HttpContext,
-    protected readonly _anilistNormalizerService: AnilistNormalizerService
-  ) {}
+  constructor(protected readonly _anilistNormalizerService: AnilistNormalizerService) {}
 
-  async getById(id: number) {
-    const user = this._httpContext.auth.getUserOrFail()
-
+  async getByIdByUser(id: number, userId: number) {
     const anime = await Anime.query()
       .debug(true)
       .where('id', id)
       .andWhereHas('users', (query) => {
-        query.where('user_id', user.id)
+        query.where('user_id', userId)
       })
       .preload('genres')
       .preload('users', (query) => {
@@ -44,6 +38,19 @@ export class AnimesService {
       })
 
     return animes
+  }
+
+  /**
+   * Remove anime from user's watchlist.
+   *
+   * @param animeId Anime ID
+   * @param userId User ID
+   */
+  async removeFromWatchlist(animeId: number, userId: number) {
+    db.transaction(async (trx) => {
+      const anime = await Anime.findOrFail(animeId, { client: trx })
+      await anime.related('users').detach([userId], trx)
+    })
   }
 
   /**
