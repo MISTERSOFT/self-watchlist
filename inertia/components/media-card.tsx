@@ -33,7 +33,6 @@ export function MediaCard({ media }: MediaCardProps) {
           {/* <Play className="h-12 w-12 text-white" /> */}
         </div>
       </div>
-
       <CardContent className="p-4 space-y-3">
         <div>
           <h3 className="font-semibold text-foreground line-clamp-2 truncate" title={media.title}>

@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useSidebar } from '@/components/ui/sidebar'
+import { VideoPlayerDialog } from '@/components/video-player-dialog'
+import { useVideoPlayerDialog } from '@/components/video-player-dialog-provider'
 import { cn } from '@/lib/utils'
 import { useRouter } from '@adonisjs/inertia/react'
 import { Data } from '@generated/data'
@@ -27,6 +29,8 @@ interface MediaDetailsProps {
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
   const router = useRouter()
   const { setOpen } = useSidebar()
+  const { openDialog } = useVideoPlayerDialog()
+
   const removeMediaFromWatchlist = useMutation(
     api.medias.removeFromWatchlist.mutationOptions({
       onSuccess: () => {
@@ -56,6 +60,8 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
 
   return (
     <div className="flex flex-col items-start gap-4 p-2 text-sm whitespace-break-spaces leading-tight">
+      <VideoPlayerDialog />
+
       <div className="flex flex-col gap-2 w-full">
         <span className="font-medium">Watch status</span>
         <Select defaultValue="plan_to_watch" value={media.watch_status}>
@@ -83,9 +89,11 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       <div className="text-lg font-medium">{media.title}</div>
       <div className="text-xs font-medium">{media.alternativeTitles}</div>
       <div className="space-x-2">
-        <Button>
-          Trailer <Play />
-        </Button>
+        {media.trailerUrl && (
+          <Button onClick={() => openDialog('Trailer', media.trailerUrl!)}>
+            Trailer <Play />
+          </Button>
+        )}
         <a
           className={cn(buttonVariants({ variant: 'link', className: '' }))}
           href={`https://myanimelist.net/anime/${media.myanimelistId}`}

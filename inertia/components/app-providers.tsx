@@ -4,6 +4,7 @@ import { ImportMyAnimeListDialogProvider } from '@/components/import-my-anime-li
 import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { VideoPlayerDialogProvider } from '@/components/video-player-dialog-provider'
 import { themeStorageKey } from '@/constants'
 import { TuyauProvider } from '@adonisjs/inertia/react'
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -18,12 +19,14 @@ export function AppProviders({ children }: AppProvidersProps) {
       <TuyauProvider client={client}>
         <ThemeProvider defaultTheme="dark" storageKey={themeStorageKey}>
           <TooltipProvider>
-            <ImportMyAnimeListDialogProvider>
-              <SidebarProvider defaultOpen={false}>
-                <SidebarInset>{children}</SidebarInset>
-                <AppSidebar side="right" />
-              </SidebarProvider>
-            </ImportMyAnimeListDialogProvider>
+            <SidebarProvider defaultOpen={false}>
+              <ImportMyAnimeListDialogProvider>
+                <VideoPlayerDialogProvider>
+                  <SidebarInset>{children}</SidebarInset>
+                  <AppSidebar side="right" />
+                </VideoPlayerDialogProvider>
+              </ImportMyAnimeListDialogProvider>
+            </SidebarProvider>
           </TooltipProvider>
         </ThemeProvider>
       </TuyauProvider>
