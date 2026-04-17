@@ -7,6 +7,7 @@ import {
   addNewMediaValidator,
   deleteUserMediaValidator,
   searchNewMediaValidator,
+  updateUserMediaValidator,
 } from '#validators/media'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -99,6 +100,28 @@ export default class MediasController {
     switch (type) {
       case 'anime':
         await this._animesService.removeFromWatchlist(mediaId, user.id)
+        break
+
+      case 'movie':
+        break
+
+      case 'tvshow':
+        break
+
+      default:
+        break
+    }
+
+    return serialize({ success: true })
+  }
+
+  async updateWatchStatus({ request, auth, serialize }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const { mediaId, type, watchStatus } = await request.validateUsing(updateUserMediaValidator)
+
+    switch (type) {
+      case 'anime':
+        await this._animesService.updateFromWatchlist(mediaId, user.id, watchStatus)
         break
 
       case 'movie':

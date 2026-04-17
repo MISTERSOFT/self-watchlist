@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'import_myanimelist.store': { paramsTuple?: []; params?: {} }
     'medias.search': { paramsTuple?: []; params?: {} }
     'medias.add_to_watchlist': { paramsTuple?: []; params?: {} }
+    'medias.update_watch_status': { paramsTuple?: []; params?: {} }
     'medias.remove_from_watchlist': { paramsTuple?: []; params?: {} }
   }
   GET: {
@@ -33,6 +34,7 @@ export type ScannedRoutes = {
     'session.destroy': { paramsTuple?: []; params?: {} }
     'import_myanimelist.store': { paramsTuple?: []; params?: {} }
     'medias.add_to_watchlist': { paramsTuple?: []; params?: {} }
+    'medias.update_watch_status': { paramsTuple?: []; params?: {} }
   }
   DELETE: {
     'medias.remove_from_watchlist': { paramsTuple?: []; params?: {} }

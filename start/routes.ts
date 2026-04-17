@@ -34,6 +34,7 @@ router
           .group(() => {
             router.get('search', [controllers.Medias, 'search'])
             router.post('addToWatchlist', [controllers.Medias, 'addToWatchlist'])
+            router.post('updateWatchStatus', [controllers.Medias, 'updateWatchStatus'])
             router.delete('removeFromWatchlist', [controllers.Medias, 'removeFromWatchlist'])
           })
           .prefix('/medias')

@@ -16,3 +16,9 @@ export const deleteUserMediaValidator = vine.create({
   mediaId: vine.number(),
   type: mediaTypeSchema,
 })
+
+export const updateUserMediaValidator = vine.create({
+  mediaId: vine.number(),
+  type: mediaTypeSchema,
+  watchStatus: vine.enum(['completed', 'dropped', 'on_hold', 'plan_to_watch', 'watching']),
+})

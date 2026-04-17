@@ -18,6 +18,7 @@ export interface ApiDefinition {
   medias: {
     search: typeof routes['medias.search']
     addToWatchlist: typeof routes['medias.add_to_watchlist']
+    updateWatchStatus: typeof routes['medias.update_watch_status']
     removeFromWatchlist: typeof routes['medias.remove_from_watchlist']
   }
 }

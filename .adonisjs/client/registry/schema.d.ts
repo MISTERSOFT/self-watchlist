@@ -115,6 +115,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['addToWatchlist']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'medias.update_watch_status': {
+    methods: ["POST"]
+    pattern: '/api/medias/updateWatchStatus'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/media').updateUserMediaValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/media').updateUserMediaValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['updateWatchStatus']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['updateWatchStatus']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'medias.remove_from_watchlist': {
     methods: ["DELETE"]
     pattern: '/api/medias/removeFromWatchlist'

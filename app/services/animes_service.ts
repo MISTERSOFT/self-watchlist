@@ -53,6 +53,17 @@ export class AnimesService {
     })
   }
 
+  async updateFromWatchlist(animeId: number, userId: number, watchStatus: WatchStatus) {
+    db.transaction(async (trx) => {
+      const anime = await Anime.findOrFail(animeId, { client: trx })
+      await anime.related('users').sync({
+        [userId]: {
+          watch_status: watchStatus,
+        },
+      })
+    })
+  }
+
   /**
    * Get user's Anilist anime ids.
    *

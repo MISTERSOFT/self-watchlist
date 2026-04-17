@@ -60,6 +60,12 @@ const routes = {
     tokens: [{"old":"/api/medias/addToWatchlist","type":0,"val":"api","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"medias","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"addToWatchlist","end":""}],
     types: placeholder as Registry['medias.add_to_watchlist']['types'],
   },
+  'medias.update_watch_status': {
+    methods: ["POST"],
+    pattern: '/api/medias/updateWatchStatus',
+    tokens: [{"old":"/api/medias/updateWatchStatus","type":0,"val":"api","end":""},{"old":"/api/medias/updateWatchStatus","type":0,"val":"medias","end":""},{"old":"/api/medias/updateWatchStatus","type":0,"val":"updateWatchStatus","end":""}],
+    types: placeholder as Registry['medias.update_watch_status']['types'],
+  },
   'medias.remove_from_watchlist': {
     methods: ["DELETE"],
     pattern: '/api/medias/removeFromWatchlist',
