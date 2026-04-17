@@ -2,7 +2,6 @@ import { createContext, useContext, useState } from 'react'
 
 type ImportMyAnimeListDialogProviderProps = {
   children: React.ReactNode
-  // open: boolean
 }
 
 type ImportMyAnimeListDialogProviderState = {
