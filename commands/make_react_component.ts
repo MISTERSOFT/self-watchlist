@@ -19,8 +19,9 @@ export default class MakeReactComponent extends BaseCommand {
     'This command create a new React component inside the Inertia folder (inertia/components).',
   ]
 
-  @args.string({ description: 'Component name' })
+  @args.string({ description: 'Component name', required: true })
   declare name: string
+
   async run() {
     await this._generateFile()
   }
