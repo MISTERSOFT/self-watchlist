@@ -1,5 +1,6 @@
 import { client, queryClient } from '@/client'
 import { AppSidebar } from '@/components/app-sidebar'
+import { ImportMyAnimeListDialogProvider } from '@/components/import-my-anime-list-dialog-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { TooltipProvider } from '@/components/ui/tooltip'
@@ -17,10 +18,12 @@ export function AppProviders({ children }: AppProvidersProps) {
       <TuyauProvider client={client}>
         <ThemeProvider defaultTheme="dark" storageKey={themeStorageKey}>
           <TooltipProvider>
-            <SidebarProvider defaultOpen={false}>
-              <SidebarInset>{children}</SidebarInset>
-              <AppSidebar side="right" />
-            </SidebarProvider>
+            <ImportMyAnimeListDialogProvider>
+              <SidebarProvider defaultOpen={false}>
+                <SidebarInset>{children}</SidebarInset>
+                <AppSidebar side="right" />
+              </SidebarProvider>
+            </ImportMyAnimeListDialogProvider>
           </TooltipProvider>
         </ThemeProvider>
       </TuyauProvider>

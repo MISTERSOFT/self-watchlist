@@ -1,5 +1,6 @@
+import { useImportMyAnimeListDialog } from '@/components/import-my-anime-list-dialog-provider'
 import { Loader } from '@/components/loader'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -7,15 +8,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
 import { InertiaProps } from '@/types'
 import { Form } from '@adonisjs/inertia/react'
 import { router, usePage } from '@inertiajs/react'
-import { CloudDownload } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 interface ImportMyAnimeListDialogProps {
@@ -24,8 +22,7 @@ interface ImportMyAnimeListDialogProps {
 
 export function ImportMyAnimeListDialog({}: ImportMyAnimeListDialogProps) {
   const page = usePage<InertiaProps>()
-
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = useImportMyAnimeListDialog()
   const [username, setUsername] = useState('')
 
   useEffect(() => {
@@ -52,10 +49,10 @@ export function ImportMyAnimeListDialog({}: ImportMyAnimeListDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleOnOpenChange}>
-      <DialogTrigger className={cn(buttonVariants({ variant: 'outline', size: 'icon' }))}>
+      {/* <DialogTrigger className={cn(buttonVariants({ variant: 'outline', size: 'icon' }))}>
         <CloudDownload />
         <span className="sr-only">Import from MyAnimeList user profile</span>
-      </DialogTrigger>
+      </DialogTrigger> */}
       <DialogContent showCloseButton={false} onPointerDownOutside={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Import from MyAnimeList</DialogTitle>
