@@ -15,6 +15,10 @@ export function MediaCard({ media }: MediaCardProps) {
 
   const openSidebar = useCallback(() => {
     setOpen(true)
+    // Remove selected media from the page props before loading the new media into the sidebar.
+    // By removing the media in the props, we display a skeleton in the sidebar to visualy indicate to the
+    // user that the data is loading.
+    router.replaceProp('selectedMedia', null)
     router.reload({ data: { mediaId: media.id }, only: ['selectedMedia', 'watchStatuses'] })
   }, [])
 
