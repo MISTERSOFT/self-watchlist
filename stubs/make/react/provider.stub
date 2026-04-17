@@ -1,0 +1,48 @@
+{{#var providerName = string.pascalCase(name)}}
+{{#var resourceFileName = string(name).dashCase().suffix('-provider').ext('.tsx').toString()}}
+{{{
+  exports({
+    to: app.makePath('inertia/components', resourceFileName)
+  })
+}}}
+
+import { createContext, useContext, useState } from 'react'
+
+type {{ providerName }}ProviderProps = {
+  children: React.ReactNode
+}
+
+type {{ providerName }}ProviderState = {}
+
+const initialState: {{ providerName }}ProviderState = {}
+
+const {{ providerName }}ProviderContext = createContext<{{ providerName }}ProviderState>(initialState)
+
+export function {{ providerName }}Provider({
+  children,
+  ...props
+}: {{ providerName }}ProviderProps) {
+  const [sample, setSample] = useState<boolean>(false)
+
+  const value = {
+    sample,
+    setSample,
+  }
+
+  return (
+    <{{ providerName }}ProviderContext.Provider {...props} value={value}>
+      {children}
+    </{{ providerName }}ProviderContext.Provider>
+  )
+}
+
+export const use{{ providerName }} = () => {
+  const context = useContext({{ providerName }}ProviderContext)
+
+  if (context === undefined)
+    throw new Error(
+      'use{{ providerName }} must be used within a {{ providerName }}Provider'
+    )
+
+  return context
+}
