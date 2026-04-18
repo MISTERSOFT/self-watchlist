@@ -1,5 +1,6 @@
 import { appName } from '@/constants'
-import Layout from '@/layouts/default'
+import DefaultLayout from '@/layouts/default'
+import UnauthLayout from '@/layouts/unauth'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { Data } from '@generated/data'
 import { createInertiaApp } from '@inertiajs/react'
@@ -13,7 +14,14 @@ createInertiaApp({
     return resolvePageComponent(
       `./pages/${name}.tsx`,
       import.meta.glob('./pages/**/*.tsx'),
-      (page: ReactElement<Data.SharedProps>) => <Layout children={page} />
+      (page: ReactElement<Data.SharedProps>) => {
+        switch (name) {
+          case 'home':
+            return <DefaultLayout children={page} />
+          default:
+            return <UnauthLayout children={page} />
+        }
+      }
     )
   },
   setup({ el, App, props }) {

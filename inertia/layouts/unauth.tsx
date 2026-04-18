@@ -1,6 +1,4 @@
-import { AppProviders } from '@/components/app-providers'
 import { DefaultProviders } from '@/components/default-providers'
-import Navbar from '@/components/navbar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
 import { usePage } from '@inertiajs/react'
@@ -23,11 +21,8 @@ export default function Layout({ children }: { children: ReactElement<Data.Share
 
   return (
     <DefaultProviders>
-      <AppProviders>
-        {page.props.user && <Navbar />}
-        <main className="min-h-screen bg-background">{children}</main>
-        <Toaster position="bottom-right" richColors />
-      </AppProviders>
+      <main className="min-h-screen bg-background">{children}</main>
+      <Toaster position="bottom-right" richColors />
     </DefaultProviders>
   )
 }
