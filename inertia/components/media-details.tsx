@@ -1,7 +1,6 @@
 import type { WatchStatus } from '#types/types'
 import { api } from '@/client'
 import { ConfirmDialog } from '@/components/confirm-dialog'
-import { MediaDetailsSkeleton } from '@/components/media-details-skeleton'
 import { Badge } from '@/components/ui/badge'
 import { Button, buttonVariants } from '@/components/ui/button'
 import {
@@ -28,10 +27,6 @@ interface MediaDetailsProps {
 }
 
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
-  if (!media || !watchStatuses) {
-    return <MediaDetailsSkeleton />
-  }
-
   const { setOpen } = useSidebar()
   const { openDialog } = useVideoPlayerDialog()
 

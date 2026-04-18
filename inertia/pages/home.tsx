@@ -1,7 +1,9 @@
 import type { WatchStatus } from '#types/types'
 import { MediaCard } from '@/components/media-card'
+import { useSidebar } from '@/components/ui/sidebar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
+import { useEffect } from 'react'
 
 type PageProps = InertiaProps<{
   medias: Data.Media[]
@@ -9,7 +11,17 @@ type PageProps = InertiaProps<{
   watchStatuses?: Array<WatchStatus>
 }>
 
-export default function Home({ medias }: PageProps) {
+export default function Home({ medias, selectedMedia }: PageProps) {
+  const { setOpen } = useSidebar()
+
+  useEffect(() => {
+    // Assuming we opened the page with a "mediaId" query parameter in the url,
+    // we need to open the sidebar.
+    if (selectedMedia) {
+      setOpen(true)
+    }
+  }, [])
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* <AnimeFilters {...data.filters} /> */}

@@ -8,7 +8,6 @@ import { toast, Toaster } from 'sonner'
 
 export default function Layout({ children }: { children: ReactElement<Data.SharedProps> }) {
   const page = usePage<InertiaProps>()
-  console.log(page)
 
   // useEffect(() => {
   //   toast.dismiss()

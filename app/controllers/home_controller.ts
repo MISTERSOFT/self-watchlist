@@ -11,23 +11,27 @@ export default class HomeController {
 
   async index({ inertia, auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
+    const mediaId = request.input('mediaId', null)
 
     return inertia.render('home', {
       medias: async () => {
         const animes = await this._animesService.getAnimesToWatchByUser(user.id)
         return MediaTransformer.transform(animes)
       },
-      selectedMedia: inertia.optional(async () => {
-        const mediaId = request.input('mediaId', null)
+      selectedMedia: async () => {
         if (!mediaId) {
           return undefined
         }
         const selectedMedia = await this._animesService.getByIdByUser(+mediaId, user.id)
         return AnimeDetailTransformer.transform(selectedMedia)
-      }),
-      watchStatuses: inertia.optional(
-        () => ['plan_to_watch', 'watching', 'completed', 'on_hold', 'dropped'] as WatchStatus[]
-      ),
+      },
+      watchStatuses: [
+        'plan_to_watch',
+        'watching',
+        'completed',
+        'on_hold',
+        'dropped',
+      ] as WatchStatus[],
     })
   }
 }

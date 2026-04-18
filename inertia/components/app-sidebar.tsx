@@ -1,7 +1,6 @@
-import { X } from 'lucide-react'
-
 import type { WatchStatus } from '#types/types'
 import { MediaDetails } from '@/components/media-details'
+import { MediaDetailsSkeleton } from '@/components/media-details-skeleton'
 import {
   Sidebar,
   SidebarContent,
@@ -13,11 +12,16 @@ import {
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
 import { usePage } from '@inertiajs/react'
-import type { ComponentProps } from 'react'
+import { X } from 'lucide-react'
+import { type ComponentProps } from 'react'
+
+type PageProps = InertiaProps<{
+  selectedMedia: Data.AnimeDetail | undefined
+  watchStatuses: WatchStatus[]
+}>
 
 export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
-  const page =
-    usePage<InertiaProps<{ selectedMedia: Data.AnimeDetail; watchStatuses: WatchStatus[] }>>()
+  const page = usePage<PageProps>()
 
   return (
     <Sidebar collapsible="offcanvas" className="md:flex" {...props}>
@@ -32,10 +36,14 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <MediaDetails
-              media={page.props.selectedMedia}
-              watchStatuses={page.props.watchStatuses}
-            />
+            {page.props.selectedMedia ? (
+              <MediaDetails
+                media={page.props.selectedMedia}
+                watchStatuses={page.props.watchStatuses}
+              />
+            ) : (
+              <MediaDetailsSkeleton />
+            )}
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
