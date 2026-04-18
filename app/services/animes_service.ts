@@ -11,7 +11,6 @@ export class AnimesService {
 
   async getByIdByUser(id: number, userId: number) {
     const anime = await Anime.query()
-      .debug(true)
       .where('id', id)
       .andWhereHas('users', (query) => {
         query.where('user_id', userId)
@@ -31,11 +30,9 @@ export class AnimesService {
    * @returns User's animes list to watch
    */
   async getAnimesToWatchByUser(userId: number) {
-    const animes = await Anime.query()
-      .debug(true)
-      .andWhereHas('users', (queryUsers) => {
-        queryUsers.where('user_id', userId).where('watch_status', '!=', 'completed')
-      })
+    const animes = await Anime.query().andWhereHas('users', (queryUsers) => {
+      queryUsers.where('user_id', userId).where('watch_status', '!=', 'completed')
+    })
 
     return animes
   }
@@ -72,7 +69,6 @@ export class AnimesService {
    */
   async getAnimeAnilistIdsByUser(userId: number) {
     const animes = await Anime.query()
-      .debug(true)
       .select('external_source_id')
       .andWhereHas('users', (queryUsers) => {
         queryUsers.where('user_id', userId)
