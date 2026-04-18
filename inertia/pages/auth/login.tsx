@@ -1,17 +1,25 @@
+import { urlFor } from '@/client'
 import PasswordInput from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { useTranslations } from '@/hooks/use-translations'
-import { Form, Link } from '@adonisjs/inertia/react'
+import { useURLParams } from '@/hooks/use-url-params'
+import { Link } from '@adonisjs/inertia/react'
+import { Form } from '@inertiajs/react'
 
 export default function Login() {
   const { t } = useTranslations()
+  const { urlParams } = useURLParams()
 
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <Form route="session.store" className="flex flex-col gap-6">
+        <Form
+          action={urlFor('session.store', undefined, { qs: urlParams })}
+          method="post"
+          className="flex flex-col gap-6"
+        >
           {({ errors }) => (
             <>
               <div className="flex flex-col items-center gap-2 text-center">

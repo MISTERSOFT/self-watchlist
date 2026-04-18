@@ -1,3 +1,4 @@
+import { urlFor } from '@/client'
 import { useImportMyAnimeListDialog } from '@/components/import-my-anime-list-dialog-provider'
 import { useTheme } from '@/components/theme-provider'
 import { Button } from '@/components/ui/button'
@@ -15,8 +16,9 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useURLParams } from '@/hooks/use-url-params'
 import { InertiaProps } from '@/types'
-import { Link } from '@adonisjs/inertia/react'
+import { Link } from '@inertiajs/react'
 import { ChevronDown, LogOut } from 'lucide-react'
 import { useCallback } from 'react'
 
@@ -27,6 +29,7 @@ interface LoggedUserDropdownMenuProps {
 export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) => {
   const { setOpen } = useImportMyAnimeListDialog()
   const { theme, setTheme } = useTheme()
+  const { urlParams } = useURLParams()
 
   const openImportDialog = useCallback(() => setOpen(true), [])
 
@@ -90,7 +93,11 @@ export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) =>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link route="session.destroy" className="inline-flex">
+          <Link
+            href={urlFor('session.destroy', undefined, { qs: urlParams })}
+            method="post"
+            className="flex flex-1"
+          >
             <LogOut className="mr-2" />
             Log out
           </Link>
