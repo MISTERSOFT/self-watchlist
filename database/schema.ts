@@ -102,6 +102,130 @@ export class GenreSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class MovieGenreSchema extends BaseModel {
+  static $columns = ['genreId', 'id', 'movieId'] as const
+  $columns = MovieGenreSchema.$columns
+  @column()
+  declare genreId: number | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare movieId: number | null
+}
+
+export class MovieSchema extends BaseModel {
+  static $columns = [
+    'alternativeTitles',
+    'createdAt',
+    'externalSource',
+    'externalSourceId',
+    'id',
+    'nsfw',
+    'releasedAt',
+    'score',
+    'status',
+    'synopsis',
+    'thumbnailUrl',
+    'title',
+    'tmdbId',
+    'updatedAt',
+  ] as const
+  $columns = MovieSchema.$columns
+  @column()
+  declare alternativeTitles: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare externalSource: string | null
+  @column()
+  declare externalSourceId: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nsfw: boolean
+  @column.date()
+  declare releasedAt: DateTime
+  @column()
+  declare score: number | null
+  @column()
+  declare status: string | null
+  @column()
+  declare synopsis: string | null
+  @column()
+  declare thumbnailUrl: string | null
+  @column()
+  declare title: string
+  @column()
+  declare tmdbId: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class TvshowGenreSchema extends BaseModel {
+  static $columns = ['genreId', 'id', 'tvshowId'] as const
+  $columns = TvshowGenreSchema.$columns
+  @column()
+  declare genreId: number | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare tvshowId: number | null
+}
+
+export class TvshowSchema extends BaseModel {
+  static $columns = [
+    'alternativeTitles',
+    'createdAt',
+    'externalSource',
+    'externalSourceId',
+    'id',
+    'nsfw',
+    'numberOfEpisodes',
+    'numberOfSeasons',
+    'releasedAt',
+    'score',
+    'status',
+    'synopsis',
+    'thumbnailUrl',
+    'title',
+    'tmdbId',
+    'updatedAt',
+  ] as const
+  $columns = TvshowSchema.$columns
+  @column()
+  declare alternativeTitles: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare externalSource: string | null
+  @column()
+  declare externalSourceId: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nsfw: boolean
+  @column()
+  declare numberOfEpisodes: number | null
+  @column()
+  declare numberOfSeasons: number | null
+  @column.date()
+  declare releasedAt: DateTime
+  @column()
+  declare score: number | null
+  @column()
+  declare status: string | null
+  @column()
+  declare synopsis: string | null
+  @column()
+  declare thumbnailUrl: string | null
+  @column()
+  declare title: string
+  @column()
+  declare tmdbId: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class UserAnimeSchema extends BaseModel {
   static $columns = [
     'animeId',
@@ -121,6 +245,50 @@ export class UserAnimeSchema extends BaseModel {
   declare currentEpisode: number
   @column({ isPrimary: true })
   declare id: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+  @column()
+  declare watchStatus: string
+}
+
+export class UserMovieSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'movieId', 'updatedAt', 'userId', 'watchStatus'] as const
+  $columns = UserMovieSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare movieId: number | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+  @column()
+  declare watchStatus: string
+}
+
+export class UserTvshowSchema extends BaseModel {
+  static $columns = [
+    'createdAt',
+    'currentEpisode',
+    'id',
+    'tvshowId',
+    'updatedAt',
+    'userId',
+    'watchStatus',
+  ] as const
+  $columns = UserTvshowSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare currentEpisode: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare tvshowId: number | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
   @column()
