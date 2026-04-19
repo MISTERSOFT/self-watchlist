@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useURLParams } from '@/hooks/use-url-params'
 import { InertiaProps } from '@/types'
+// eslint-disable-next-line @adonisjs/prefer-adonisjs-inertia-link
 import { Link } from '@inertiajs/react'
 import { ChevronDown, LogOut } from 'lucide-react'
 import { useCallback } from 'react'
