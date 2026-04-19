@@ -27,6 +27,7 @@ A watchlist app that brings in one place anime, movies, and TV shows.
 - Docker
 - VSCode
 - VSCode Dev Containers plugin
+- [TMDB API key](https://developer.themoviedb.org/docs/getting-started)
 
 ### Run dev environment
 
