@@ -9,7 +9,6 @@ export default class extends BaseSchema {
 
       table.string('external_source_id').nullable() // Movie ID in the provider database
       table.string('external_source').nullable() // Provider: TMDB, etc...
-      table.string('tmdb_id').nullable() // ex: TMDB ID
 
       table.string('title').notNullable()
       table.text('alternative_titles').nullable()
