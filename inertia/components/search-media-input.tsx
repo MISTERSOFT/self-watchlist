@@ -175,7 +175,7 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
                   className="flex items-center gap-3 p-2 cursor-pointer hover:bg-primary/80"
                 >
                   <img
-                    src={media.thumbnailUrl || '/public/logo_bg_white.png'}
+                    src={media.thumbnailUrl || 'resources/images/no-image-154x190.png'}
                     alt={media.title}
                     className="w-12 h-16 object-cover rounded"
                   />

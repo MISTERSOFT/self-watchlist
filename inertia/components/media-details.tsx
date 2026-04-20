@@ -109,7 +109,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       </div>
       <div className="relative aspect-3/4 overflow-hidden">
         <img
-          src={media.thumbnailUrl || '/public/logo_bg_white.png'}
+          src={media.thumbnailUrl || 'resources/images/no-image-500x616.png'}
           alt={media.title}
           className="object-cover"
         />
