@@ -1,5 +1,5 @@
-import { AppSidebar } from '@/components/app-sidebar'
 import { ImportMyAnimeListDialogProvider } from '@/components/import-my-anime-list-dialog-provider'
+import { MediaDetailsSidebar } from '@/components/media-details-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { VideoPlayerDialogProvider } from '@/components/video-player-dialog-provider'
 
@@ -13,7 +13,7 @@ export function AppProviders({ children }: AppProvidersProps) {
       <ImportMyAnimeListDialogProvider>
         <VideoPlayerDialogProvider>
           <SidebarInset>{children}</SidebarInset>
-          <AppSidebar side="right" />
+          <MediaDetailsSidebar side="right" />
         </VideoPlayerDialogProvider>
       </ImportMyAnimeListDialogProvider>
     </SidebarProvider>
