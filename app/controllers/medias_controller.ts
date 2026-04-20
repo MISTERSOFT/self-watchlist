@@ -3,6 +3,11 @@ import type Anime from '#models/anime'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import { AnilistService } from '#services/anilist_service'
 import { AnimesService } from '#services/animes_service'
+import { MoviesService } from '#services/movies_service'
+import { TmdbSearchMovieNormalizerService } from '#services/tmdb_search_movie_normalizer_service'
+import { TmdbSearchTvshowNormalizerService } from '#services/tmdb_search_tvshow_normalizer_service'
+import { TMDBPagination, TMDBSearchTVShow, TmdbService } from '#services/tmdb_service'
+import { TvShowsService } from '#services/tv_shows_service'
 import {
   addNewMediaValidator,
   deleteUserMediaValidator,
@@ -11,61 +16,153 @@ import {
 } from '#validators/media'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
+import { flow } from 'es-toolkit'
 
 type SafeProperty<T> = { [P in keyof T]: NonNullable<T[P]> }
-type SearchMedia = Pick<
+type SearchAnime = Pick<
   SafeProperty<Anime>,
   'externalSource' | 'externalSourceId' | 'title' | 'alternativeTitles' | 'thumbnailUrl' | 'nsfw'
 > & {
-  type: 'anime' | 'movie' | 'tvshow'
+  type: 'anime'
 }
+type SearchMovie = Pick<
+  SafeProperty<Anime>,
+  'externalSource' | 'externalSourceId' | 'title' | 'alternativeTitles' | 'thumbnailUrl' | 'nsfw'
+> & {
+  type: 'movie'
+}
+type SearchTVShow = Pick<
+  SafeProperty<Anime>,
+  'externalSource' | 'externalSourceId' | 'title' | 'alternativeTitles' | 'thumbnailUrl' | 'nsfw'
+> & {
+  type: 'tvshow'
+}
+type SearchMedia = SearchAnime | SearchMovie | SearchTVShow
+
+const TMDB_GENRE_ANIMATION_ID = 16
+const TMDB_ORIGIN_COUNTRY_JP = 'JP'
+const filterTvshowsFn = flow(
+  (_tvshows: TMDBPagination<TMDBSearchTVShow>['results'], _tmdbTvShowIdsInDb: number[]) =>
+    _tvshows.filter((m) => !_tmdbTvShowIdsInDb.includes(m.id)),
+  (_tvshows: TMDBPagination<TMDBSearchTVShow>['results']) =>
+    _tvshows.filter(
+      (m) =>
+        m.genre_ids.length > 0 &&
+        !m.genre_ids.includes(TMDB_GENRE_ANIMATION_ID) &&
+        m.origin_country.includes(TMDB_ORIGIN_COUNTRY_JP)
+    )
+)
 
 @inject()
 export default class MediasController {
   constructor(
     protected readonly _anilistService: AnilistService,
     protected readonly _anilistNormalizerService: AnilistNormalizerService,
-    protected readonly _animesService: AnimesService
+    protected readonly _animesService: AnimesService,
+    protected readonly _tmdbService: TmdbService,
+    protected readonly _tmdbSearchMovieNormalizerService: TmdbSearchMovieNormalizerService,
+    protected readonly _moviesService: MoviesService,
+    protected readonly _tmdbSearchTvshowNormalizerService: TmdbSearchTvshowNormalizerService,
+    protected readonly _tvshowsService: TvShowsService
   ) {}
 
   async search({ request, auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
     const { search, type } = await request.validateUsing(searchNewMediaValidator)
 
-    if (type === 'anime') {
-      const userAnilistAnimeIds = await this._animesService.getAnimeAnilistIdsByUser(user.id)
-      const result = await this._anilistService.search({
-        search,
-        // Remove from the search query animes that are already associated to the user in database
-        idNotIn: userAnilistAnimeIds,
-      })
+    switch (type) {
+      case 'anime':
+        const userAnilistAnimeIds = await this._animesService.getAnimeAnilistIdsByUser(user.id)
+        const result = await this._anilistService.search({
+          search,
+          // Remove from the search query animes that are already associated to the user in database
+          idNotIn: userAnilistAnimeIds,
+        })
 
-      const data = result.Page?.media?.map((media) => {
-        const { externalSource, externalSourceId, title, alternativeTitles, thumbnailUrl, nsfw } =
-          this._anilistNormalizerService.normalizeAnime(media as Media)
-        return {
-          externalSource,
-          externalSourceId,
-          title,
-          alternativeTitles,
-          thumbnailUrl,
-          nsfw,
-          type: 'anime',
-        } as SearchMedia
-      })
+        const data = result.Page?.media?.map((media) => {
+          const { externalSource, externalSourceId, title, alternativeTitles, thumbnailUrl, nsfw } =
+            this._anilistNormalizerService.normalize(media as Media)
+          return {
+            externalSource,
+            externalSourceId,
+            title,
+            alternativeTitles,
+            thumbnailUrl,
+            nsfw,
+            type: 'anime',
+          } as SearchAnime
+        })
 
-      return serialize({
-        success: true,
-        type,
-        medias: data || [],
-      })
-    } else {
-      // TODO: Film, tvshow
-      return serialize({
-        success: true,
-        type,
-        medias: new Array<SearchMedia>(),
-      })
+        return serialize({
+          type,
+          medias: data || [],
+        })
+
+      case 'movie':
+        // 1. Get TMDB movies already in db
+        const tmdbMovieIdsInDb = await this._moviesService.getMoviesTMDBIdsByUser(user.id)
+        // 2. Search movies
+        const movies = await this._tmdbService.searchMovie({ query: search })
+        // 3. Searched movies - db movies
+        const filteredMovies = movies
+          ? movies.results.filter((m) => !tmdbMovieIdsInDb.includes(m.id))
+          : []
+        // 4. Normalize searched movies
+        const normalizedMovies = await this._tmdbSearchMovieNormalizerService.normalizeData(
+          filteredMovies!
+        )
+        // 5. Return
+        return serialize({
+          type,
+          medias: normalizedMovies.map(
+            (m) =>
+              ({
+                alternativeTitles: m.title,
+                externalSource: m.externalSource,
+                externalSourceId: m.externalSourceId,
+                nsfw: m.nsfw,
+                thumbnailUrl: m.thumbnailUrl,
+                title: m.title,
+                type: 'movie',
+              }) as SearchMovie
+          ),
+        })
+
+      case 'tvshow':
+        // 1. Get TMDB TvShow already in db
+        const tmdbTvShowIdsInDb = await this._tvshowsService.getTvShowsTMDBIdsByUser(user.id)
+        // 2. Search TvShow
+        const tvshows = await this._tmdbService.searchTVShow({ query: search })
+        // 3. Filter tvshow to remove :
+        // - those already in db
+        // - those where the origin country is Japon and has an "Animation" (id: 16) genre. In other word, we remove Anime from the result.
+        const filteredTvshows = tvshows ? filterTvshowsFn(tvshows.results, tmdbTvShowIdsInDb) : []
+        // 4. Normalize searched TvShow
+        const normalizedTvshows = await this._tmdbSearchTvshowNormalizerService.normalizeData(
+          filteredTvshows!
+        )
+        // 5. Return
+        return serialize({
+          type,
+          medias: normalizedTvshows.map(
+            (m) =>
+              ({
+                alternativeTitles: m.title,
+                externalSource: m.externalSource,
+                externalSourceId: m.externalSourceId,
+                nsfw: m.nsfw,
+                thumbnailUrl: m.thumbnailUrl,
+                title: m.title,
+                type: 'tvshow',
+              }) as SearchTVShow
+          ),
+        })
+
+      default:
+        return serialize({
+          type,
+          medias: new Array<SearchMedia>(),
+        })
     }
   }
 

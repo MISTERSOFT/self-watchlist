@@ -34,12 +34,13 @@ type SearchMediaQueryData =
 
 function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
   search: string,
+  type: 'anime' | 'movie' | 'tvshow',
   select: (data: NoInfer<SearchMediaQueryData>) => TSelected
 ) {
   return useQuery(
     api.medias.search.queryOptions(
       {
-        query: { search, type: 'anime' },
+        query: { search, type },
       },
       {
         enabled: search.length >= MIN_SEARCH_QUERY_LENGTH,
@@ -50,7 +51,6 @@ function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
         initialData: {
           data: {
             type: 'anime',
-            success: true,
             medias: [],
           },
         },
@@ -64,8 +64,9 @@ interface SearchMediaInputProps {}
 export function SearchMediaInput({}: SearchMediaInputProps) {
   const [open, setOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
+  const [mediaType, setMediaType] = useState<'anime' | 'movie' | 'tvshow'>('anime')
   const [debouncedSearch] = useDebounce(searchValue, 300)
-  const searchQuery = useSearchMediaQuery(debouncedSearch, (data) => data.data)
+  const searchQuery = useSearchMediaQuery(debouncedSearch, mediaType, (data) => data.data)
   const addMediaToWatchlist = useMutation(
     api.medias.addToWatchlist.mutationOptions({
       onSuccess: () => {
@@ -84,11 +85,11 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
       },
     })
     toast.promise(mutatePromise, {
-      loading: 'Adding anime...',
+      loading: `Adding ${mediaType}...`,
       success: (data) => {
         return `"${data.data.name}" has been added`
       },
-      error: 'An error occured. Unable to add the media.',
+      error: `An error occured. Unable to add the ${mediaType}.`,
     })
   }
 
@@ -105,12 +106,17 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
     setOpen(false)
   }, [])
 
+  const handleMediaTypeChange = useCallback((value: string) => {
+    // @ts-ignore
+    setMediaType(value)
+  }, [])
+
   return (
     <Popover open={open} modal={false}>
       <PopoverAnchor asChild>
         <InputGroup>
           <InputGroupInput
-            placeholder="Search..."
+            placeholder="Search and quick add..."
             value={searchValue}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -119,14 +125,15 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
           <InputGroupAddon>
             <SearchIcon />
           </InputGroupAddon>
-          <Select defaultValue="anime">
+          <Select defaultValue="anime" value={mediaType} onValueChange={handleMediaTypeChange}>
             <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
             <SelectContent position="popper">
               <SelectGroup>
                 <SelectItem value="anime">Anime</SelectItem>
-                <SelectItem value="movie">Movie/TV Show</SelectItem>
+                <SelectItem value="movie">Movie</SelectItem>
+                <SelectItem value="tvshow">TV Show</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -156,7 +163,8 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
               <div className="rounded-full bg-muted p-4 mb-4">
                 <FilmIcon className="h-8 w-8 text-muted-foreground" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Aucun anime trouvé.</h3>
+              {/* TODO: use i18n to display media type */}
+              <h3 className="text-lg font-semibold mb-2">Aucun {mediaType} trouvé.</h3>
               <p className="text-sm text-muted-foreground">
                 Essaie une autre recherche, peut-être qu'elle sera plus efficace.
               </p>

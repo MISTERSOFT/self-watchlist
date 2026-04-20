@@ -34,13 +34,13 @@ export class AnilistNormalizerService {
 
     return Promise.all(
       medias.map((media) => ({
-        anime: this.normalizeAnime(media),
+        anime: this.normalize(media),
         genres: this._normalizeGenres(media!.genres!, genresFromDb),
       }))
     )
   }
 
-  normalizeAnime(media: Media): Partial<Anime> {
+  normalize(media: Media): Partial<Anime> {
     return {
       externalSourceId: media!.id.toString(),
       externalSource: 'anilist',

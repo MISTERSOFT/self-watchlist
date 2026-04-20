@@ -6,7 +6,7 @@ const TMDB_API_VERSION = '3'
 const TMDB_API_URL = `${TMDB_BASE_URL}/${TMDB_API_VERSION}/`
 
 //#region Common types
-type TMDBPagination<T> = {
+export type TMDBPagination<T> = {
   page: number
   results: Array<T>
   total_pages: number
@@ -37,8 +37,8 @@ const DEFAULT_TMDB_SEARCH_MOVIE_QUERY_PARAMS: TMDBSearchMovieQueryParams = {
   language: 'en-US',
   page: 1,
 }
-type TMDBSearchMovieResponse = TMDBPagination<{
-  adult: number
+export type TMDBSearchMovie = {
+  adult: boolean
   backdrop_path: string
   genre_ids: number[]
   id: number
@@ -46,13 +46,13 @@ type TMDBSearchMovieResponse = TMDBPagination<{
   original_title: string
   overview: string
   popularity: number
-  poster_path: string
+  poster_path: string | null
   release_date: string
   title: string
   video: boolean
   vote_average: number
   vote_count: number
-}>
+}
 //#endregion
 
 //#region Get Movie by id types
@@ -122,7 +122,7 @@ const DEFAULT_TMDB_SEARCH_TV_SHOW_QUERY_PARAMS: TMDBSearchTVShowQueryParams = {
   language: 'en-US',
   page: 1,
 }
-type TMDBSearchTVShowResponse = TMDBPagination<{
+export type TMDBSearchTVShow = {
   adult: boolean
   backdrop_path: string
   genre_ids: number[]
@@ -132,12 +132,12 @@ type TMDBSearchTVShowResponse = TMDBPagination<{
   original_name: string
   overview: string
   popularity: number
-  poster_path: string
+  poster_path: string | null
   first_air_date: string
   name: string
   vote_average: number
   vote_count: number
-}>
+}
 //#endregion
 
 //#region Get TVShow by id
@@ -243,14 +243,22 @@ const DEFAULT_REQUEST_OPTIONS: RequestInit = {
 }
 
 export class TmdbService {
-  async searchMovie(params: TMDBSearchMovieQueryParams) {
+  async searchMovie(
+    params: TMDBSearchMovieQueryParams
+  ): Promise<TMDBPagination<TMDBSearchMovie> | null> {
     try {
       // @ts-ignore
       const qs = new URLSearchParams({ ...DEFAULT_TMDB_SEARCH_MOVIE_QUERY_PARAMS, ...params })
       const req = await fetch(`${TMDB_API_URL}search/movie?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
-      const json: TMDBSearchMovieResponse = await req.json()
-      return json
+      const json: TMDBPagination<TMDBSearchMovie> = await req.json()
+      return {
+        ...json,
+        results: json.results.map((m) => ({
+          ...m,
+          poster_path: m.poster_path ? this.formatPosterImageUrl(m.poster_path, 'w92') : null,
+        })),
+      }
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.searchMovie.name}] Request failed.`, err)
       return null
@@ -271,14 +279,24 @@ export class TmdbService {
     }
   }
 
-  async searchTVShow(params: TMDBSearchTVShowQueryParams) {
+  async searchTVShow(
+    params: TMDBSearchTVShowQueryParams
+  ): Promise<TMDBPagination<TMDBSearchTVShow> | null> {
     try {
       // @ts-ignore
       const qs = new URLSearchParams({ ...DEFAULT_TMDB_SEARCH_TV_SHOW_QUERY_PARAMS, ...params })
       const req = await fetch(`${TMDB_API_URL}search/tv?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
-      const json: TMDBSearchTVShowResponse = await req.json()
-      return json
+      const json: TMDBPagination<TMDBSearchTVShow> = await req.json()
+      return {
+        ...json,
+        results: json.results.map((tvshow) => ({
+          ...tvshow,
+          poster_path: tvshow.poster_path
+            ? this.formatPosterImageUrl(tvshow.poster_path, 'w92')
+            : null,
+        })),
+      }
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.searchTVShow.name}] Request failed.`, err)
       return null
