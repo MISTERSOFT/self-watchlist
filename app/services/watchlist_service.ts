@@ -2,11 +2,7 @@ import Movie from '#models/movie'
 import { AnilistService } from '#services/anilist_service'
 import { AnimesService } from '#services/animes_service'
 import { MoviesService } from '#services/movies_service'
-import {
-  TMDBMovieAlternativeTitleObject,
-  TMDBMovieVideoObject,
-  TmdbService,
-} from '#services/tmdb_service'
+import { TMDBAlternativeTitleObject, TmdbService, TMDBVideoObject } from '#services/tmdb_service'
 import { inject } from '@adonisjs/core'
 import { DateTime } from 'luxon'
 import { GenresService } from './genres_service.ts'
@@ -58,8 +54,8 @@ export class WatchlistService {
   async addMovie(tmdbMovieId: number, userId: number) {
     // TODO: Check if movie is already in database before creating a new movie record
     const details = await this._tmdbService.getMovieById<{
-      videos: { results: TMDBMovieVideoObject[] }
-      alternative_titles: { titles: TMDBMovieAlternativeTitleObject[] }
+      videos: { results: TMDBVideoObject[] }
+      alternative_titles: { titles: TMDBAlternativeTitleObject[] }
     }>(tmdbMovieId, {
       append_to_response: 'videos,alternative_titles',
     })

@@ -12,6 +12,23 @@ export type TMDBPagination<T> = {
   total_pages: number
   total_results: number
 }
+export type TMDBVideoObject = {
+  iso_639_1: string
+  iso_3166_1: string
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: boolean
+  published_at: string
+  id: string
+}
+export type TMDBAlternativeTitleObject = {
+  iso_3166_1: string
+  title: string
+  type: string
+}
 //#endregion
 
 //#region Genre types
@@ -109,34 +126,17 @@ type TMDBMovieDetailsResponse = {
 
 //#region Get Movie alternatives titles
 type TMDBMovieAlternativeTitlesQueryParams = { country: string }
-export type TMDBMovieAlternativeTitleObject = {
-  iso_3166_1: string
-  title: string
-  type: string
-}
 type TMDBMovieAlternativeTitlesResponse = {
   id: number
-  titles: Array<TMDBMovieAlternativeTitleObject>
+  titles: Array<TMDBAlternativeTitleObject>
 }
 //#endregion
 
 //#region Get Movie videos
 type TMDBMovieVideosQueryParams = { language: string }
-export type TMDBMovieVideoObject = {
-  iso_639_1: string
-  iso_3166_1: string
-  name: string
-  key: string
-  site: string
-  size: number
-  type: string
-  official: boolean
-  published_at: string
-  id: string
-}
 type TMDBMovieVideosResponse = {
   id: number
-  results: Array<TMDBMovieVideoObject>
+  results: Array<TMDBVideoObject>
 }
 //#endregion
 
@@ -157,7 +157,7 @@ const DEFAULT_TMDB_SEARCH_TV_SHOW_QUERY_PARAMS: TMDBSearchTVShowQueryParams = {
 }
 export type TMDBSearchTVShow = {
   adult: boolean
-  backdrop_path: string
+  backdrop_path: string | null
   genre_ids: number[]
   id: number
   origin_country: string[]
@@ -366,7 +366,7 @@ export class TmdbService {
 
   async searchTVShow(
     params: TMDBSearchTVShowQueryParams
-  ): Promise<TMDBPagination<TMDBSearchTVShow> | null> {
+  ): Promise<TMDBPagination<TMDBSearchTVShow>> {
     try {
       // @ts-ignore
       const qs = new URLSearchParams({ ...DEFAULT_TMDB_SEARCH_TV_SHOW_QUERY_PARAMS, ...params })
@@ -377,26 +377,30 @@ export class TmdbService {
         ...json,
         results: json.results.map((tvshow) => ({
           ...tvshow,
+          backdrop_path: this.formatBackdropImageUrl(tvshow.backdrop_path, 'w780'),
           poster_path: this.formatPosterImageUrl(tvshow.poster_path, 'w92'),
         })),
       }
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.searchTVShow.name}] Request failed.`, err)
-      return null
+      throw err
     }
   }
 
-  async getTVShowById(id: number, params?: TMDBTvShowDetailsQueryParams) {
+  async getTVShowById<TAppendedToResponse>(
+    id: number,
+    params?: TMDBTvShowDetailsQueryParams
+  ): Promise<TMDBTvShowDetailsResponse & TAppendedToResponse> {
     try {
       // @ts-ignore
       const qs = new URLSearchParams({ ...(params || {}) })
       const req = await fetch(`${TMDB_API_URL}tv/${id}?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
-      const json: TMDBTvShowDetailsResponse = await req.json()
+      const json: TMDBTvShowDetailsResponse & TAppendedToResponse = await req.json()
       return json
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.getTVShowById.name}] Request failed.`, err)
-      return null
+      throw err
     }
   }
 
