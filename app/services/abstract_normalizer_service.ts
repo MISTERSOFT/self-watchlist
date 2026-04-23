@@ -1,4 +1,4 @@
-export abstract class AbstractNormalizerService<TModel, TIn, TOutNormalized> {
-  abstract normalizeData(data: TIn[]): Promise<TOutNormalized[]>
-  abstract normalize(data: TIn): Partial<TModel>
+export abstract class AbstractNormalizerService<TModel, TIn> {
+  abstract normalize(data: TIn[]): Promise<Partial<TModel>[]>
+  abstract normalize(data: TIn): Promise<Partial<TModel>>
 }

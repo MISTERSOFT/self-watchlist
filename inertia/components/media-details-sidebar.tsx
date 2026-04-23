@@ -16,7 +16,7 @@ import { X } from 'lucide-react'
 import { type ComponentProps } from 'react'
 
 type PageProps = InertiaProps<{
-  selectedMedia: Data.AnimeDetail | undefined
+  selectedMedia: Data.AnimeDetails | Data.MovieDetails | undefined
   watchStatuses: WatchStatus[]
 }>
 

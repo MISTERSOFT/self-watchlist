@@ -22,11 +22,13 @@ import { ExternalLink, Play, Trash } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface MediaDetailsProps {
-  media: Data.AnimeDetail
+  media: Data.AnimeDetails | Data.MovieDetails
   watchStatuses: WatchStatus[]
 }
 
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
+  console.log(media)
+  const isAnime = media.__type__ === 'anime'
   const { setOpen } = useSidebar()
   const { openDialog } = useVideoPlayerDialog()
 
@@ -69,7 +71,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
     const mutatePromise = updateMediaFromWatchlist.mutateAsync({
       body: {
         mediaId: media.id,
-        type: 'anime',
+        type: media.__type__,
         watchStatus: value,
       },
     })
@@ -122,13 +124,15 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
             Trailer <Play />
           </Button>
         )}
-        <a
-          className={cn(buttonVariants({ variant: 'link', className: '' }))}
-          href={`https://myanimelist.net/anime/${media.myanimelistId}`}
-          target="_blank"
-        >
-          MAL page <ExternalLink size={12} />
-        </a>
+        {isAnime && (
+          <a
+            className={cn(buttonVariants({ variant: 'link', className: '' }))}
+            href={`https://myanimelist.net/anime/${media.myanimelistId}`}
+            target="_blank"
+          >
+            MAL page <ExternalLink size={12} />
+          </a>
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <span className="font-medium">Synopsis</span>
@@ -143,14 +147,22 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2 w-full">
-        <div className="flex flex-col gap-2">
-          <span className="font-medium">Type</span>
-          <Badge>{media.type}</Badge>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="font-medium">Episodes</span>
-          {media.episodesCount}
-        </div>
+        {isAnime && (
+          <>
+            <div className="flex flex-col gap-2">
+              <span className="font-medium">Type</span>
+              <Badge>{media.type}</Badge>
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="font-medium">Episodes</span>
+              {media.episodesCount}
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="font-medium">Status</span>
+              {media.status}
+            </div>
+          </>
+        )}
         <div className="flex flex-col gap-2">
           <span className="font-medium">NSFW</span>
           {media.nsfw ? '✅' : '❌'}
@@ -158,10 +170,6 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
         <div className="flex flex-col gap-2">
           <span className="font-medium">Score</span>
           {media.score}/10
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="font-medium">Status</span>
-          {media.status}
         </div>
       </div>
 

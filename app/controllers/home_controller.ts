@@ -1,13 +1,16 @@
-import { AnimesService } from '#services/animes_service'
-import AnimeDetailTransformer from '#transformers/anime_detail_transformer'
-import MediaTransformer from '#transformers/media_transformer'
+import Anime from '#models/anime'
+import Movie from '#models/movie'
+import { WatchlistService } from '#services/watchlist_service'
+import AnimeDetailsTransformer from '#transformers/anime_details_transformer'
+import MediaCardTransformer from '#transformers/media_card_transformer'
+import MovieDetailsTransformer from '#transformers/movie_details_transformer'
 import { WatchStatus } from '#types/types'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class HomeController {
-  constructor(private readonly _animesService: AnimesService) {}
+  constructor(private readonly _watchlistService: WatchlistService) {}
 
   async index({ inertia, auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
@@ -15,15 +18,30 @@ export default class HomeController {
 
     return inertia.render('home', {
       medias: async () => {
-        const animes = await this._animesService.getAnimesToWatchByUser(user.id)
-        return MediaTransformer.transform(animes)
+        const [animes, movies] = await this._watchlistService.getUserWatchlist(user.id)
+        const all = [...animes, ...movies].sort((a, b) => {
+          if (a.createdAt < b.createdAt) return -1
+          if (a.createdAt > b.createdAt) return 1
+          return 0
+        })
+        return MediaCardTransformer.transform(all)
       },
       selectedMedia: async () => {
         if (!mediaId) {
           return undefined
         }
-        const selectedMedia = await this._animesService.getByIdByUser(+mediaId, user.id)
-        return AnimeDetailTransformer.transform(selectedMedia)
+        const selectedMedia = await this._watchlistService.getUserMedia(mediaId, user.id)
+
+        if (selectedMedia instanceof Anime) {
+          return AnimeDetailsTransformer.transform(selectedMedia)
+        }
+        if (selectedMedia instanceof Movie) {
+          return MovieDetailsTransformer.transform(selectedMedia)
+        }
+        // if (selectedMedia instanceof Tvshow) {
+        //   return TvshowDetailsTransformer.transform(selectedMedia)
+        // }
+        return undefined
       },
       watchStatuses: [
         'plan_to_watch',

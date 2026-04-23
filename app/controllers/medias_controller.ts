@@ -8,6 +8,7 @@ import { TmdbSearchMovieNormalizerService } from '#services/tmdb_search_movie_no
 import { TmdbSearchTvshowNormalizerService } from '#services/tmdb_search_tvshow_normalizer_service'
 import { TMDBPagination, TMDBSearchTVShow, TmdbService } from '#services/tmdb_service'
 import { TvShowsService } from '#services/tv_shows_service'
+import { WatchlistService } from '#services/watchlist_service'
 import {
   addNewMediaValidator,
   deleteUserMediaValidator,
@@ -63,7 +64,8 @@ export default class MediasController {
     protected readonly _tmdbSearchMovieNormalizerService: TmdbSearchMovieNormalizerService,
     protected readonly _moviesService: MoviesService,
     protected readonly _tmdbSearchTvshowNormalizerService: TmdbSearchTvshowNormalizerService,
-    protected readonly _tvshowsService: TvShowsService
+    protected readonly _tvshowsService: TvShowsService,
+    protected readonly _mediasService: WatchlistService
   ) {}
 
   async search({ request, auth, serialize }: HttpContext) {
@@ -108,7 +110,7 @@ export default class MediasController {
           ? movies.results.filter((m) => !tmdbMovieIdsInDb.includes(m.id))
           : []
         // 4. Normalize searched movies
-        const normalizedMovies = await this._tmdbSearchMovieNormalizerService.normalizeData(
+        const normalizedMovies = await this._tmdbSearchMovieNormalizerService.normalize(
           filteredMovies!
         )
         // 5. Return
@@ -117,12 +119,13 @@ export default class MediasController {
           medias: normalizedMovies.map(
             (m) =>
               ({
-                alternativeTitles: m.title,
-                externalSource: m.externalSource,
-                externalSourceId: m.externalSourceId,
-                nsfw: m.nsfw,
-                thumbnailUrl: m.thumbnailUrl,
-                title: m.title,
+                // alternativeTitles: m.title,
+                // externalSource: m.externalSource,
+                // externalSourceId: m.externalSourceId,
+                // nsfw: m.nsfw,
+                // thumbnailUrl: m.thumbnailUrl,
+                // title: m.title,
+                ...m,
                 type: 'movie',
               }) as SearchMovie
           ),
@@ -138,7 +141,7 @@ export default class MediasController {
         // - those where the origin country is Japon and has an "Animation" (id: 16) genre. In other word, we remove Anime from the result.
         const filteredTvshows = tvshows ? filterTvshowsFn(tvshows.results, tmdbTvShowIdsInDb) : []
         // 4. Normalize searched TvShow
-        const normalizedTvshows = await this._tmdbSearchTvshowNormalizerService.normalizeData(
+        const normalizedTvshows = await this._tmdbSearchTvshowNormalizerService.normalize(
           filteredTvshows!
         )
         // 5. Return
@@ -147,12 +150,13 @@ export default class MediasController {
           medias: normalizedTvshows.map(
             (m) =>
               ({
-                alternativeTitles: m.title,
-                externalSource: m.externalSource,
-                externalSourceId: m.externalSourceId,
-                nsfw: m.nsfw,
-                thumbnailUrl: m.thumbnailUrl,
-                title: m.title,
+                // alternativeTitles: m.title,
+                // externalSource: m.externalSource,
+                // externalSourceId: m.externalSourceId,
+                // nsfw: m.nsfw,
+                // thumbnailUrl: m.thumbnailUrl,
+                // title: m.title,
+                ...m,
                 type: 'tvshow',
               }) as SearchTVShow
           ),
@@ -172,16 +176,20 @@ export default class MediasController {
 
     let name = ''
 
-    if (type === 'anime') {
-      const queryResult = await this._anilistService.getByMediaId({ mediaId: externalSourceId })
-      await this._animesService.saveAnilistGqlMedia(
-        queryResult.Page?.media,
-        user.id,
-        () => 'plan_to_watch'
-      )
+    switch (type) {
+      case 'anime':
+        name = await this._mediasService.addAnime(externalSourceId, user.id)
+        break
 
-      const media = queryResult.Page?.media![0]!
-      name = media.title?.romaji! || media.title?.english! || media.title?.native!
+      case 'movie':
+        await this._mediasService.addMovie(externalSourceId, user.id)
+        break
+
+      case 'tvshow':
+        break
+
+      default:
+        break
     }
 
     return serialize({
@@ -222,6 +230,7 @@ export default class MediasController {
         break
 
       case 'movie':
+        await this._moviesService.updateWatchStatus(mediaId, user.id, watchStatus)
         break
 
       case 'tvshow':

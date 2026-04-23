@@ -6,29 +6,34 @@
 /// <reference path="./manifest.d.ts" />
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
-import type AnimeDetailTransformer from '#transformers/anime_detail_transformer'
-import type AnimeTransformer from '#transformers/anime_transformer'
+import type AnimeDetailsTransformer from '#transformers/anime_details_transformer'
+import type BaseMediaTransformer from '#transformers/base_media_transformer'
 import type GenreTransformer from '#transformers/genre_transformer'
-import type MediaTransformer from '#transformers/media_transformer'
+import type MediaCardTransformer from '#transformers/media_card_transformer'
+import type MovieDetailsTransformer from '#transformers/movie_details_transformer'
 import type UserTransformer from '#transformers/user_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
 export namespace Data {
-  export type AnimeDetail = InferData<AnimeDetailTransformer>
-  export namespace AnimeDetail {
-    export type Variants = InferVariants<AnimeDetailTransformer>
+  export type AnimeDetails = InferData<AnimeDetailsTransformer>
+  export namespace AnimeDetails {
+    export type Variants = InferVariants<AnimeDetailsTransformer>
   }
-  export type Anime = InferData<AnimeTransformer>
-  export namespace Anime {
-    export type Variants = InferVariants<AnimeTransformer>
+  export type BaseMedia = InferData<BaseMediaTransformer>
+  export namespace BaseMedia {
+    export type Variants = InferVariants<BaseMediaTransformer>
   }
   export type Genre = InferData<GenreTransformer>
   export namespace Genre {
     export type Variants = InferVariants<GenreTransformer>
   }
-  export type Media = InferData<MediaTransformer>
-  export namespace Media {
-    export type Variants = InferVariants<MediaTransformer>
+  export type MediaCard = InferData<MediaCardTransformer>
+  export namespace MediaCard {
+    export type Variants = InferVariants<MediaCardTransformer>
+  }
+  export type MovieDetails = InferData<MovieDetailsTransformer>
+  export namespace MovieDetails {
+    export type Variants = InferVariants<MovieDetailsTransformer>
   }
   export type User = InferData<UserTransformer>
   export namespace User {

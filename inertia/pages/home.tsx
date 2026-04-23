@@ -6,8 +6,8 @@ import { Data } from '@generated/data'
 import { useEffect } from 'react'
 
 type PageProps = InertiaProps<{
-  medias: Data.Media[]
-  selectedMedia?: Data.AnimeDetail
+  medias: Data.MediaCard[]
+  selectedMedia?: Data.AnimeDetails
   watchStatuses?: Array<WatchStatus>
 }>
 

@@ -1,18 +1,22 @@
 import type Movie from '#models/movie'
 import { AbstractNormalizerService } from '#services/abstract_normalizer_service'
 import type { TMDBSearchMovie } from '#services/tmdb_service'
-
-type NormalizedData = Partial<Movie>
+import { DateTime } from 'luxon'
 
 export class TmdbSearchMovieNormalizerService extends AbstractNormalizerService<
   Movie,
-  TMDBSearchMovie,
-  NormalizedData
+  TMDBSearchMovie
 > {
-  normalizeData(data: TMDBSearchMovie[]): Promise<NormalizedData[]> {
-    return Promise.resolve(data.map(this.normalize))
+  normalize(data: TMDBSearchMovie[]): Promise<Partial<Movie>[]>
+  normalize(data: TMDBSearchMovie): Promise<Partial<Movie>>
+  normalize(data: TMDBSearchMovie | TMDBSearchMovie[]): Promise<Partial<Movie> | Partial<Movie>[]> {
+    if (Array.isArray(data)) {
+      return Promise.resolve(data.map(this._normalize))
+    }
+    return Promise.resolve(this._normalize(data))
   }
-  normalize(data: TMDBSearchMovie): Partial<Movie> {
+
+  private _normalize(data: TMDBSearchMovie): Partial<Movie> {
     // const date = data.release_date.split('-')
 
     return {
@@ -23,16 +27,8 @@ export class TmdbSearchMovieNormalizerService extends AbstractNormalizerService<
       synopsis: data.overview,
       thumbnailUrl: data.poster_path,
       score: data.vote_average,
-      // status: data.
       nsfw: data.adult,
-      // releasedAt: DateTime.fromObject(
-      //   {
-      //     year: +date[0],
-      //     month: +date[1],
-      //     day: +date[2],
-      //   },
-      //   { zone: 'Europe/Paris' }
-      // ),
+      releasedAt: DateTime.fromISO(data.release_date), // { zone: 'Europe/Paris' }
     }
   }
 }

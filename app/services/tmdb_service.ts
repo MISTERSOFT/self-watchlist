@@ -62,7 +62,7 @@ type TMDBMovieDetailsQueryParams = {
 }
 type TMDBMovieDetailsResponse = {
   adult: boolean
-  backdrop_path: string
+  backdrop_path: string | null
   belongs_to_collection: {
     id: number
     name: string
@@ -79,7 +79,7 @@ type TMDBMovieDetailsResponse = {
   original_title: string
   overview: string
   popularity: number
-  poster_path: string
+  poster_path: string | null
   production_companies: Array<{
     id: number
     logo_path: string
@@ -104,6 +104,39 @@ type TMDBMovieDetailsResponse = {
   video: boolean
   vote_average: number
   vote_count: number
+}
+//#endregion
+
+//#region Get Movie alternatives titles
+type TMDBMovieAlternativeTitlesQueryParams = { country: string }
+export type TMDBMovieAlternativeTitleObject = {
+  iso_3166_1: string
+  title: string
+  type: string
+}
+type TMDBMovieAlternativeTitlesResponse = {
+  id: number
+  titles: Array<TMDBMovieAlternativeTitleObject>
+}
+//#endregion
+
+//#region Get Movie videos
+type TMDBMovieVideosQueryParams = { language: string }
+export type TMDBMovieVideoObject = {
+  iso_639_1: string
+  iso_3166_1: string
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: boolean
+  published_at: string
+  id: string
+}
+type TMDBMovieVideosResponse = {
+  id: number
+  results: Array<TMDBMovieVideoObject>
 }
 //#endregion
 
@@ -243,6 +276,8 @@ const DEFAULT_REQUEST_OPTIONS: RequestInit = {
 }
 
 export class TmdbService {
+  //#region Movie
+
   async searchMovie(
     params: TMDBSearchMovieQueryParams
   ): Promise<TMDBPagination<TMDBSearchMovie> | null> {
@@ -256,7 +291,7 @@ export class TmdbService {
         ...json,
         results: json.results.map((m) => ({
           ...m,
-          poster_path: m.poster_path ? this.formatPosterImageUrl(m.poster_path, 'w92') : null,
+          poster_path: this.formatPosterImageUrl(m.poster_path, 'w92'),
         })),
       }
     } catch (err) {
@@ -265,19 +300,69 @@ export class TmdbService {
     }
   }
 
-  async getMovieById(id: number, params?: TMDBMovieDetailsQueryParams) {
+  async getMovieById<TAppendedToResponse>(
+    id: number,
+    params?: TMDBMovieDetailsQueryParams
+  ): Promise<TMDBMovieDetailsResponse & TAppendedToResponse> {
     try {
       // @ts-ignore
       const qs = new URLSearchParams({ ...(params || {}) })
       const req = await fetch(`${TMDB_API_URL}movie/${id}?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
-      const json: TMDBMovieDetailsResponse = await req.json()
-      return json
+      const json: TMDBMovieDetailsResponse & TAppendedToResponse = await req.json()
+      return {
+        ...json,
+        backdrop_path: this.formatBackdropImageUrl(json.backdrop_path, 'w780'),
+        poster_path: this.formatPosterImageUrl(json.poster_path, 'w342'),
+      }
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.getMovieById.name}] Request failed.`, err)
-      return null
+      throw err
     }
   }
+
+  async getMovieAlternativeTitles(id: number, params?: TMDBMovieAlternativeTitlesQueryParams) {
+    try {
+      // @ts-ignore
+      const qs = new URLSearchParams({ ...(params || {}) })
+      const req = await fetch(
+        `${TMDB_API_URL}movie/${id}/alternative_titles?${qs}`,
+        DEFAULT_REQUEST_OPTIONS
+      )
+      // @ts-ignore
+      const json: TMDBMovieAlternativeTitlesResponse = await req.json()
+      return json
+    } catch (err) {
+      logger.error(
+        `[${TmdbService.name}.${this.getMovieAlternativeTitles.name}] Request failed.`,
+        err
+      )
+      throw err
+    }
+  }
+
+  /**
+   * Get the movie trailers
+   * @param id Movie ID
+   * @param params Query parameters
+   */
+  async getMovieVideos(id: number, params?: TMDBMovieVideosQueryParams) {
+    try {
+      // @ts-ignore
+      const qs = new URLSearchParams({ ...(params || {}) })
+      const req = await fetch(`${TMDB_API_URL}movie/${id}/videos?${qs}`, DEFAULT_REQUEST_OPTIONS)
+      // @ts-ignore
+      const json: TMDBMovieVideosResponse = await req.json()
+      return json
+    } catch (err) {
+      logger.error(`[${TmdbService.name}.${this.getMovieVideos.name}] Request failed.`, err)
+      throw err
+    }
+  }
+
+  //#endregion
+
+  //#region TV Show
 
   async searchTVShow(
     params: TMDBSearchTVShowQueryParams
@@ -292,9 +377,7 @@ export class TmdbService {
         ...json,
         results: json.results.map((tvshow) => ({
           ...tvshow,
-          poster_path: tvshow.poster_path
-            ? this.formatPosterImageUrl(tvshow.poster_path, 'w92')
-            : null,
+          poster_path: this.formatPosterImageUrl(tvshow.poster_path, 'w92'),
         })),
       }
     } catch (err) {
@@ -317,33 +400,39 @@ export class TmdbService {
     }
   }
 
-  async getMovieGenres(params: TMDBGenreQueryParams) {
+  //#endregion
+
+  //#region Genres
+
+  async getMovieGenres(params?: TMDBGenreQueryParams) {
     try {
       // @ts-ignore
-      const qs = new URLSearchParams({ ...DEFAULT_TMDB_GENRE_QUERY_PARAMS, ...params })
+      const qs = new URLSearchParams({ ...DEFAULT_TMDB_GENRE_QUERY_PARAMS, ...(params || {}) })
       const req = await fetch(`${TMDB_API_URL}genre/movie/list?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
       const json: TMDBGenreResponse = await req.json()
       return json
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.getMovieGenres.name}] Request failed.`, err)
-      return null
+      throw err
     }
   }
 
-  async getTVShowGenres(params: TMDBGenreQueryParams) {
+  async getTVShowGenres(params?: TMDBGenreQueryParams) {
     try {
       // @ts-ignore
-      const qs = new URLSearchParams({ ...DEFAULT_TMDB_GENRE_QUERY_PARAMS, ...params })
+      const qs = new URLSearchParams({ ...DEFAULT_TMDB_GENRE_QUERY_PARAMS, ...(params || {}) })
       const req = await fetch(`${TMDB_API_URL}genre/tv/list?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
       const json: TMDBGenreResponse = await req.json()
       return json
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.getTVShowGenres.name}] Request failed.`, err)
-      return null
+      throw err
     }
   }
+
+  //#endregion
 
   /**
    * Complete the TMDB poster image path to an URL.
@@ -355,9 +444,24 @@ export class TmdbService {
    * @param path Path to the image (eg: /1E5baAaEse26fej7uHcjOgEE2t2.jpg)
    */
   formatPosterImageUrl(
-    path: string,
+    path: string | null,
     size: 'w92' | 'w154' | 'w185' | 'w342' | 'w500' | 'w780' | 'original' = 'w342'
   ) {
+    if (!path) return null
+    return `https://image.tmdb.org/t/p/${size}${path}`
+  }
+
+  /**
+   * Complete the TMDB backdrop image path to an URL.
+   *
+   * Based the document: https://developer.themoviedb.org/docs/image-basics
+   *
+   * Image size are available here: https://developer.themoviedb.org/reference/configuration-details
+   *
+   * @param path Path to the image (eg: /1E5baAaEse26fej7uHcjOgEE2t2.jpg)
+   */
+  formatBackdropImageUrl(path: string | null, size: 'w300' | 'w780' | 'w1280' | 'original') {
+    if (!path) return null
     return `https://image.tmdb.org/t/p/${size}${path}`
   }
 }

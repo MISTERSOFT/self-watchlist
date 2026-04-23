@@ -23,6 +23,20 @@ export class AnimesService {
     return anime
   }
 
+  async getByIdAndByUser(id: string, userId: number) {
+    const anime = await Anime.query()
+      .where('id', id)
+      .andWhereHas('users', (query) => {
+        query.where('user_id', userId)
+      })
+      .preload('genres')
+      .preload('users', (query) => {
+        query.pivotColumns(['watch_status'])
+      })
+      .first()
+    return anime
+  }
+
   /**
    * Get user's animes where `watch_status` is different from `completed`.
    *
@@ -43,14 +57,14 @@ export class AnimesService {
    * @param animeId Anime ID
    * @param userId User ID
    */
-  async removeFromWatchlist(animeId: number, userId: number) {
+  async removeFromWatchlist(animeId: string, userId: number) {
     db.transaction(async (trx) => {
       const anime = await Anime.findOrFail(animeId, { client: trx })
       await anime.related('users').detach([userId], trx)
     })
   }
 
-  async updateFromWatchlist(animeId: number, userId: number, watchStatus: WatchStatus) {
+  async updateFromWatchlist(animeId: string, userId: number, watchStatus: WatchStatus) {
     db.transaction(async (trx) => {
       const anime = await Anime.findOrFail(animeId, { client: trx })
       await anime.related('users').sync({

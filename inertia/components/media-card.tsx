@@ -6,7 +6,7 @@ import { router } from '@inertiajs/react'
 import { useCallback } from 'react'
 
 interface MediaCardProps {
-  media: Data.Media
+  media: Data.MediaCard
 }
 
 export function MediaCard({ media }: MediaCardProps) {
@@ -19,7 +19,10 @@ export function MediaCard({ media }: MediaCardProps) {
     // By removing the media in the props, we display a skeleton in the sidebar to visualy indicate to the
     // user that the data is loading.
     router.replaceProp('selectedMedia', null)
-    router.reload({ data: { mediaId: media.id }, only: ['selectedMedia', 'watchStatuses'] })
+    router.reload({
+      data: { mediaId: media.id },
+      only: ['selectedMedia', 'watchStatuses'],
+    })
   }, [])
 
   return (

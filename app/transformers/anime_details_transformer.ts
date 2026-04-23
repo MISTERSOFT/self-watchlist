@@ -1,10 +1,19 @@
 import type Anime from '#models/anime'
+import BaseMediaTransformer from '#transformers/base_media_transformer'
 import GenreTransformer from '#transformers/genre_transformer'
-import { BaseTransformer } from '@adonisjs/core/transformers'
 
-export default class AnimeDetailTransformer extends BaseTransformer<Anime> {
+/**
+ * Anime transformer for the detailed media sidebar.
+ */
+export default class AnimeDetailsTransformer extends BaseMediaTransformer<Anime> {
+  private type = 'anime' as const
+  constructor(resource: Anime) {
+    super(resource)
+  }
+
   toObject() {
     return {
+      __type__: this.type,
       ...this.pick(this.resource, [
         'alternativeTitles',
         'backgroundUrl',
@@ -24,23 +33,9 @@ export default class AnimeDetailTransformer extends BaseTransformer<Anime> {
         'trailerSource',
         'type',
       ]),
-      trailerUrl: this._computeTrailerUrl(),
+      trailerUrl: this.computeTrailerUrl(),
       genres: GenreTransformer.transform(this.resource.genres),
       watch_status: this.resource.users[0].$extras.pivot_watch_status,
-    }
-  }
-
-  private _computeTrailerUrl() {
-    if (!this.resource.trailerId && !this.resource.trailerSource) {
-      return null
-    }
-
-    switch (this.resource.trailerSource) {
-      case 'youtube':
-        return `https://www.youtube.com/embed/${this.resource.trailerId}`
-
-      default:
-        return ''
     }
   }
 }
