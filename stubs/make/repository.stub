@@ -1,0 +1,11 @@
+// https://docs.adonisjs.com/guides/concepts/scaffolding#creating-stubs
+
+{{#var repositoryName = string.pascalCase(name)}}
+{{#var resourceFileName = string(name).snakeCase().suffix('_repository').ext('.ts').toString()}}
+{{{
+  exports({
+    to: app.makePath('app/repositories', resourceFileName)
+  })
+}}}
+
+export class {{ repositoryName }}Repository {}
