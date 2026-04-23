@@ -1,5 +1,5 @@
+import { withNanoIdPkColumn } from '#core/database/mixins/with_nanoid_pk'
 import { withTimestampsTzColumns } from '#core/database/mixins/with_timestamps'
-import { withUniqueMediaIdentifierColumn } from '#core/database/mixins/with_unique_media_identifier'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -7,12 +7,10 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      withUniqueMediaIdentifierColumn(table)
+      withNanoIdPkColumn(table)
 
       table.string('external_source_id').nullable() // TVShow ID in the provider database
       table.string('external_source').nullable() // Provider: TMDB, etc...
-      table.string('tmdb_id').nullable() // ex: TMDB ID
 
       table.string('title').notNullable()
       table.text('alternative_titles').nullable()

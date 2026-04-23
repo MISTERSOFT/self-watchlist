@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
-      table.integer('anime_id').unsigned().references('animes.id')
+      table.string('anime_id').references('animes.id')
       table.unique(['user_id', 'anime_id'])
 
       withWatchStatusColumn(table)
