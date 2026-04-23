@@ -1,3 +1,5 @@
+import { withTimestampsTzColumns } from '#core/database/mixins/with_timestamps'
+import { withWatchStatusColumn } from '#core/database/mixins/with_watch_status'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -11,11 +13,10 @@ export default class extends BaseSchema {
       table.integer('anime_id').unsigned().references('animes.id')
       table.unique(['user_id', 'anime_id'])
 
-      table.string('watch_status').notNullable() // Plan to watch, Watching, Completed, On-hold, dropped
+      withWatchStatusColumn(table)
       table.integer('current_episode').unsigned().defaultTo(0).notNullable()
 
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      withTimestampsTzColumns(table)
     })
   }
 

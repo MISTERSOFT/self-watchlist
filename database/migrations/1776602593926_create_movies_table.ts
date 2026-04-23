@@ -1,3 +1,5 @@
+import { withTimestampsTzColumns } from '#core/database/mixins/with_timestamps'
+import { withUniqueMediaIdentifierColumn } from '#core/database/mixins/with_unique_media_identifier'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -6,6 +8,7 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      withUniqueMediaIdentifierColumn(table)
 
       table.string('external_source_id').nullable() // Movie ID in the provider database
       table.string('external_source').nullable() // Provider: TMDB, etc...
@@ -14,13 +17,15 @@ export default class extends BaseSchema {
       table.text('alternative_titles').nullable()
       table.text('synopsis').nullable()
       table.string('thumbnail_url').nullable()
+      table.text('background_url').nullable()
+      table.string('trailer_source').nullable()
+      table.string('trailer_id').nullable()
       table.decimal('score', 3, 1).nullable()
-      table.string('status').nullable()
+      // table.string('status').nullable()
       table.boolean('nsfw').notNullable().defaultTo(false)
       table.date('released_at').notNullable()
 
-      table.timestamp('created_at', { useTz: true }).notNullable()
-      table.timestamp('updated_at', { useTz: true }).nullable()
+      withTimestampsTzColumns(table)
     })
   }
 

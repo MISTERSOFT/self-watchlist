@@ -1,3 +1,4 @@
+import { withTimestampsTzColumns } from '#core/database/mixins/with_timestamps'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -10,8 +11,7 @@ export default class extends BaseSchema {
       table.string('name')
       table.string('slug').unique()
 
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      withTimestampsTzColumns(table)
     })
   }
 
