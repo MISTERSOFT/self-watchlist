@@ -19,6 +19,7 @@
     "graphql-codegen": "graphql-codegen --config codegen.ts && npm run format:graphql"
   },
   "imports": {
+    "#core/*": "./app/core/*.js",
     "#controllers/*": "./app/controllers/*.js",
     "#exceptions/*": "./app/exceptions/*.js",
     "#models/*": "./app/models/*.js",
