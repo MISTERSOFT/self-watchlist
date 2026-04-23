@@ -11,7 +11,9 @@ export default class Tvshow extends compose(TvshowSchema, WithNanoIdPk, WithTime
   /**
    * A TV Show has many genres
    */
-  @manyToMany(() => Genre)
+  @manyToMany(() => Genre, {
+    pivotTable: 'tvshow_genre',
+  })
   declare genres: ManyToMany<typeof Genre>
 
   /**
