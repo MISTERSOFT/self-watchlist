@@ -54,6 +54,45 @@ const ThemeSelector = () => {
   )
 }
 
+const LANGUAGES: { [k: string]: string } = {
+  en: 'English',
+  fr: 'Français',
+}
+const LocaleSelector = () => {
+  const { t, i18n } = useTranslation()
+
+  const isSelected = (lang: string) => {
+    return lang === i18n.language
+  }
+
+  const setLocale = (lang: string) => {
+    i18n.changeLanguage(lang)
+  }
+
+  return (
+    <DropdownMenuGroup>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>{t('menu.language')}</DropdownMenuSubTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuGroup>
+              {i18n.languages.map((language, k) => (
+                <DropdownMenuCheckboxItem
+                  key={k}
+                  checked={isSelected(language)}
+                  onCheckedChange={() => setLocale(language)}
+                >
+                  {LANGUAGES[language]}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuPortal>
+      </DropdownMenuSub>
+    </DropdownMenuGroup>
+  )
+}
+
 interface LoggedUserDropdownMenuProps {
   user: NonNullable<InertiaProps['user']>
 }
@@ -95,6 +134,7 @@ export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) =>
         </DropdownMenuGroup>
         </DropdownMenuGroup>
         <ThemeSelector />
+        <LocaleSelector />
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link
