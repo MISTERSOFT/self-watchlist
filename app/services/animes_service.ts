@@ -1,13 +1,20 @@
-import type { Media } from '#graphql/generated/anilist/types'
+import stringHelpers from '#extensions/core/helpers/string_extension'
 import Anime from '#models/anime'
+import Genre from '#models/genre'
 import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
+import { GenresService } from '#services/genres_service'
+import { ModelProperties } from '#types/model'
 import type { SearchQueryMediaArray, WatchStatus } from '#types/types'
 import { inject } from '@adonisjs/core'
 import db from '@adonisjs/lucid/services/db'
+import { DateTime } from 'luxon'
 
 @inject()
 export class AnimesService {
-  constructor(protected readonly _anilistNormalizerService: AnilistNormalizerService) {}
+  constructor(
+    protected readonly _genresService: GenresService,
+    protected readonly _anilistNormalizerService: AnilistNormalizerService
+  ) {}
 
   async getByIdByUser(id: number, userId: number) {
     const anime = await Anime.query()
@@ -79,42 +86,56 @@ export class AnimesService {
     userId: number,
     setWatchStatusFn: (toSaveAnime: Anime) => WatchStatus
   ) {
-    const normalizedData = await this._anilistNormalizerService.normalizeData(
-      searchQueryMediaArray as Media[]
+    const genres = await Genre.all()
+
+    const filtered = searchQueryMediaArray!.filter((media) => media?.idMal !== null)
+
+    const normalized: Array<ModelProperties<Anime>> = await Promise.all(
+      filtered.map(async (media) => ({
+        externalSourceId: media!.id.toString(),
+        externalSource: 'anilist',
+        myanimelistId: media!.idMal!.toString(),
+        title: media!.title?.romaji as string,
+        alternativeTitles: this._anilistNormalizerService.normalizeTitles(media!),
+        format: media!.format!.toLowerCase(),
+        synopsis: stringHelpers.stripHtmlTags(media?.description!),
+        // synopsis: await TranslatorService.translate(stringHelpers.stripHtmlTags(media?.description!)),
+        score: this._anilistNormalizerService.normalizeScore(media!.meanScore!),
+        status: this._anilistNormalizerService.normalizeStatus(media!.status!),
+        season: this._anilistNormalizerService.normalizeSeason(media!.season!),
+        seasonYear: media!.seasonYear!,
+        thumbnailUrl: media!.coverImage?.extraLarge || null,
+        backgroundUrl: media!.bannerImage || null,
+        trailerSource: media!.trailer?.site || null,
+        trailerId: media!.trailer?.id || null,
+        episodesCount: media!.episodes || null,
+        nsfw: media!.isAdult || false,
+        releasedAt: DateTime.fromObject(
+          {
+            year: media!.startDate?.year!,
+            month: media!.startDate?.month!,
+            day: media!.startDate?.day!,
+          },
+          { zone: 'Europe/Paris' }
+        ),
+        genres: await this._genresService.matchAll(media!.genres as string[], genres),
+      }))
     )
 
     // Save in db
     await db.transaction(async (trx) => {
-      // NOTE: Genres come from the database
       await Promise.all(
-        normalizedData.map(async ({ anime: animeProps, genres: animeGenres }) => {
+        normalized.map(async (animeProps) => {
           const anime = new Anime()
-          anime.externalSourceId = animeProps.externalSourceId!
-          anime.externalSource = animeProps.externalSource!
-          anime.myanimelistId = animeProps.myanimelistId!
-          // anime.slug = animeProps.slug!
-          anime.title = animeProps.title!
-          anime.alternativeTitles = animeProps.alternativeTitles!
-          anime.type = animeProps.type!
-          anime.synopsis = animeProps.synopsis!
-          anime.score = animeProps.score!
-          anime.status = animeProps.status!
-          anime.season = animeProps.season!
-          anime.seasonYear = animeProps.seasonYear!
-          anime.thumbnailUrl = animeProps.thumbnailUrl!
-          anime.backgroundUrl = animeProps.backgroundUrl!
-          anime.trailerSource = animeProps.trailerSource!
-          anime.trailerId = animeProps.trailerId!
-          anime.episodesCount = animeProps.episodesCount!
-          anime.nsfw = animeProps.nsfw!
-          anime.releasedAt = animeProps.releasedAt!
-
           anime.useTransaction(trx)
+
+          anime.fill(animeProps, true)
+
           await anime.save()
 
-          // Associate genres to anime
-          await anime.related('genres').attach(animeGenres.map((genre) => genre.id))
-          // Associate current user to anime
+          // Attach genres to anime
+          await anime.related('genres').attach(animeProps.genres!.map((genre) => genre.id))
+          // Attach current user to anime
           await anime.related('users').attach({
             [userId]: {
               watch_status: setWatchStatusFn(anime),
