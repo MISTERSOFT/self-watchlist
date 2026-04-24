@@ -1,12 +1,15 @@
 import Genre from '#models/genre'
 import { TmdbService } from '#services/tmdb_service'
 import { inject } from '@adonisjs/core'
-import { BaseCommand } from '@adonisjs/core/ace'
+import { BaseCommand, flags } from '@adonisjs/core/ace'
 import stringHelpers from '@adonisjs/core/helpers/string'
+import app from '@adonisjs/core/services/app'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import db from '@adonisjs/lucid/services/db'
+import { ModelAttributes } from '@adonisjs/lucid/types/model'
 import vine from '@vinejs/vine'
 import { flatten, flow, uniq } from 'es-toolkit'
+import fsAsync from 'node:fs/promises'
 
 // data: { attributes: { name: string, slug: string } }[], links: { first: string, next?: string, last: string }
 
@@ -29,7 +32,8 @@ const kitsuGenreSchema = vine.object({
 
 export default class DataScrapGenres extends BaseCommand {
   static commandName = 'data:scrap:genres'
-  static description = 'Fetch (from Kitsu & TMDB) and insert genres into databse'
+  static description =
+    'Fetch genres from Kitsu.app and TMDB, ensure uniqueness, then insert them into database.'
 
   static options: CommandOptions = {
     startApp: true,
@@ -37,14 +41,88 @@ export default class DataScrapGenres extends BaseCommand {
     staysAlive: false,
   }
 
-  static help?: string | string[] | undefined = [
-    'This command fetch genres from Kitsu.app and TMDB, ensure uniqueness, then insert them into database.',
-  ]
+  @flags.boolean({
+    default: true,
+    description: 'Use cached genres to populate the database.',
+  })
+  declare cache: boolean
 
   //#region Lifecyles
 
   @inject()
   async run(tmdbService: TmdbService) {
+    const cacheFilePath = app.tmpPath('cache-genres.json')
+    let cacheFileExists = true
+
+    this.logger.info('Check if cache file exists...')
+    try {
+      await fsAsync.access(cacheFilePath, fsAsync.constants.F_OK)
+      this.logger.info(`Cache file exists`)
+    } catch {
+      cacheFileExists = false
+      this.logger.info(`Cache file doesn't exists`)
+    }
+
+    let genresToCreate: Partial<ModelAttributes<Genre>>[] = []
+
+    if (cacheFileExists) {
+      const fileContent = await fsAsync.readFile(cacheFilePath, { encoding: 'utf-8' })
+      try {
+        genresToCreate = JSON.parse(fileContent)
+      } catch {
+        this.logger.error('Unable to parse cache file.')
+        this.terminate()
+      }
+    } else {
+      genresToCreate = await this.fetchGenres(tmdbService)
+      await this.cacheData(cacheFilePath, genresToCreate)
+    }
+
+    this.logger.info('Saving genres...')
+    await db.transaction(async (trx) => {
+      await Genre.createMany(genresToCreate, { client: trx })
+    })
+    this.logger.success('Done.')
+  }
+
+  async completed() {
+    if (this.error) {
+      /**
+       * Handle the error from any lifecycle method
+       */
+      this.logger.error(this.error.message)
+
+      /**
+       * Return true to notify Ace that you've handled the error
+       * This prevents Ace from logging the error again
+       */
+      return true
+    }
+  }
+
+  //#endregion
+
+  //#region Methods
+
+  /**
+   * Cache genres into a file as JSON
+   */
+  async cacheData(cacheFilePath: string, genres: any) {
+    try {
+      await fsAsync.writeFile(cacheFilePath, JSON.stringify(genres), 'utf-8')
+      this.logger.info(`Cache file created at: ${cacheFilePath}`)
+    } catch {
+      this.logger.error(`Unable to create a cache file.`)
+      this.terminate()
+    }
+  }
+
+  /**
+   * Fetch genres from TMDB and Kitsu.app
+   * @param tmdbService TMDB service
+   * @returns Sanitized list of genre
+   */
+  async fetchGenres(tmdbService: TmdbService) {
     this.logger.info('Fetching Kitsu.app genres...')
     const kitsuGenres = await this.fetchGenresFromKitsu()
 
@@ -75,33 +153,8 @@ export default class DataScrapGenres extends BaseCommand {
         }))
     )
 
-    const cleanedGenres = cleanProcessor(combined)
-
-    this.logger.info('Saving cleaned genres...')
-    await db.transaction(async (trx) => {
-      await Genre.createMany(cleanedGenres, { client: trx })
-    })
-    this.logger.success('Done.')
+    return cleanProcessor(combined)
   }
-
-  async completed() {
-    if (this.error) {
-      /**
-       * Handle the error from any lifecycle method
-       */
-      this.logger.error(this.error.message)
-
-      /**
-       * Return true to notify Ace that you've handled the error
-       * This prevents Ace from logging the error again
-       */
-      return true
-    }
-  }
-
-  //#endregion
-
-  //#region Methods
 
   async fetchKitsuNextGenresPage(url: string) {
     let genres: Partial<Genre>[] = []
