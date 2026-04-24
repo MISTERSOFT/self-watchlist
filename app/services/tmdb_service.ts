@@ -397,7 +397,11 @@ export class TmdbService {
       const req = await fetch(`${TMDB_API_URL}tv/${id}?${qs}`, DEFAULT_REQUEST_OPTIONS)
       // @ts-ignore
       const json: TMDBTvShowDetailsResponse & TAppendedToResponse = await req.json()
-      return json
+      return {
+        ...json,
+        backdrop_path: this.formatBackdropImageUrl(json.backdrop_path, 'w780'),
+        poster_path: this.formatPosterImageUrl(json.poster_path, 'w342'),
+      }
     } catch (err) {
       logger.error(`[${TmdbService.name}.${this.getTVShowById.name}] Request failed.`, err)
       throw err

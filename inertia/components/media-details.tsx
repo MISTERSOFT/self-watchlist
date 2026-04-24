@@ -22,12 +22,11 @@ import { ExternalLink, Play, Trash } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface MediaDetailsProps {
-  media: Data.AnimeDetails | Data.MovieDetails
+  media: Data.AnimeDetails | Data.MovieDetails | Data.TvshowDetails
   watchStatuses: WatchStatus[]
 }
 
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
-  console.log(media)
   const isAnime = media.__type__ === 'anime'
   const { setOpen } = useSidebar()
   const { openDialog } = useVideoPlayerDialog()

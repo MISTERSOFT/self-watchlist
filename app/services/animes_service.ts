@@ -33,7 +33,7 @@ export class AnimesService {
       .preload('users', (query) => {
         query.pivotColumns(['watch_status'])
       })
-      .first()
+      .firstOrFail()
     return anime
   }
 
@@ -49,30 +49,6 @@ export class AnimesService {
     })
 
     return animes
-  }
-
-  /**
-   * Remove anime from user's watchlist.
-   *
-   * @param animeId Anime ID
-   * @param userId User ID
-   */
-  async removeFromWatchlist(animeId: string, userId: number) {
-    db.transaction(async (trx) => {
-      const anime = await Anime.findOrFail(animeId, { client: trx })
-      await anime.related('users').detach([userId], trx)
-    })
-  }
-
-  async updateFromWatchlist(animeId: string, userId: number, watchStatus: WatchStatus) {
-    db.transaction(async (trx) => {
-      const anime = await Anime.findOrFail(animeId, { client: trx })
-      await anime.related('users').sync({
-        [userId]: {
-          watch_status: watchStatus,
-        },
-      })
-    })
   }
 
   /**

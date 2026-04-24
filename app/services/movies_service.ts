@@ -42,7 +42,7 @@ export class MoviesService {
       .preload('users', (query) => {
         query.pivotColumns(['watch_status'])
       })
-      .first()
+      .firstOrFail()
     return movie
   }
 
@@ -81,17 +81,6 @@ export class MoviesService {
       movie.useTransaction(trx)
       // Associate current user to movie
       await movie.related('users').attach({
-        [userId]: {
-          watch_status: watchStatus,
-        },
-      })
-    })
-  }
-
-  async updateWatchStatus(movieId: string, userId: number, watchStatus: WatchStatus) {
-    db.transaction(async (trx) => {
-      const movie = await Movie.findOrFail(movieId, { client: trx })
-      await movie.related('users').sync({
         [userId]: {
           watch_status: watchStatus,
         },

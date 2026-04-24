@@ -11,6 +11,7 @@ import type BaseMediaTransformer from '#transformers/base_media_transformer'
 import type GenreTransformer from '#transformers/genre_transformer'
 import type MediaCardTransformer from '#transformers/media_card_transformer'
 import type MovieDetailsTransformer from '#transformers/movie_details_transformer'
+import type TvshowDetailsTransformer from '#transformers/tvshow_details_transformer'
 import type UserTransformer from '#transformers/user_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
@@ -34,6 +35,10 @@ export namespace Data {
   export type MovieDetails = InferData<MovieDetailsTransformer>
   export namespace MovieDetails {
     export type Variants = InferVariants<MovieDetailsTransformer>
+  }
+  export type TvshowDetails = InferData<TvshowDetailsTransformer>
+  export namespace TvshowDetails {
+    export type Variants = InferVariants<TvshowDetailsTransformer>
   }
   export type User = InferData<UserTransformer>
   export namespace User {

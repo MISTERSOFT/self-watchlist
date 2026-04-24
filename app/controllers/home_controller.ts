@@ -1,9 +1,11 @@
 import Anime from '#models/anime'
 import Movie from '#models/movie'
+import Tvshow from '#models/tvshow'
 import { WatchlistService } from '#services/watchlist_service'
 import AnimeDetailsTransformer from '#transformers/anime_details_transformer'
 import MediaCardTransformer from '#transformers/media_card_transformer'
 import MovieDetailsTransformer from '#transformers/movie_details_transformer'
+import TvshowDetailsTransformer from '#transformers/tvshow_details_transformer'
 import { WatchStatus } from '#types/types'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -18,8 +20,8 @@ export default class HomeController {
 
     return inertia.render('home', {
       medias: async () => {
-        const [animes, movies] = await this._watchlistService.getUserWatchlist(user.id)
-        const all = [...animes, ...movies].sort((a, b) => {
+        const [animes, movies, tvshows] = await this._watchlistService.getUserWatchlist(user.id)
+        const all = [...animes, ...movies, ...tvshows].sort((a, b) => {
           if (a.createdAt < b.createdAt) return -1
           if (a.createdAt > b.createdAt) return 1
           return 0
@@ -38,9 +40,9 @@ export default class HomeController {
         if (selectedMedia instanceof Movie) {
           return MovieDetailsTransformer.transform(selectedMedia)
         }
-        // if (selectedMedia instanceof Tvshow) {
-        //   return TvshowDetailsTransformer.transform(selectedMedia)
-        // }
+        if (selectedMedia instanceof Tvshow) {
+          return TvshowDetailsTransformer.transform(selectedMedia)
+        }
         return undefined
       },
       watchStatuses: [

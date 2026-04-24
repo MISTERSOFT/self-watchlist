@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 type PageProps = InertiaProps<{
   medias: Data.MediaCard[]
-  selectedMedia?: Data.AnimeDetails
+  selectedMedia?: Data.AnimeDetails | Data.MovieDetails | Data.TvshowDetails
   watchStatuses?: Array<WatchStatus>
 }>
 

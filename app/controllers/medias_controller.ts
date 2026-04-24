@@ -45,12 +45,14 @@ const TMDB_ORIGIN_COUNTRY_JP = 'JP'
 const filterTvshowsFn = flow(
   (_tvshows: TMDBPagination<TMDBSearchTVShow>['results'], _tmdbTvShowIdsInDb: number[]) =>
     _tvshows.filter((m) => !_tmdbTvShowIdsInDb.includes(m.id)),
+  // Remove all Anime from the data
   (_tvshows: TMDBPagination<TMDBSearchTVShow>['results']) =>
     _tvshows.filter(
       (m) =>
-        m.genre_ids.length > 0 &&
-        !m.genre_ids.includes(TMDB_GENRE_ANIMATION_ID) &&
-        m.origin_country.includes(TMDB_ORIGIN_COUNTRY_JP)
+        !(
+          m.genre_ids.includes(TMDB_GENRE_ANIMATION_ID) &&
+          m.origin_country.includes(TMDB_ORIGIN_COUNTRY_JP)
+        )
     )
 )
 
@@ -135,7 +137,7 @@ export default class MediasController {
         // 1. Get TMDB TvShow already in db
         const tmdbTvShowIdsInDb = await this._tvshowsService.getTvShowsTMDBIdsByUser(user.id)
         // 2. Search TvShow
-        const tvshows = await this._tmdbService.searchTVShow({ query: search })
+        const tvshows = await this._tmdbService.searchTVShow({ query: search, include_adult: true })
         // 3. Filter tvshow to remove :
         // - those already in db
         // - those where the origin country is Japon and has an "Animation" (id: 16) genre. In other word, we remove Anime from the result.
@@ -182,10 +184,11 @@ export default class MediasController {
         break
 
       case 'movie':
-        await this._mediasService.addMovie(externalSourceId, user.id)
+        name = await this._mediasService.addMovie(externalSourceId, user.id)
         break
 
       case 'tvshow':
+        name = await this._mediasService.addTvShow(externalSourceId, user.id)
         break
 
       default:
@@ -204,13 +207,15 @@ export default class MediasController {
 
     switch (type) {
       case 'anime':
-        await this._animesService.removeFromWatchlist(mediaId, user.id)
+        await this._mediasService.removeAnimeFromUserWatchlist(mediaId, user.id)
         break
 
       case 'movie':
+        await this._mediasService.removeMovieFromUserWatchlist(mediaId, user.id)
         break
 
       case 'tvshow':
+        await this._mediasService.removeTvshowFromUserWatchlist(mediaId, user.id)
         break
 
       default:
@@ -224,21 +229,7 @@ export default class MediasController {
     const user = auth.getUserOrFail()
     const { mediaId, type, watchStatus } = await request.validateUsing(updateUserMediaValidator)
 
-    switch (type) {
-      case 'anime':
-        await this._animesService.updateFromWatchlist(mediaId, user.id, watchStatus)
-        break
-
-      case 'movie':
-        await this._moviesService.updateWatchStatus(mediaId, user.id, watchStatus)
-        break
-
-      case 'tvshow':
-        break
-
-      default:
-        break
-    }
+    await this._mediasService.updateWatchStatus(type, mediaId, user.id, watchStatus)
 
     return serialize({ success: true })
   }
