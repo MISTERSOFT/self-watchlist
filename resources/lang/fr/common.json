@@ -11,5 +11,12 @@
     },
     "language": "Langue",
     "logout": "Déconnexion"
+  },
+  "watch_status": {
+    "watching": "En cours",
+    "completed": "Completé",
+    "on_hold": "En attente",
+    "dropped": "Abandonné",
+    "plan_to_watch": "À voir"
   }
 }
