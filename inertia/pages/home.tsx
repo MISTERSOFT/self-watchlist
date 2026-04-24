@@ -4,6 +4,7 @@ import { useSidebar } from '@/components/ui/sidebar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type PageProps = InertiaProps<{
   medias: Data.MediaCard[]
@@ -12,6 +13,7 @@ type PageProps = InertiaProps<{
 }>
 
 export default function Home({ medias, selectedMedia }: PageProps) {
+  const { t } = useTranslation('home')
   const { setOpen } = useSidebar()
 
   useEffect(() => {
@@ -28,8 +30,12 @@ export default function Home({ medias, selectedMedia }: PageProps) {
 
       <div className="space-y-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-foreground">À voir</h1>
-          <div className="text-sm text-muted-foreground">{medias.length} résultats trouvés</div>
+          <h1 className="text-2xl font-semibold text-foreground">
+            {t('watch_status.plan_to_watch', { ns: 'common' })}
+          </h1>
+          <div className="text-sm text-muted-foreground">
+            {t('results_found', { count: medias.length })}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
