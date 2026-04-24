@@ -31,7 +31,7 @@ export default class AnimeDetailsTransformer extends BaseMediaTransformer<Anime>
         'title',
         'trailerId',
         'trailerSource',
-        'type',
+        'format',
       ]),
       trailerUrl: this.computeTrailerUrl(),
       genres: GenreTransformer.transform(this.resource.genres),

@@ -149,8 +149,8 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
         {isAnime && (
           <>
             <div className="flex flex-col gap-2">
-              <span className="font-medium">Type</span>
-              <Badge>{media.type}</Badge>
+              <span className="font-medium">Format</span>
+              <Badge>{media.format}</Badge>
             </div>
             <div className="flex flex-col gap-2">
               <span className="font-medium">Episodes</span>

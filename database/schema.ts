@@ -26,6 +26,7 @@ export class AnimeSchema extends BaseModel {
     'episodesCount',
     'externalSource',
     'externalSourceId',
+    'format',
     'id',
     'myanimelistId',
     'nsfw',
@@ -39,7 +40,6 @@ export class AnimeSchema extends BaseModel {
     'title',
     'trailerId',
     'trailerSource',
-    'type',
     'updatedAt',
   ] as const
   $columns = AnimeSchema.$columns
@@ -55,6 +55,8 @@ export class AnimeSchema extends BaseModel {
   declare externalSource: string | null
   @column()
   declare externalSourceId: string | null
+  @column()
+  declare format: string | null
   @column({ isPrimary: true })
   declare id: string
   @column()
@@ -81,8 +83,6 @@ export class AnimeSchema extends BaseModel {
   declare trailerId: string | null
   @column()
   declare trailerSource: string | null
-  @column()
-  declare type: string | null
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 }

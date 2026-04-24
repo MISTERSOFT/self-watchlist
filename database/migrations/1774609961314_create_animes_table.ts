@@ -16,7 +16,7 @@ export default class extends BaseSchema {
       // table.text('slug').notNullable().unique()
       table.text('title').notNullable()
       table.text('alternative_titles').nullable()
-      table.string('type').nullable()
+      table.string('format').nullable()
       table.text('synopsis').nullable()
       table.decimal('score', 3, 1).nullable()
       table.string('status').nullable()
