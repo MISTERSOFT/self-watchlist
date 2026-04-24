@@ -1,6 +1,6 @@
 import { urlFor } from '@/client'
 import { useImportMyAnimeListDialog } from '@/components/import-my-anime-list-dialog-provider'
-import { useTheme } from '@/components/theme-provider'
+import { Theme, themes, useTheme } from '@/components/theme-provider'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -22,6 +22,37 @@ import { InertiaProps } from '@/types'
 import { Link } from '@inertiajs/react'
 import { ChevronDown, LogOut } from 'lucide-react'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+
+const ThemeSelector = () => {
+  const { t } = useTranslation()
+  const { theme, setTheme } = useTheme()
+
+  const isSelected = (themeValue: Theme) => themeValue === theme
+
+  return (
+    <DropdownMenuGroup>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>{t('menu.theme.title')}</DropdownMenuSubTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuGroup>
+              {themes.map((themeValue, k) => (
+                <DropdownMenuCheckboxItem
+                  key={k}
+                  checked={isSelected(themeValue)}
+                  onCheckedChange={() => setTheme(themeValue)}
+                >
+                  {t(`menu.theme.colors.${themeValue}`)}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuPortal>
+      </DropdownMenuSub>
+    </DropdownMenuGroup>
+  )
+}
 
 interface LoggedUserDropdownMenuProps {
   user: NonNullable<InertiaProps['user']>
@@ -29,7 +60,6 @@ interface LoggedUserDropdownMenuProps {
 
 export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) => {
   const { setOpen } = useImportMyAnimeListDialog()
-  const { theme, setTheme } = useTheme()
   const { urlParams } = useURLParams()
 
   const openImportDialog = useCallback(() => setOpen(true), [])
@@ -63,35 +93,8 @@ export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) =>
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={openImportDialog}>Import from MyAnimeList</DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuGroup>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuGroup>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === 'light'}
-                    onCheckedChange={() => setTheme('light')}
-                  >
-                    Light
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === 'dark'}
-                    onCheckedChange={() => setTheme('dark')}
-                  >
-                    Dark
-                  </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem
-                    checked={theme === 'system'}
-                    onCheckedChange={() => setTheme('system')}
-                  >
-                    System
-                  </DropdownMenuCheckboxItem>
-                </DropdownMenuGroup>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
         </DropdownMenuGroup>
+        <ThemeSelector />
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link

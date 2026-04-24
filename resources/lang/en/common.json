@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "theme": {
+      "title": "Theme",
+      "colors": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    },
+  }
+}
