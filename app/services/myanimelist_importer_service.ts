@@ -1,6 +1,5 @@
 import MyAnimeListImportFailedException from '#exceptions/my_anime_list_import_failed_exception'
 import { AbtractImporterService } from '#services/abstract_importer_service'
-import { AnilistNormalizerService } from '#services/anilist_normalizer_service'
 import { AnilistService } from '#services/anilist_service'
 import { AnimesService } from '#services/animes_service'
 import type { SearchQueryMediaArray, WatchStatus } from '#types/types'
@@ -29,7 +28,6 @@ export class MyAnimeListImporterService extends AbtractImporterService {
   constructor(
     protected readonly _ctx: HttpContext,
     protected readonly _anilistService: AnilistService,
-    protected readonly _anilistNormalizerService: AnilistNormalizerService,
     protected readonly _animesService: AnimesService
   ) {
     super()

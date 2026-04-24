@@ -8,6 +8,7 @@ import type {
 } from '#graphql/generated/anilist/types'
 import type Anime from '#models/anime'
 import Genre from '#models/genre'
+import type { SearchQueryMediaItem } from '#types/types'
 import { flow, uniq } from 'es-toolkit'
 import Fuse from 'fuse.js'
 import { DateTime } from 'luxon'
@@ -55,7 +56,7 @@ export class AnilistNormalizerService {
       type: media!.format!.toLowerCase(),
       synopsis: stringHelpers.stripHtmlTags(media?.description!),
       // synopsis: await TranslatorService.translate(stringHelpers.stripHtmlTags(media?.description!)),
-      score: this._normalizeScore(media!.meanScore!),
+      score: this.normalizeScore(media!.meanScore!),
       status: this._normalizeStatus(media!.status!),
       season: this._normalizeSeason(media!.season!),
       seasonYear: media!.seasonYear!,
@@ -77,18 +78,8 @@ export class AnilistNormalizerService {
     }
   }
 
-  normalizeTitles(data: Media): string {
-    // const normalize = flow(
-    //   (titles: string[]) => titles.filter((title: string) => Boolean(title) && title !== data.title?.romaji),
-    //   uniq,
-    //   Array.prototype.join
-    // )
-
-    // return _([data.title?.english, data.title?.native])
-    //   .filter((title) => Boolean(title) && title !== data.title?.romaji)
-    //   .uniq()
-    //   .join(',')
-    return this._normalizeTitlesFn([data.title?.english, data.title?.native], data.title?.romaji)
+  normalizeTitles(data: Media | SearchQueryMediaItem): string {
+    return this._normalizeTitlesFn([data!.title?.english, data!.title?.native], data!.title?.romaji)
   }
 
   private _normalizeStatus(status: MediaStatus): 'finished' | 'airing' | 'cancelled' | null {
@@ -118,7 +109,7 @@ export class AnilistNormalizerService {
         return null
     }
   }
-  private _normalizeScore(score: number): number | null {
+  normalizeScore(score: number): number | null {
     if (score === undefined) {
       return null
     }

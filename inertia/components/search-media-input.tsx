@@ -12,16 +12,16 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import useDebounce from '@/hooks/use-debounce'
+import { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
 import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { Route } from '@tuyau/core/types'
 import { FilmIcon, LoaderCircle, SearchIcon } from 'lucide-react'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
 const MIN_SEARCH_QUERY_LENGTH = 3
 
-type SearchMedia = Route.Response<'medias.search'>['data']['medias'][number]
+type SearchMedia = Data.AnimeSearch | Data.MovieSearch | Data.TvshowSearch
 type SearchMediaQueryData =
   ReturnType<typeof api.medias.search.queryOptions> extends UseQueryOptions<
     infer TData,
@@ -49,10 +49,7 @@ function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
         refetchOnReconnect: false,
         select,
         initialData: {
-          data: {
-            type: 'anime',
-            medias: [],
-          },
+          data: [],
         },
       }
     )
@@ -158,7 +155,7 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
             </div>
           )}
 
-          {searchQuery.isFetched && searchQuery.data.medias.length === 0 && (
+          {searchQuery.isFetched && searchQuery.data.length === 0 && (
             <div className="flex flex-col items-center justify-center py-12 px-6 text-center">
               <div className="rounded-full bg-muted p-4 mb-4">
                 <FilmIcon className="h-8 w-8 text-muted-foreground" />
@@ -171,12 +168,10 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
             </div>
           )}
 
-          {searchQuery.isFetched && searchQuery.data?.medias.length > 0 && (
+          {searchQuery.isFetched && searchQuery.data.length > 0 && (
             <div className="h-72 space-y-2">
-              <div className="font-bold">
-                Résultats ({searchQuery.data.medias.length} médias trouvés)
-              </div>
-              {searchQuery.data?.medias.map((media) => (
+              <div className="font-bold">Résultats ({searchQuery.data.length} médias trouvés)</div>
+              {searchQuery.data.map((media) => (
                 <div
                   key={media.externalSourceId}
                   onClick={() => handleSelectMedia(media)}

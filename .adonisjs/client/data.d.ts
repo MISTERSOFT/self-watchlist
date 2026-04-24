@@ -7,11 +7,14 @@
 import type { InferData, InferVariants } from '@adonisjs/core/types/transformers'
 import type { InferSharedProps } from '@adonisjs/inertia/types'
 import type AnimeDetailsTransformer from '#transformers/anime_details_transformer'
+import type AnimeSearchTransformer from '#transformers/anime_search_transformer'
 import type BaseMediaTransformer from '#transformers/base_media_transformer'
 import type GenreTransformer from '#transformers/genre_transformer'
 import type MediaCardTransformer from '#transformers/media_card_transformer'
 import type MovieDetailsTransformer from '#transformers/movie_details_transformer'
+import type MovieSearchTransformer from '#transformers/movie_search_transformer'
 import type TvshowDetailsTransformer from '#transformers/tvshow_details_transformer'
+import type TvshowSearchTransformer from '#transformers/tvshow_search_transformer'
 import type UserTransformer from '#transformers/user_transformer'
 import type InertiaMiddleware from '#middleware/inertia_middleware'
 
@@ -19,6 +22,10 @@ export namespace Data {
   export type AnimeDetails = InferData<AnimeDetailsTransformer>
   export namespace AnimeDetails {
     export type Variants = InferVariants<AnimeDetailsTransformer>
+  }
+  export type AnimeSearch = InferData<AnimeSearchTransformer>
+  export namespace AnimeSearch {
+    export type Variants = InferVariants<AnimeSearchTransformer>
   }
   export type BaseMedia = InferData<BaseMediaTransformer>
   export namespace BaseMedia {
@@ -36,9 +43,17 @@ export namespace Data {
   export namespace MovieDetails {
     export type Variants = InferVariants<MovieDetailsTransformer>
   }
+  export type MovieSearch = InferData<MovieSearchTransformer>
+  export namespace MovieSearch {
+    export type Variants = InferVariants<MovieSearchTransformer>
+  }
   export type TvshowDetails = InferData<TvshowDetailsTransformer>
   export namespace TvshowDetails {
     export type Variants = InferVariants<TvshowDetailsTransformer>
+  }
+  export type TvshowSearch = InferData<TvshowSearchTransformer>
+  export namespace TvshowSearch {
+    export type Variants = InferVariants<TvshowSearchTransformer>
   }
   export type User = InferData<UserTransformer>
   export namespace User {
