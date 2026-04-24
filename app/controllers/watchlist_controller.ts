@@ -36,7 +36,7 @@ const omitAnimesAndAttachedToUserTvshowsFn = flow(
 )
 
 @inject()
-export default class MediasController {
+export default class WatchlistController {
   constructor(
     protected readonly _anilistService: AnilistService,
     protected readonly _animesService: AnimesService,
@@ -46,6 +46,9 @@ export default class MediasController {
     protected readonly _mediasService: WatchlistService
   ) {}
 
+  /**
+   * Search an anime, movie or tvshow.
+   */
   async search({ request, response, auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
     const { search, type } = await request.validateUsing(searchNewMediaValidator)
@@ -97,7 +100,10 @@ export default class MediasController {
     }
   }
 
-  async addToWatchlist({ request, auth, serialize }: HttpContext) {
+  /**
+   * Add a media in the user's watchlist.
+   */
+  async add({ request, auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
     const { externalSourceId, type } = await request.validateUsing(addNewMediaValidator)
 
@@ -126,7 +132,10 @@ export default class MediasController {
     })
   }
 
-  async removeFromWatchlist({ request, serialize, auth }: HttpContext) {
+  /**
+   * Remove a media from the user's watchlist.
+   */
+  async remove({ request, serialize, auth }: HttpContext) {
     const user = auth.getUserOrFail()
     const { mediaId, type } = await request.validateUsing(deleteUserMediaValidator)
 
@@ -150,7 +159,10 @@ export default class MediasController {
     return serialize({ success: true })
   }
 
-  async updateWatchStatus({ request, auth, serialize }: HttpContext) {
+  /**
+   * Update the watch status of a media in the user's watchlist.
+   */
+  async update({ request, auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
     const { mediaId, type, watchStatus } = await request.validateUsing(updateUserMediaValidator)
 

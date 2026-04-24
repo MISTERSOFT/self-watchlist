@@ -48,29 +48,29 @@ const routes = {
     tokens: [{"old":"/api/import/mal","type":0,"val":"api","end":""},{"old":"/api/import/mal","type":0,"val":"import","end":""},{"old":"/api/import/mal","type":0,"val":"mal","end":""}],
     types: placeholder as Registry['import_myanimelist.store']['types'],
   },
-  'medias.search': {
+  'watchlist.search': {
     methods: ["GET","HEAD"],
-    pattern: '/api/medias/search',
-    tokens: [{"old":"/api/medias/search","type":0,"val":"api","end":""},{"old":"/api/medias/search","type":0,"val":"medias","end":""},{"old":"/api/medias/search","type":0,"val":"search","end":""}],
-    types: placeholder as Registry['medias.search']['types'],
+    pattern: '/api/watchlist/search',
+    tokens: [{"old":"/api/watchlist/search","type":0,"val":"api","end":""},{"old":"/api/watchlist/search","type":0,"val":"watchlist","end":""},{"old":"/api/watchlist/search","type":0,"val":"search","end":""}],
+    types: placeholder as Registry['watchlist.search']['types'],
   },
-  'medias.add_to_watchlist': {
+  'watchlist.add': {
     methods: ["POST"],
-    pattern: '/api/medias/addToWatchlist',
-    tokens: [{"old":"/api/medias/addToWatchlist","type":0,"val":"api","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"medias","end":""},{"old":"/api/medias/addToWatchlist","type":0,"val":"addToWatchlist","end":""}],
-    types: placeholder as Registry['medias.add_to_watchlist']['types'],
+    pattern: '/api/watchlist/add',
+    tokens: [{"old":"/api/watchlist/add","type":0,"val":"api","end":""},{"old":"/api/watchlist/add","type":0,"val":"watchlist","end":""},{"old":"/api/watchlist/add","type":0,"val":"add","end":""}],
+    types: placeholder as Registry['watchlist.add']['types'],
   },
-  'medias.update_watch_status': {
+  'watchlist.update': {
     methods: ["POST"],
-    pattern: '/api/medias/updateWatchStatus',
-    tokens: [{"old":"/api/medias/updateWatchStatus","type":0,"val":"api","end":""},{"old":"/api/medias/updateWatchStatus","type":0,"val":"medias","end":""},{"old":"/api/medias/updateWatchStatus","type":0,"val":"updateWatchStatus","end":""}],
-    types: placeholder as Registry['medias.update_watch_status']['types'],
+    pattern: '/api/watchlist/update',
+    tokens: [{"old":"/api/watchlist/update","type":0,"val":"api","end":""},{"old":"/api/watchlist/update","type":0,"val":"watchlist","end":""},{"old":"/api/watchlist/update","type":0,"val":"update","end":""}],
+    types: placeholder as Registry['watchlist.update']['types'],
   },
-  'medias.remove_from_watchlist': {
+  'watchlist.remove': {
     methods: ["DELETE"],
-    pattern: '/api/medias/removeFromWatchlist',
-    tokens: [{"old":"/api/medias/removeFromWatchlist","type":0,"val":"api","end":""},{"old":"/api/medias/removeFromWatchlist","type":0,"val":"medias","end":""},{"old":"/api/medias/removeFromWatchlist","type":0,"val":"removeFromWatchlist","end":""}],
-    types: placeholder as Registry['medias.remove_from_watchlist']['types'],
+    pattern: '/api/watchlist/remove',
+    tokens: [{"old":"/api/watchlist/remove","type":0,"val":"api","end":""},{"old":"/api/watchlist/remove","type":0,"val":"watchlist","end":""},{"old":"/api/watchlist/remove","type":0,"val":"remove","end":""}],
+    types: placeholder as Registry['watchlist.remove']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

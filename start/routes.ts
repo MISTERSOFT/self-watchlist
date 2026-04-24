@@ -32,12 +32,12 @@ router
 
         router
           .group(() => {
-            router.get('search', [controllers.Medias, 'search'])
-            router.post('addToWatchlist', [controllers.Medias, 'addToWatchlist'])
-            router.post('updateWatchStatus', [controllers.Medias, 'updateWatchStatus'])
-            router.delete('removeFromWatchlist', [controllers.Medias, 'removeFromWatchlist'])
+            router.get('search', [controllers.Watchlist, 'search'])
+            router.post('add', [controllers.Watchlist, 'add'])
+            router.post('update', [controllers.Watchlist, 'update'])
+            router.delete('remove', [controllers.Watchlist, 'remove'])
           })
-          .prefix('/medias')
+          .prefix('/watchlist')
       })
       .prefix('/api')
   })

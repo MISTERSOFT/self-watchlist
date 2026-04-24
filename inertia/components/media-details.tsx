@@ -32,7 +32,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
   const { openDialog } = useVideoPlayerDialog()
 
   const removeMediaFromWatchlist = useMutation(
-    api.medias.removeFromWatchlist.mutationOptions({
+    api.watchlist.remove.mutationOptions({
       onSuccess: () => {
         router.visit('/', { preserveScroll: true })
       },
@@ -59,7 +59,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
   }
 
   const updateMediaFromWatchlist = useMutation(
-    api.medias.updateWatchStatus.mutationOptions({
+    api.watchlist.update.mutationOptions({
       onSuccess: () => {
         router.reload({ only: ['selectedMedia'] })
       },

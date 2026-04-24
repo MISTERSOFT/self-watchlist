@@ -23,7 +23,7 @@ const MIN_SEARCH_QUERY_LENGTH = 3
 
 type SearchMedia = Data.AnimeSearch | Data.MovieSearch | Data.TvshowSearch
 type SearchMediaQueryData =
-  ReturnType<typeof api.medias.search.queryOptions> extends UseQueryOptions<
+  ReturnType<typeof api.watchlist.search.queryOptions> extends UseQueryOptions<
     infer TData,
     any,
     any,
@@ -38,7 +38,7 @@ function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
   select: (data: NoInfer<SearchMediaQueryData>) => TSelected
 ) {
   return useQuery(
-    api.medias.search.queryOptions(
+    api.watchlist.search.queryOptions(
       {
         query: { search, type },
       },
@@ -65,7 +65,7 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
   const [debouncedSearch] = useDebounce(searchValue, 300)
   const searchQuery = useSearchMediaQuery(debouncedSearch, mediaType, (data) => data.data)
   const addMediaToWatchlist = useMutation(
-    api.medias.addToWatchlist.mutationOptions({
+    api.watchlist.add.mutationOptions({
       onSuccess: () => {
         router.reload()
       },

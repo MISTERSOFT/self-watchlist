@@ -91,52 +91,52 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/import_myanimelist_controller').default['store']>>>
     }
   }
-  'medias.search': {
+  'watchlist.search': {
     methods: ["GET","HEAD"]
-    pattern: '/api/medias/search'
+    pattern: '/api/watchlist/search'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: ExtractQueryForGet<InferInput<(typeof import('#validators/media').searchNewMediaValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['search']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['search']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['search']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'medias.add_to_watchlist': {
+  'watchlist.add': {
     methods: ["POST"]
-    pattern: '/api/medias/addToWatchlist'
+    pattern: '/api/watchlist/add'
     types: {
       body: ExtractBody<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/media').addNewMediaValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['addToWatchlist']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['addToWatchlist']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['add']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['add']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'medias.update_watch_status': {
+  'watchlist.update': {
     methods: ["POST"]
-    pattern: '/api/medias/updateWatchStatus'
+    pattern: '/api/watchlist/update'
     types: {
       body: ExtractBody<InferInput<(typeof import('#validators/media').updateUserMediaValidator)>>
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/media').updateUserMediaValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['updateWatchStatus']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['updateWatchStatus']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
-  'medias.remove_from_watchlist': {
+  'watchlist.remove': {
     methods: ["DELETE"]
-    pattern: '/api/medias/removeFromWatchlist'
+    pattern: '/api/watchlist/remove'
     types: {
       body: ExtractBody<InferInput<(typeof import('#validators/media').deleteUserMediaValidator)>>
       paramsTuple: []
       params: {}
       query: ExtractQuery<InferInput<(typeof import('#validators/media').deleteUserMediaValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['removeFromWatchlist']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/medias_controller').default['removeFromWatchlist']>>> | { status: 422; response: { errors: SimpleError[] } }
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['remove']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/watchlist_controller').default['remove']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
 }
