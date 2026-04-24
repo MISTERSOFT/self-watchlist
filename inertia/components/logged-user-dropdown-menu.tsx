@@ -98,6 +98,7 @@ interface LoggedUserDropdownMenuProps {
 }
 
 export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) => {
+  const { t } = useTranslation()
   const { setOpen } = useImportMyAnimeListDialog()
   const { urlParams } = useURLParams()
 
@@ -130,8 +131,9 @@ export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) =>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={openImportDialog}>Import from MyAnimeList</DropdownMenuItem>
-        </DropdownMenuGroup>
+          <DropdownMenuItem onClick={openImportDialog}>
+            {t('menu.import_myanimelist')}
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <ThemeSelector />
         <LocaleSelector />
@@ -143,7 +145,7 @@ export const LoggedUserDropdownMenu = ({ user }: LoggedUserDropdownMenuProps) =>
             className="flex flex-1"
           >
             <LogOut className="mr-2" />
-            Log out
+            {t('menu.logout')}
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>

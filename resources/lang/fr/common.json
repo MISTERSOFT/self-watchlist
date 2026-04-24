@@ -1,5 +1,6 @@
 {
   "menu": {
+    "import_myanimelist": "Importer depuis MyAnimeList",
     "theme": {
       "title": "Thème",
       "colors": {
@@ -9,5 +10,6 @@
       }
     },
     "language": "Langue",
+    "logout": "Déconnexion"
   }
 }

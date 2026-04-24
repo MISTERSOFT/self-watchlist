@@ -1,5 +1,6 @@
 {
   "menu": {
+    "import_myanimelist": "Import from MyAnimeList",
     "theme": {
       "title": "Theme",
       "colors": {
@@ -9,5 +10,6 @@
       }
     },
     "language": "Language",
+    "logout": "Logout"
   }
 }
