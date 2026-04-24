@@ -7,6 +7,7 @@ import { createInertiaApp } from '@inertiajs/react'
 import { ReactElement } from 'react'
 import { createRoot } from 'react-dom/client'
 import './css/app.css'
+import './i18n'
 
 createInertiaApp({
   title: (title) => (title ? `${title} - ${appName}` : appName),
