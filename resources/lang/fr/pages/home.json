@@ -19,7 +19,7 @@
     },
     "remove_media": {
       "pending": "Suppression de la liste de visionnage...",
-      "success": "\"${name}\" a été retiré de votre liste de visionnage",
+      "success": "\"{{name}}\" a été retiré de votre liste de visionnage",
       "failed": "Une erreur est survenue. Impossible de retirer le média de votre liste de visionnage"
     },
     "confirm_dialog": {

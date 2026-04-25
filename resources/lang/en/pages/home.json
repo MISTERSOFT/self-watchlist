@@ -19,7 +19,7 @@
     },
     "remove_media": {
       "pending": "Removing from watchlist...",
-      "success": "\"${name}\" has been removed from your watchlist",
+      "success": "\"{{name}}\" has been removed from your watchlist",
       "failed": "An error occured. Unable to remove the media from your watchlist"
     },
     "confirm_dialog": {
