@@ -27,7 +27,7 @@ export default function Login() {
                 <p className="text-muted-foreground text-sm text-balance">{t('subheader')}</p>
               </div>
               <div className="grid gap-6">
-                <Field data-invalid={errors.email ? 'true' : undefined}>
+                <Field data-invalid={errors.email ? 'true' : undefined} tabIndex={0}>
                   <FieldLabel htmlFor="email">{t('fields.email', { ns: 'common' })}</FieldLabel>
                   <Input
                     id="email"
@@ -40,7 +40,7 @@ export default function Login() {
                   <FieldError errors={[{ message: errors.email }]} />
                 </Field>
 
-                <Field data-invalid={errors.password ? 'true' : undefined}>
+                <Field data-invalid={errors.password ? 'true' : undefined} tabIndex={1}>
                   <div className="flex items-center">
                     <FieldLabel htmlFor="password">
                       {t('fields.password', { ns: 'common' })}
@@ -50,6 +50,7 @@ export default function Login() {
                       href="/forgot-password"
                       className="ml-auto text-sm underline-offset-4 hover:underline"
                       as="a"
+                      tabIndex={-1}
                     >
                       {t('forgot_password')}
                     </Link>
@@ -63,9 +64,11 @@ export default function Login() {
                   <FieldError errors={[{ message: errors.password }]} />
                 </Field>
 
-                <Button type="submit" className="w-full">
-                  {t('submit')}
-                </Button>
+                <Field tabIndex={2}>
+                  <Button type="submit" className="w-full">
+                    {t('submit')}
+                  </Button>
+                </Field>
               </div>
               <div className="text-center text-sm">
                 {t('no_account')}{' '}
