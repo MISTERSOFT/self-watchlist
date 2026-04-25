@@ -47,5 +47,9 @@
   "confirm_dialog": {
     "cancel": "Annuler",
     "confirm": "Confirmer"
+  },
+  "empty_watchlist": {
+    "title": "Aucun anime, film ou série à regarder",
+    "description": "Vous n'avez pas prévu de voir des animes, films ou séries pour le moment."
   }
 }

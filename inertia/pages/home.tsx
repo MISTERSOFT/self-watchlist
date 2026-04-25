@@ -1,4 +1,5 @@
 import type { WatchStatus } from '#types/types'
+import { EmptyWatchlist } from '@/components/empty-watchlist'
 import { MediaCard } from '@/components/media-card'
 import { useSidebar } from '@/components/ui/sidebar'
 import { InertiaProps } from '@/types'
@@ -38,11 +39,15 @@ export default function Home({ medias, selectedMedia }: PageProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {medias.map((media) => (
-            <MediaCard media={media} key={media.id} />
-          ))}
-        </div>
+        {!medias.length && <EmptyWatchlist />}
+
+        {medias.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {medias.map((media) => (
+              <MediaCard media={media} key={media.id} />
+            ))}
+          </div>
+        )}
 
         {/* <Paginator meta={data.animes.meta} /> */}
       </div>

@@ -47,5 +47,9 @@
   "confirm_dialog": {
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "empty_watchlist": {
+    "title": "No media plan to watch",
+    "description": "You don't have any plans to watch anime, movies, or TV shows right now."
   }
 }
