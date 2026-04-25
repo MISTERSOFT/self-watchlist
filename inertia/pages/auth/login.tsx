@@ -3,13 +3,13 @@ import PasswordInput from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { useTranslations } from '@/hooks/use-translations'
 import { useURLParams } from '@/hooks/use-url-params'
 import { Link } from '@adonisjs/inertia/react'
 import { Form } from '@inertiajs/react'
+import { useTranslation } from 'react-i18next'
 
 export default function Login() {
-  const { t } = useTranslations()
+  const { t } = useTranslation()
   const { urlParams } = useURLParams()
 
   return (

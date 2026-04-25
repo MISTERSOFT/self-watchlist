@@ -1,6 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { useSidebar } from '@/components/ui/sidebar'
-import { useTranslations } from '@/hooks/use-translations'
 import { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
 import { useCallback } from 'react'
@@ -10,7 +9,6 @@ interface MediaCardProps {
 }
 
 export function MediaCard({ media }: MediaCardProps) {
-  const { t } = useTranslations()
   const { setOpen } = useSidebar()
 
   const openSidebar = useCallback(() => {
