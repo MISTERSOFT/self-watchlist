@@ -45,6 +45,7 @@ export default function Login() {
                     <FieldLabel htmlFor="password">
                       {t('fields.password', { ns: 'common' })}
                     </FieldLabel>
+                    {/* TODO: Link to Forgot password page */}
                     <Link
                       href="/forgot-password"
                       className="ml-auto text-sm underline-offset-4 hover:underline"
