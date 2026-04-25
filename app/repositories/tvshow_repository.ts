@@ -21,11 +21,12 @@ export class TvshowRepository {
    * Get user's tvshows where `watch_status` is different from `completed`.
    *
    * @param userId User id attached to tvshows
+   * @param filters Filter values to apply
    * @returns User's tvshows list to watch
    */
-  async getTvshowsToWatchByUser(userId: number) {
+  async getTvshowsByUser(userId: number, filters: { watchStatus: WatchStatus }) {
     const tvshows = await Tvshow.query().andWhereHas('users', (queryUsers) => {
-      queryUsers.where('user_id', userId).where('watch_status', '!=', 'completed')
+      queryUsers.where('user_id', userId).where('watch_status', '=', filters.watchStatus)
     })
 
     return tvshows

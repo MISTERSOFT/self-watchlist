@@ -8,11 +8,12 @@ export class MoviesService {
    * Get user's movies where `watch_status` is different from `completed`.
    *
    * @param userId User id attached to movies
+   * @param filters Filter values to apply
    * @returns User's movies list to watch
    */
-  async getMoviesToWatchByUser(userId: number) {
+  async getMoviesByUser(userId: number, filters: { watchStatus: WatchStatus }) {
     const movies = await Movie.query().andWhereHas('users', (queryUsers) => {
-      queryUsers.where('user_id', userId).where('watch_status', '!=', 'completed')
+      queryUsers.where('user_id', userId).where('watch_status', '=', filters.watchStatus)
     })
 
     return movies

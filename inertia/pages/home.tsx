@@ -1,6 +1,7 @@
 import type { WatchStatus } from '#types/types'
 import { EmptyWatchlist } from '@/components/empty-watchlist'
 import { MediaCard } from '@/components/media-card'
+import { MediaFilters } from '@/components/media-filters'
 import { useSidebar } from '@/components/ui/sidebar'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
@@ -27,13 +28,9 @@ export default function Home({ medias, selectedMedia }: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* <AnimeFilters {...data.filters} /> */}
-
       <div className="space-y-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-foreground">
-            {t('watch_status.plan_to_watch', { ns: 'common' })}
-          </h1>
+          <MediaFilters />
           <div className="text-sm text-muted-foreground">
             {t('results_found', { count: medias.length })}
           </div>
@@ -48,8 +45,6 @@ export default function Home({ medias, selectedMedia }: PageProps) {
             ))}
           </div>
         )}
-
-        {/* <Paginator meta={data.animes.meta} /> */}
       </div>
     </div>
   )

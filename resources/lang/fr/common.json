@@ -21,7 +21,7 @@
   },
   "watch_status": {
     "watching": "En cours",
-    "completed": "Completé",
+    "completed": "Complété",
     "on_hold": "En attente",
     "dropped": "Abandonné",
     "plan_to_watch": "À voir"
@@ -32,7 +32,7 @@
     "tvshow": "Série"
   },
   "search_media": {
-    "placeholder": "Recherche et ajoute rapide...",
+    "placeholder": "Recherche et ajout rapide...",
     "add": {
       "pending": "Ajout en cours de \"{{name}}\"...",
       "success": "\"{{name}}\" a été ajouté",

@@ -48,11 +48,12 @@ export class AnimesService {
    * Get user's animes where `watch_status` is different from `completed`.
    *
    * @param userId User id attached to animes
+   * @param filters Filter values to apply
    * @returns User's animes list to watch
    */
-  async getAnimesToWatchByUser(userId: number) {
+  async getAnimesByUser(userId: number, filters: { watchStatus: WatchStatus }) {
     const animes = await Anime.query().andWhereHas('users', (queryUsers) => {
-      queryUsers.where('user_id', userId).where('watch_status', '!=', 'completed')
+      queryUsers.where('user_id', userId).where('watch_status', '=', filters.watchStatus)
     })
 
     return animes

@@ -63,7 +63,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
   const updateMediaFromWatchlist = useMutation(
     api.watchlist.update.mutationOptions({
       onSuccess: () => {
-        router.reload({ only: ['selectedMedia'] })
+        router.reload()
       },
     })
   )

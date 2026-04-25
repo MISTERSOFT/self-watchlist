@@ -17,10 +17,13 @@ export default class HomeController {
   async index({ inertia, auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
     const mediaId = request.input('mediaId', null)
+    const watchStatus = request.input('watchStatus', 'plan_to_watch')
 
     return inertia.render('home', {
       medias: async () => {
-        const [animes, movies, tvshows] = await this._watchlistService.getUserWatchlist(user.id)
+        const [animes, movies, tvshows] = await this._watchlistService.getUserWatchlist(user.id, {
+          watchStatus,
+        })
         const all = [...animes, ...movies, ...tvshows].sort((a, b) => {
           if (a.createdAt < b.createdAt) return -1
           if (a.createdAt > b.createdAt) return 1

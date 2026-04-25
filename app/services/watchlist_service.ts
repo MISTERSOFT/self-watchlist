@@ -26,11 +26,11 @@ export class WatchlistService {
     private readonly _tvshowRepository: TvshowRepository
   ) {}
 
-  async getUserWatchlist(userId: number) {
+  async getUserWatchlist(userId: number, filters: { watchStatus: WatchStatus }) {
     return await Promise.all([
-      this._animesService.getAnimesToWatchByUser(userId),
-      this._moviesService.getMoviesToWatchByUser(userId),
-      this._tvshowRepository.getTvshowsToWatchByUser(userId),
+      this._animesService.getAnimesByUser(userId, filters),
+      this._moviesService.getMoviesByUser(userId, filters),
+      this._tvshowRepository.getTvshowsByUser(userId, filters),
     ])
   }
 

@@ -9,6 +9,7 @@ import {
   SidebarHeader,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
+import { useURLParams } from '@/hooks/use-url-params'
 import { InertiaProps } from '@/types'
 import { Data } from '@generated/data'
 import { router, usePage } from '@inertiajs/react'
@@ -23,11 +24,13 @@ type PageProps = InertiaProps<{
 
 export function MediaDetailsSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   const page = usePage<PageProps>()
+  const { urlParams } = useURLParams()
   const { t } = useTranslation('home')
 
   const handleCloseSidebarClick = () => {
-    // Go to '/' and remove query string in the URL
-    router.visit('/')
+    // Go to '/', remove 'mediaId' from query string and keep other query params
+    const { mediaId, ...otherParams } = urlParams
+    router.visit('/', { data: otherParams })
   }
 
   return (
