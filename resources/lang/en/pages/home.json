@@ -1,3 +1,30 @@
 {
-  "results_found": "{{count}} results found"
+  "results_found": "{{count}} results found",
+  "details": {
+    "header": "Details",
+    "watch_status": "Watch status",
+    "trailer": "Trailer",
+    "synopsis": "Synopsis",
+    "genres": "Genres",
+    "format": "Format",
+    "episodes": "Episodes",
+    "status": "Status",
+    "nsfw": "NSFW",
+    "score": "Score",
+    "remove_from_watchlist": "Remove from watchlist",
+    "update_watch_status": {
+      "pending": "Updating watch status...",
+      "success": "Watch status has been updated",
+      "failed": "An error occured. Unable to update the watch status"
+    },
+    "remove_media": {
+      "pending": "Removing from watchlist...",
+      "success": "\"${name}\" has been removed from your watchlist",
+      "failed": "An error occured. Unable to remove the media from your watchlist"
+    },
+    "confirm_dialog": {
+      "title": "Confirm deletion",
+      "question": "Are you sure you want to remove this content from your watchlist list?"
+    }
+  }
 }

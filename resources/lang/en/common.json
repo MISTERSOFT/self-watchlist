@@ -43,5 +43,9 @@
     "no_results": "No results found.",
     "try_another_search": "Try a different search. Maybe that one will be more effective.",
     "results_count": "Results ({{count}} media items found)"
+  },
+  "confirm_dialog": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }

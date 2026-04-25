@@ -14,6 +14,7 @@ import { Data } from '@generated/data'
 import { router, usePage } from '@inertiajs/react'
 import { X } from 'lucide-react'
 import { type ComponentProps } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type PageProps = InertiaProps<{
   selectedMedia: Data.AnimeDetails | Data.MovieDetails | undefined
@@ -22,6 +23,7 @@ type PageProps = InertiaProps<{
 
 export function MediaDetailsSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
   const page = usePage<PageProps>()
+  const { t } = useTranslation('home')
 
   const handleCloseSidebarClick = () => {
     // Go to '/' and remove query string in the URL
@@ -32,7 +34,7 @@ export function MediaDetailsSidebar({ ...props }: ComponentProps<typeof Sidebar>
     <Sidebar collapsible="offcanvas" className="md:flex" {...props}>
       <SidebarHeader className="gap-3.5 border-b p-4">
         <div className="flex w-full items-center justify-between">
-          <div className="text-base font-medium text-foreground">Details</div>
+          <div className="text-base font-medium text-foreground">{t('details.header')}</div>
           <SidebarTrigger onClick={handleCloseSidebarClick}>
             <X />
           </SidebarTrigger>

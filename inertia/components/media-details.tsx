@@ -19,6 +19,7 @@ import { Data } from '@generated/data'
 import { router } from '@inertiajs/react'
 import { useMutation } from '@tanstack/react-query'
 import { ExternalLink, Play, Trash } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 interface MediaDetailsProps {
@@ -28,6 +29,7 @@ interface MediaDetailsProps {
 
 export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
   const isAnime = media.__type__ === 'anime'
+  const { t } = useTranslation('home')
   const { setOpen } = useSidebar()
   const { openDialog } = useVideoPlayerDialog()
 
@@ -50,11 +52,11 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       },
     })
     toast.promise(mutatePromise, {
-      loading: 'Removing media...',
+      loading: t('details.remove_media.pending'),
       success: () => {
-        return `"${media.title}" has been removed from your watchlist`
+        return t('details.remove_media.success', { name: media.title }) //`"${media.title}" has been removed from your watchlist`
       },
-      error: 'An error occured. Unable to remove the media from your watchlist.',
+      error: t('details.remove_media.failed'), //'An error occured. Unable to remove the media from your watchlist.',
     })
   }
 
@@ -75,11 +77,11 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       },
     })
     toast.promise(mutatePromise, {
-      loading: 'Updating...',
+      loading: t('details.update_watch_status.pending'), //'Updating...',
       success: () => {
-        return `Watch status has been updated`
+        return t('details.update_watch_status.success') //`Watch status has been updated`
       },
-      error: 'An error occured. Unable to update the watch status.',
+      error: t('details.update_watch_status.failed'), //'An error occured. Unable to update the watch status.',
     })
   }
 
@@ -88,7 +90,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       <VideoPlayerDialog />
 
       <div className="flex flex-col gap-2 w-full">
-        <span className="font-medium">Watch status</span>
+        <span className="font-medium">{t('details.watch_status')}</span>
         <Select
           defaultValue="plan_to_watch"
           value={media.watch_status}
@@ -101,7 +103,7 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
             <SelectGroup>
               {watchStatuses.map((status) => (
                 <SelectItem key={status} value={status}>
-                  {status}
+                  {t(`watch_status.${status}`, { ns: 'common' })}
                 </SelectItem>
               ))}
             </SelectGroup>
@@ -119,8 +121,8 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
       <div className="text-xs font-medium">{media.alternativeTitles}</div>
       <div className="space-x-2">
         {media.trailerUrl && (
-          <Button onClick={() => openDialog('Trailer', media.trailerUrl!)}>
-            Trailer <Play />
+          <Button onClick={() => openDialog(t('details.trailer'), media.trailerUrl!)}>
+            {t('details.trailer')} <Play />
           </Button>
         )}
         {isAnime && (
@@ -129,16 +131,16 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
             href={`https://myanimelist.net/anime/${media.myanimelistId}`}
             target="_blank"
           >
-            MAL page <ExternalLink size={12} />
+            MAL <ExternalLink size={12} />
           </a>
         )}
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-medium">Synopsis</span>
-        <p className="font-light text-justify ">{media.synopsis}</p>
+        <span className="font-medium">{t('details.synopsis')}</span>
+        <p className="font-light text-justify">{media.synopsis}</p>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-medium">Genres</span>
+        <span className="font-medium">{t('details.genres')}</span>
         <div className="space-x-2 space-y-2">
           {media.genres.map((genre) => (
             <Badge key={genre.id}>{genre.name}</Badge>
@@ -149,36 +151,36 @@ export function MediaDetails({ media, watchStatuses }: MediaDetailsProps) {
         {isAnime && (
           <>
             <div className="flex flex-col gap-2">
-              <span className="font-medium">Format</span>
+              <span className="font-medium">{t('details.format')}</span>
               <Badge>{media.format}</Badge>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="font-medium">Episodes</span>
+              <span className="font-medium">{t('details.episodes')}</span>
               {media.episodesCount}
             </div>
             <div className="flex flex-col gap-2">
-              <span className="font-medium">Status</span>
+              <span className="font-medium">{t('details.status')}</span>
               {media.status}
             </div>
           </>
         )}
         <div className="flex flex-col gap-2">
-          <span className="font-medium">NSFW</span>
+          <span className="font-medium">{t('details.nsfw')}</span>
           {media.nsfw ? '✅' : '❌'}
         </div>
         <div className="flex flex-col gap-2">
-          <span className="font-medium">Score</span>
+          <span className="font-medium">{t('details.score')}</span>
           {media.score}/10
         </div>
       </div>
 
       <ConfirmDialog
-        title="Confirm deletion"
-        text="Are you sure you want to remove this content from your favorites list?"
+        title={t('details.confirm_dialog.title')}
+        text={t('details.confirm_dialog.question')}
         onConfirm={handleRemoveConfirm}
       >
         <Button variant="destructive" size="lg" className="w-full">
-          Remove from watchlist
+          {t('details.remove_from_watchlist')}
           <Trash />
         </Button>
       </ConfirmDialog>
