@@ -18,5 +18,23 @@
     "on_hold": "En attente",
     "dropped": "Abandonné",
     "plan_to_watch": "À voir"
+  },
+  "media_type": {
+    "anime": "Anime",
+    "movie": "Film",
+    "tvshow": "Série"
+  },
+  "search_media": {
+    "placeholder": "Recherche et ajoute rapide...",
+    "add": {
+      "pending": "Ajout en cours de \"{{name}}\"...",
+      "success": "\"{{name}}\" a été ajouté",
+      "failed": "Une erreur s'est produite. Impossible d'ajouter \"{{name}}\""
+    },
+    "searching": "Recherche en cours...",
+    "minimum_search_characters": "{{min}} caractères minimum requis pour lancer la recherche.",
+    "no_results": "Aucun résultat trouvé.",
+    "try_another_search": "Essaie une autre recherche, peut-être qu'elle sera plus efficace.",
+    "results_count": "Résultats ({{count}} médias trouvés)"
   }
 }

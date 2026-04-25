@@ -18,5 +18,23 @@
     "on_hold": "On-hold",
     "dropped": "Dropped",
     "plan_to_watch": "Plan to watch"
+  },
+  "media_type": {
+    "anime": "Anime",
+    "movie": "Movie",
+    "tvshow": "TV Show"
+  },
+  "search_media": {
+    "placeholder": "Search and quick add...",
+    "add": {
+      "pending": "Adding \"{{name}}\"...",
+      "success": "\"{{name}}\" has been added",
+      "failed": "An error occured. Unable to add \"{{name}}\""
+    },
+    "searching": "Searching...",
+    "minimum_search_characters": "At least {{min}} characters are required to start the search.",
+    "no_results": "No results found.",
+    "try_another_search": "Try a different search. Maybe that one will be more effective.",
+    "results_count": "Results ({{count}} media items found)"
   }
 }

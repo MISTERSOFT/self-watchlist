@@ -17,6 +17,7 @@ import { router } from '@inertiajs/react'
 import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { FilmIcon, LoaderCircle, SearchIcon } from 'lucide-react'
 import { ChangeEvent, useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 const MIN_SEARCH_QUERY_LENGTH = 3
@@ -59,6 +60,7 @@ function useSearchMediaQuery<TSelected = SearchMediaQueryData>(
 interface SearchMediaInputProps {}
 
 export function SearchMediaInput({}: SearchMediaInputProps) {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
   const [mediaType, setMediaType] = useState<'anime' | 'movie' | 'tvshow'>('anime')
@@ -82,11 +84,11 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
       },
     })
     toast.promise(mutatePromise, {
-      loading: `Adding ${mediaType}...`,
-      success: (data) => {
-        return `"${data.data.name}" has been added`
+      loading: t('search_media.add.pending', { name: media.title }),
+      success: (_) => {
+        return t('search_media.add.success', { name: media.title })
       },
-      error: `An error occured. Unable to add the ${mediaType}.`,
+      error: t('search_media.add.failed', { name: media.title }),
     })
   }
 
@@ -113,7 +115,7 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
       <PopoverAnchor asChild>
         <InputGroup>
           <InputGroupInput
-            placeholder="Search and quick add..."
+            placeholder={t('search_media.placeholder')}
             value={searchValue}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -128,9 +130,9 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
             </SelectTrigger>
             <SelectContent position="popper">
               <SelectGroup>
-                <SelectItem value="anime">Anime</SelectItem>
-                <SelectItem value="movie">Movie</SelectItem>
-                <SelectItem value="tvshow">TV Show</SelectItem>
+                <SelectItem value="anime">{t('media_type.anime')}</SelectItem>
+                <SelectItem value="movie">{t('media_type.movie')}</SelectItem>
+                <SelectItem value="tvshow">{t('media_type.tvshow')}</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -145,13 +147,14 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
         <ScrollArea onClick={(e) => e.preventDefault()}>
           {searchQuery.isFetching && (
             <div className="flex items-center justify-center min-h-10 py-6 text-sm">
-              <LoaderCircle className="animate-spin mr-1" size={18} /> Recherche en cours...
+              <LoaderCircle className="animate-spin mr-1" size={18} />
+              {t('search_media.searching')}
             </div>
           )}
 
           {!searchQuery.isEnabled && (
             <div className="flex items-center justify-center h-10">
-              {MIN_SEARCH_QUERY_LENGTH} caractères minimum requis pour lancer la recherche.
+              {t('search_media.minimum_search_characters', { min: MIN_SEARCH_QUERY_LENGTH })}
             </div>
           )}
 
@@ -160,17 +163,18 @@ export function SearchMediaInput({}: SearchMediaInputProps) {
               <div className="rounded-full bg-muted p-4 mb-4">
                 <FilmIcon className="h-8 w-8 text-muted-foreground" />
               </div>
-              {/* TODO: use i18n to display media type */}
-              <h3 className="text-lg font-semibold mb-2">Aucun {mediaType} trouvé.</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('search_media.no_results')}</h3>
               <p className="text-sm text-muted-foreground">
-                Essaie une autre recherche, peut-être qu'elle sera plus efficace.
+                {t('search_media.try_another_search')}
               </p>
             </div>
           )}
 
           {searchQuery.isFetched && searchQuery.data.length > 0 && (
             <div className="h-72 space-y-2">
-              <div className="font-bold">Résultats ({searchQuery.data.length} médias trouvés)</div>
+              <div className="font-bold">
+                {t('search_media.results_count', { count: searchQuery.data.length })}
+              </div>
               {searchQuery.data.map((media) => (
                 <div
                   key={media.externalSourceId}
