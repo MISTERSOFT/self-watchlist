@@ -9,7 +9,7 @@ import { Form } from '@inertiajs/react'
 import { useTranslation } from 'react-i18next'
 
 export default function Login() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('login')
   const { urlParams } = useURLParams()
 
   return (
@@ -23,19 +23,17 @@ export default function Login() {
           {({ errors }) => (
             <>
               <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">{t('pages.signin.header')}</h1>
-                <p className="text-muted-foreground text-sm text-balance">
-                  {t('pages.signin.subheader')}
-                </p>
+                <h1 className="text-2xl font-bold">{t('header')}</h1>
+                <p className="text-muted-foreground text-sm text-balance">{t('subheader')}</p>
               </div>
               <div className="grid gap-6">
                 <Field data-invalid={errors.email ? 'true' : undefined}>
-                  <FieldLabel htmlFor="email">{t('common.email')}</FieldLabel>
+                  <FieldLabel htmlFor="email">{t('fields.email', { ns: 'common' })}</FieldLabel>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder={t('common.email_placeholder')}
+                    placeholder={t('fields.email_placeholder', { ns: 'common' })}
                     autoComplete="email"
                     aria-invalid={errors.email ? 'true' : 'false'}
                   />
@@ -44,19 +42,20 @@ export default function Login() {
 
                 <Field data-invalid={errors.password ? 'true' : undefined}>
                   <div className="flex items-center">
-                    <FieldLabel htmlFor="password">{t('common.password')}</FieldLabel>
+                    <FieldLabel htmlFor="password">
+                      {t('fields.password', { ns: 'common' })}
+                    </FieldLabel>
                     <Link
                       href="/forgot-password"
                       className="ml-auto text-sm underline-offset-4 hover:underline"
                       as="a"
                     >
-                      {t('pages.signin.forgot_password')}
+                      {t('forgot_password')}
                     </Link>
                   </div>
                   <PasswordInput
                     id="password"
                     name="password"
-                    placeholder="******"
                     autoComplete="current-password"
                     aria-invalid={errors.password ? 'true' : 'false'}
                   />
@@ -64,13 +63,13 @@ export default function Login() {
                 </Field>
 
                 <Button type="submit" className="w-full">
-                  {t('pages.signin.submit')}
+                  {t('submit')}
                 </Button>
               </div>
               <div className="text-center text-sm">
-                {t('pages.signin.no_account')}{' '}
+                {t('no_account')}{' '}
                 <Link route="new_account.create" className="underline underline-offset-4">
-                  {t('pages.signin.register')}
+                  {t('register_here')}
                 </Link>
               </div>
             </>

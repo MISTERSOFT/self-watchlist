@@ -1,4 +1,9 @@
 {
+  "fields": {
+    "email": "Email",
+    "email_placeholder": "example@email.com",
+    "password": "Password"
+  },
   "menu": {
     "import_myanimelist": "Import from MyAnimeList",
     "theme": {
